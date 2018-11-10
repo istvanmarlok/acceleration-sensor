@@ -1,0 +1,792 @@
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	flag,1,1
+  20              		.section	.text.ACC_ISR_Handler,"ax",%progbits
+  21              		.align	2
+  22              		.global	ACC_ISR_Handler
+  23              		.code	16
+  24              		.thumb_func
+  25              		.type	ACC_ISR_Handler, %function
+  26              	ACC_ISR_Handler:
+  27              	.LFB35:
+  28              		.file 1 "main.c"
+   1:main.c        **** #include <stdint.h>
+   2:main.c        **** #include <inttypes.h>
+   3:main.c        **** #include "device.h"
+   4:main.c        **** #include "MMA8652.h"
+   5:main.c        **** 
+   6:main.c        **** CY_ISR_PROTO(ACC_ISR_Hadler);
+   7:main.c        **** 
+   8:main.c        **** volatile uint8_t flag;
+   9:main.c        **** 
+  10:main.c        **** CY_ISR(ACC_ISR_Handler)
+  11:main.c        **** {
+  29              		.loc 1 11 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33 0000 90B5     		push	{r4, r7, lr}
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 7, -8
+  37              		.cfi_offset 14, -4
+  38 0002 83B0     		sub	sp, sp, #12
+  39              		.cfi_def_cfa_offset 24
+  40 0004 00AF     		add	r7, sp, #0
+  41              		.cfi_def_cfa_register 7
+  12:main.c        ****     uint8_t pin;
+  13:main.c        ****     
+  14:main.c        ****     flag = 0;
+  42              		.loc 1 14 0
+  43 0006 0F4B     		ldr	r3, .L5
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 2
+
+
+  44 0008 0022     		movs	r2, #0
+  45 000a 1A70     		strb	r2, [r3]
+  15:main.c        ****     
+  16:main.c        ****     // Reset interrupt components
+  17:main.c        ****     pin = ACC_ClearInterrupt();
+  46              		.loc 1 17 0
+  47 000c FC1D     		adds	r4, r7, #7
+  48 000e FFF7FEFF 		bl	ACC_ClearInterrupt
+  49 0012 0300     		movs	r3, r0
+  50 0014 2370     		strb	r3, [r4]
+  18:main.c        ****     ACC_ISR_ClearPending();
+  51              		.loc 1 18 0
+  52 0016 FFF7FEFF 		bl	ACC_ISR_ClearPending
+  19:main.c        **** 
+  20:main.c        ****     // Interrupt on ACC_INT2
+  21:main.c        ****     if (pin & 0x01) {
+  53              		.loc 1 21 0
+  54 001a FB1D     		adds	r3, r7, #7
+  55 001c 1B78     		ldrb	r3, [r3]
+  56 001e 0122     		movs	r2, #1
+  57 0020 1340     		ands	r3, r2
+  58 0022 02D0     		beq	.L2
+  22:main.c        ****         
+  23:main.c        ****         // Put your code here
+  24:main.c        ****         flag = 2; 
+  59              		.loc 1 24 0
+  60 0024 074B     		ldr	r3, .L5
+  61 0026 0222     		movs	r2, #2
+  62 0028 1A70     		strb	r2, [r3]
+  63              	.L2:
+  25:main.c        ****         
+  26:main.c        ****     }
+  27:main.c        ****     
+  28:main.c        ****     // Interrupt on ACC_INT1
+  29:main.c        ****     if (pin & 0x02) {
+  64              		.loc 1 29 0
+  65 002a FB1D     		adds	r3, r7, #7
+  66 002c 1B78     		ldrb	r3, [r3]
+  67 002e 0222     		movs	r2, #2
+  68 0030 1340     		ands	r3, r2
+  69 0032 02D0     		beq	.L4
+  30:main.c        ****         
+  31:main.c        ****         // Put your code here
+  32:main.c        ****         flag = 1;
+  70              		.loc 1 32 0
+  71 0034 034B     		ldr	r3, .L5
+  72 0036 0122     		movs	r2, #1
+  73 0038 1A70     		strb	r2, [r3]
+  74              	.L4:
+  33:main.c        ****     }
+  34:main.c        **** }
+  75              		.loc 1 34 0
+  76 003a C046     		nop
+  77 003c BD46     		mov	sp, r7
+  78 003e 03B0     		add	sp, sp, #12
+  79              		@ sp needed
+  80 0040 90BD     		pop	{r4, r7, pc}
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 3
+
+
+  81              	.L6:
+  82 0042 C046     		.align	2
+  83              	.L5:
+  84 0044 00000000 		.word	flag
+  85              		.cfi_endproc
+  86              	.LFE35:
+  87              		.size	ACC_ISR_Handler, .-ACC_ISR_Handler
+  88              		.section	.rodata
+  89              		.align	2
+  90              	.LC3:
+  91 0000 666C6167 		.ascii	"flag: %d, id: %d, error: %lu\012\000"
+  91      3A202564 
+  91      2C206964 
+  91      3A202564 
+  91      2C206572 
+  92              		.section	.text.main,"ax",%progbits
+  93              		.align	2
+  94              		.global	main
+  95              		.code	16
+  96              		.thumb_func
+  97              		.type	main, %function
+  98              	main:
+  99              	.LFB36:
+  35:main.c        **** 
+  36:main.c        **** 
+  37:main.c        **** int main(void)
+  38:main.c        **** {
+ 100              		.loc 1 38 0
+ 101              		.cfi_startproc
+ 102              		@ args = 0, pretend = 0, frame = 112
+ 103              		@ frame_needed = 1, uses_anonymous_args = 0
+ 104 0000 90B5     		push	{r4, r7, lr}
+ 105              		.cfi_def_cfa_offset 12
+ 106              		.cfi_offset 4, -12
+ 107              		.cfi_offset 7, -8
+ 108              		.cfi_offset 14, -4
+ 109 0002 9FB0     		sub	sp, sp, #124
+ 110              		.cfi_def_cfa_offset 136
+ 111 0004 02AF     		add	r7, sp, #8
+ 112              		.cfi_def_cfa 7, 128
+  39:main.c        ****     CyGlobalIntEnable;
+ 113              		.loc 1 39 0
+ 114              		.syntax divided
+ 115              	@ 39 "main.c" 1
+ 116 0006 62B6     		CPSIE   i
+ 117              	@ 0 "" 2
+  40:main.c        ****     
+  41:main.c        ****     // Start basic components
+  42:main.c        ****     UART_Start();
+ 118              		.loc 1 42 0
+ 119              		.thumb
+ 120              		.syntax unified
+ 121 0008 FFF7FEFF 		bl	UART_Start
+  43:main.c        ****     I2C_Start();
+ 122              		.loc 1 43 0
+ 123 000c FFF7FEFF 		bl	I2C_Start
+  44:main.c        ****     
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 4
+
+
+  45:main.c        ****     // Register interrupt handler function
+  46:main.c        ****     ACC_ISR_StartEx(ACC_ISR_Handler);
+ 124              		.loc 1 46 0
+ 125 0010 114B     		ldr	r3, .L9
+ 126 0012 1800     		movs	r0, r3
+ 127 0014 FFF7FEFF 		bl	ACC_ISR_StartEx
+ 128              	.L8:
+ 129              	.LBB2:
+  47:main.c        ****     
+  48:main.c        ****     // Main loop
+  49:main.c        ****     for(;;) {
+  50:main.c        ****         
+  51:main.c        ****         uint32_t error;
+  52:main.c        ****         uint8_t id;
+  53:main.c        ****         char tmp[100];
+  54:main.c        ****         
+  55:main.c        ****         error = MMA8652_WhoAmI(&id);
+ 130              		.loc 1 55 0 discriminator 1
+ 131 0018 6B23     		movs	r3, #107
+ 132 001a FB18     		adds	r3, r7, r3
+ 133 001c 1800     		movs	r0, r3
+ 134 001e FFF7FEFF 		bl	MMA8652_WhoAmI
+ 135 0022 0300     		movs	r3, r0
+ 136 0024 FB66     		str	r3, [r7, #108]
+  56:main.c        ****         
+  57:main.c        ****         sprintf(tmp, "flag: %d, id: %d, error: %" PRIu32 "\n", flag, id, error);
+ 137              		.loc 1 57 0 discriminator 1
+ 138 0026 0D4B     		ldr	r3, .L9+4
+ 139 0028 1B78     		ldrb	r3, [r3]
+ 140 002a DBB2     		uxtb	r3, r3
+ 141 002c 1A00     		movs	r2, r3
+ 142 002e 6B23     		movs	r3, #107
+ 143 0030 FB18     		adds	r3, r7, r3
+ 144 0032 1B78     		ldrb	r3, [r3]
+ 145 0034 1C00     		movs	r4, r3
+ 146 0036 0A49     		ldr	r1, .L9+8
+ 147 0038 381D     		adds	r0, r7, #4
+ 148 003a FB6E     		ldr	r3, [r7, #108]
+ 149 003c 0093     		str	r3, [sp]
+ 150 003e 2300     		movs	r3, r4
+ 151 0040 FFF7FEFF 		bl	sprintf
+  58:main.c        ****         UART_UartPutString(tmp);
+ 152              		.loc 1 58 0 discriminator 1
+ 153 0044 3B1D     		adds	r3, r7, #4
+ 154 0046 1800     		movs	r0, r3
+ 155 0048 FFF7FEFF 		bl	UART_UartPutString
+  59:main.c        ****         
+  60:main.c        ****         CyDelay(1000);
+ 156              		.loc 1 60 0 discriminator 1
+ 157 004c FA23     		movs	r3, #250
+ 158 004e 9B00     		lsls	r3, r3, #2
+ 159 0050 1800     		movs	r0, r3
+ 160 0052 FFF7FEFF 		bl	CyDelay
+ 161              	.LBE2:
+  61:main.c        ****         
+  62:main.c        ****     }
+ 162              		.loc 1 62 0 discriminator 1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 5
+
+
+ 163 0056 DFE7     		b	.L8
+ 164              	.L10:
+ 165              		.align	2
+ 166              	.L9:
+ 167 0058 00000000 		.word	ACC_ISR_Handler
+ 168 005c 00000000 		.word	flag
+ 169 0060 00000000 		.word	.LC3
+ 170              		.cfi_endproc
+ 171              	.LFE36:
+ 172              		.size	main, .-main
+ 173              		.text
+ 174              	.Letext0:
+ 175              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 176              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 177              		.section	.debug_info,"",%progbits
+ 178              	.Ldebug_info0:
+ 179 0000 4F010000 		.4byte	0x14f
+ 180 0004 0400     		.2byte	0x4
+ 181 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 182 000a 04       		.byte	0x4
+ 183 000b 01       		.uleb128 0x1
+ 184 000c 20010000 		.4byte	.LASF19
+ 185 0010 0C       		.byte	0xc
+ 186 0011 1B000000 		.4byte	.LASF20
+ 187 0015 A9000000 		.4byte	.LASF21
+ 188 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 189 001d 00000000 		.4byte	0
+ 190 0021 00000000 		.4byte	.Ldebug_line0
+ 191 0025 02       		.uleb128 0x2
+ 192 0026 01       		.byte	0x1
+ 193 0027 06       		.byte	0x6
+ 194 0028 F3000000 		.4byte	.LASF0
+ 195 002c 03       		.uleb128 0x3
+ 196 002d 66000000 		.4byte	.LASF5
+ 197 0031 02       		.byte	0x2
+ 198 0032 1D       		.byte	0x1d
+ 199 0033 37000000 		.4byte	0x37
+ 200 0037 02       		.uleb128 0x2
+ 201 0038 01       		.byte	0x1
+ 202 0039 08       		.byte	0x8
+ 203 003a 78000000 		.4byte	.LASF1
+ 204 003e 02       		.uleb128 0x2
+ 205 003f 02       		.byte	0x2
+ 206 0040 05       		.byte	0x5
+ 207 0041 16010000 		.4byte	.LASF2
+ 208 0045 02       		.uleb128 0x2
+ 209 0046 02       		.byte	0x2
+ 210 0047 07       		.byte	0x7
+ 211 0048 E0000000 		.4byte	.LASF3
+ 212 004c 02       		.uleb128 0x2
+ 213 004d 04       		.byte	0x4
+ 214 004e 05       		.byte	0x5
+ 215 004f 94000000 		.4byte	.LASF4
+ 216 0053 03       		.uleb128 0x3
+ 217 0054 32000000 		.4byte	.LASF6
+ 218 0058 02       		.byte	0x2
+ 219 0059 41       		.byte	0x41
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 6
+
+
+ 220 005a 5E000000 		.4byte	0x5e
+ 221 005e 02       		.uleb128 0x2
+ 222 005f 04       		.byte	0x4
+ 223 0060 07       		.byte	0x7
+ 224 0061 3D000000 		.4byte	.LASF7
+ 225 0065 02       		.uleb128 0x2
+ 226 0066 08       		.byte	0x8
+ 227 0067 05       		.byte	0x5
+ 228 0068 00000000 		.4byte	.LASF8
+ 229 006c 02       		.uleb128 0x2
+ 230 006d 08       		.byte	0x8
+ 231 006e 07       		.byte	0x7
+ 232 006f 4F000000 		.4byte	.LASF9
+ 233 0073 04       		.uleb128 0x4
+ 234 0074 04       		.byte	0x4
+ 235 0075 05       		.byte	0x5
+ 236 0076 696E7400 		.ascii	"int\000"
+ 237 007a 02       		.uleb128 0x2
+ 238 007b 04       		.byte	0x4
+ 239 007c 07       		.byte	0x7
+ 240 007d 0E000000 		.4byte	.LASF10
+ 241 0081 03       		.uleb128 0x3
+ 242 0082 70000000 		.4byte	.LASF11
+ 243 0086 03       		.byte	0x3
+ 244 0087 18       		.byte	0x18
+ 245 0088 2C000000 		.4byte	0x2c
+ 246 008c 03       		.uleb128 0x3
+ 247 008d 8B000000 		.4byte	.LASF12
+ 248 0091 03       		.byte	0x3
+ 249 0092 30       		.byte	0x30
+ 250 0093 53000000 		.4byte	0x53
+ 251 0097 02       		.uleb128 0x2
+ 252 0098 04       		.byte	0x4
+ 253 0099 04       		.byte	0x4
+ 254 009a 10010000 		.4byte	.LASF13
+ 255 009e 02       		.uleb128 0x2
+ 256 009f 08       		.byte	0x8
+ 257 00a0 04       		.byte	0x4
+ 258 00a1 A2000000 		.4byte	.LASF14
+ 259 00a5 02       		.uleb128 0x2
+ 260 00a6 01       		.byte	0x1
+ 261 00a7 08       		.byte	0x8
+ 262 00a8 86000000 		.4byte	.LASF15
+ 263 00ac 02       		.uleb128 0x2
+ 264 00ad 08       		.byte	0x8
+ 265 00ae 04       		.byte	0x4
+ 266 00af FF000000 		.4byte	.LASF16
+ 267 00b3 02       		.uleb128 0x2
+ 268 00b4 04       		.byte	0x4
+ 269 00b5 07       		.byte	0x7
+ 270 00b6 B4010000 		.4byte	.LASF17
+ 271 00ba 05       		.uleb128 0x5
+ 272 00bb 22000000 		.4byte	.LASF22
+ 273 00bf 01       		.byte	0x1
+ 274 00c0 0A       		.byte	0xa
+ 275 00c1 00000000 		.4byte	.LFB35
+ 276 00c5 48000000 		.4byte	.LFE35-.LFB35
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 7
+
+
+ 277 00c9 01       		.uleb128 0x1
+ 278 00ca 9C       		.byte	0x9c
+ 279 00cb DE000000 		.4byte	0xde
+ 280 00cf 06       		.uleb128 0x6
+ 281 00d0 70696E00 		.ascii	"pin\000"
+ 282 00d4 01       		.byte	0x1
+ 283 00d5 0C       		.byte	0xc
+ 284 00d6 81000000 		.4byte	0x81
+ 285 00da 02       		.uleb128 0x2
+ 286 00db 91       		.byte	0x91
+ 287 00dc 6F       		.sleb128 -17
+ 288 00dd 00       		.byte	0
+ 289 00de 07       		.uleb128 0x7
+ 290 00df 0B010000 		.4byte	.LASF23
+ 291 00e3 01       		.byte	0x1
+ 292 00e4 25       		.byte	0x25
+ 293 00e5 73000000 		.4byte	0x73
+ 294 00e9 00000000 		.4byte	.LFB36
+ 295 00ed 64000000 		.4byte	.LFE36-.LFB36
+ 296 00f1 01       		.uleb128 0x1
+ 297 00f2 9C       		.byte	0x9c
+ 298 00f3 2C010000 		.4byte	0x12c
+ 299 00f7 08       		.uleb128 0x8
+ 300 00f8 18000000 		.4byte	.LBB2
+ 301 00fc 3E000000 		.4byte	.LBE2-.LBB2
+ 302 0100 09       		.uleb128 0x9
+ 303 0101 AE010000 		.4byte	.LASF18
+ 304 0105 01       		.byte	0x1
+ 305 0106 33       		.byte	0x33
+ 306 0107 8C000000 		.4byte	0x8c
+ 307 010b 02       		.uleb128 0x2
+ 308 010c 91       		.byte	0x91
+ 309 010d 6C       		.sleb128 -20
+ 310 010e 06       		.uleb128 0x6
+ 311 010f 696400   		.ascii	"id\000"
+ 312 0112 01       		.byte	0x1
+ 313 0113 34       		.byte	0x34
+ 314 0114 81000000 		.4byte	0x81
+ 315 0118 02       		.uleb128 0x2
+ 316 0119 91       		.byte	0x91
+ 317 011a 6B       		.sleb128 -21
+ 318 011b 06       		.uleb128 0x6
+ 319 011c 746D7000 		.ascii	"tmp\000"
+ 320 0120 01       		.byte	0x1
+ 321 0121 35       		.byte	0x35
+ 322 0122 2C010000 		.4byte	0x12c
+ 323 0126 03       		.uleb128 0x3
+ 324 0127 91       		.byte	0x91
+ 325 0128 847F     		.sleb128 -124
+ 326 012a 00       		.byte	0
+ 327 012b 00       		.byte	0
+ 328 012c 0A       		.uleb128 0xa
+ 329 012d A5000000 		.4byte	0xa5
+ 330 0131 3C010000 		.4byte	0x13c
+ 331 0135 0B       		.uleb128 0xb
+ 332 0136 B3000000 		.4byte	0xb3
+ 333 013a 63       		.byte	0x63
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 8
+
+
+ 334 013b 00       		.byte	0
+ 335 013c 0C       		.uleb128 0xc
+ 336 013d 9D000000 		.4byte	.LASF24
+ 337 0141 01       		.byte	0x1
+ 338 0142 08       		.byte	0x8
+ 339 0143 4D010000 		.4byte	0x14d
+ 340 0147 05       		.uleb128 0x5
+ 341 0148 03       		.byte	0x3
+ 342 0149 00000000 		.4byte	flag
+ 343 014d 0D       		.uleb128 0xd
+ 344 014e 81000000 		.4byte	0x81
+ 345 0152 00       		.byte	0
+ 346              		.section	.debug_abbrev,"",%progbits
+ 347              	.Ldebug_abbrev0:
+ 348 0000 01       		.uleb128 0x1
+ 349 0001 11       		.uleb128 0x11
+ 350 0002 01       		.byte	0x1
+ 351 0003 25       		.uleb128 0x25
+ 352 0004 0E       		.uleb128 0xe
+ 353 0005 13       		.uleb128 0x13
+ 354 0006 0B       		.uleb128 0xb
+ 355 0007 03       		.uleb128 0x3
+ 356 0008 0E       		.uleb128 0xe
+ 357 0009 1B       		.uleb128 0x1b
+ 358 000a 0E       		.uleb128 0xe
+ 359 000b 55       		.uleb128 0x55
+ 360 000c 17       		.uleb128 0x17
+ 361 000d 11       		.uleb128 0x11
+ 362 000e 01       		.uleb128 0x1
+ 363 000f 10       		.uleb128 0x10
+ 364 0010 17       		.uleb128 0x17
+ 365 0011 00       		.byte	0
+ 366 0012 00       		.byte	0
+ 367 0013 02       		.uleb128 0x2
+ 368 0014 24       		.uleb128 0x24
+ 369 0015 00       		.byte	0
+ 370 0016 0B       		.uleb128 0xb
+ 371 0017 0B       		.uleb128 0xb
+ 372 0018 3E       		.uleb128 0x3e
+ 373 0019 0B       		.uleb128 0xb
+ 374 001a 03       		.uleb128 0x3
+ 375 001b 0E       		.uleb128 0xe
+ 376 001c 00       		.byte	0
+ 377 001d 00       		.byte	0
+ 378 001e 03       		.uleb128 0x3
+ 379 001f 16       		.uleb128 0x16
+ 380 0020 00       		.byte	0
+ 381 0021 03       		.uleb128 0x3
+ 382 0022 0E       		.uleb128 0xe
+ 383 0023 3A       		.uleb128 0x3a
+ 384 0024 0B       		.uleb128 0xb
+ 385 0025 3B       		.uleb128 0x3b
+ 386 0026 0B       		.uleb128 0xb
+ 387 0027 49       		.uleb128 0x49
+ 388 0028 13       		.uleb128 0x13
+ 389 0029 00       		.byte	0
+ 390 002a 00       		.byte	0
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 9
+
+
+ 391 002b 04       		.uleb128 0x4
+ 392 002c 24       		.uleb128 0x24
+ 393 002d 00       		.byte	0
+ 394 002e 0B       		.uleb128 0xb
+ 395 002f 0B       		.uleb128 0xb
+ 396 0030 3E       		.uleb128 0x3e
+ 397 0031 0B       		.uleb128 0xb
+ 398 0032 03       		.uleb128 0x3
+ 399 0033 08       		.uleb128 0x8
+ 400 0034 00       		.byte	0
+ 401 0035 00       		.byte	0
+ 402 0036 05       		.uleb128 0x5
+ 403 0037 2E       		.uleb128 0x2e
+ 404 0038 01       		.byte	0x1
+ 405 0039 3F       		.uleb128 0x3f
+ 406 003a 19       		.uleb128 0x19
+ 407 003b 03       		.uleb128 0x3
+ 408 003c 0E       		.uleb128 0xe
+ 409 003d 3A       		.uleb128 0x3a
+ 410 003e 0B       		.uleb128 0xb
+ 411 003f 3B       		.uleb128 0x3b
+ 412 0040 0B       		.uleb128 0xb
+ 413 0041 27       		.uleb128 0x27
+ 414 0042 19       		.uleb128 0x19
+ 415 0043 11       		.uleb128 0x11
+ 416 0044 01       		.uleb128 0x1
+ 417 0045 12       		.uleb128 0x12
+ 418 0046 06       		.uleb128 0x6
+ 419 0047 40       		.uleb128 0x40
+ 420 0048 18       		.uleb128 0x18
+ 421 0049 9642     		.uleb128 0x2116
+ 422 004b 19       		.uleb128 0x19
+ 423 004c 01       		.uleb128 0x1
+ 424 004d 13       		.uleb128 0x13
+ 425 004e 00       		.byte	0
+ 426 004f 00       		.byte	0
+ 427 0050 06       		.uleb128 0x6
+ 428 0051 34       		.uleb128 0x34
+ 429 0052 00       		.byte	0
+ 430 0053 03       		.uleb128 0x3
+ 431 0054 08       		.uleb128 0x8
+ 432 0055 3A       		.uleb128 0x3a
+ 433 0056 0B       		.uleb128 0xb
+ 434 0057 3B       		.uleb128 0x3b
+ 435 0058 0B       		.uleb128 0xb
+ 436 0059 49       		.uleb128 0x49
+ 437 005a 13       		.uleb128 0x13
+ 438 005b 02       		.uleb128 0x2
+ 439 005c 18       		.uleb128 0x18
+ 440 005d 00       		.byte	0
+ 441 005e 00       		.byte	0
+ 442 005f 07       		.uleb128 0x7
+ 443 0060 2E       		.uleb128 0x2e
+ 444 0061 01       		.byte	0x1
+ 445 0062 3F       		.uleb128 0x3f
+ 446 0063 19       		.uleb128 0x19
+ 447 0064 03       		.uleb128 0x3
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 10
+
+
+ 448 0065 0E       		.uleb128 0xe
+ 449 0066 3A       		.uleb128 0x3a
+ 450 0067 0B       		.uleb128 0xb
+ 451 0068 3B       		.uleb128 0x3b
+ 452 0069 0B       		.uleb128 0xb
+ 453 006a 27       		.uleb128 0x27
+ 454 006b 19       		.uleb128 0x19
+ 455 006c 49       		.uleb128 0x49
+ 456 006d 13       		.uleb128 0x13
+ 457 006e 11       		.uleb128 0x11
+ 458 006f 01       		.uleb128 0x1
+ 459 0070 12       		.uleb128 0x12
+ 460 0071 06       		.uleb128 0x6
+ 461 0072 40       		.uleb128 0x40
+ 462 0073 18       		.uleb128 0x18
+ 463 0074 9642     		.uleb128 0x2116
+ 464 0076 19       		.uleb128 0x19
+ 465 0077 01       		.uleb128 0x1
+ 466 0078 13       		.uleb128 0x13
+ 467 0079 00       		.byte	0
+ 468 007a 00       		.byte	0
+ 469 007b 08       		.uleb128 0x8
+ 470 007c 0B       		.uleb128 0xb
+ 471 007d 01       		.byte	0x1
+ 472 007e 11       		.uleb128 0x11
+ 473 007f 01       		.uleb128 0x1
+ 474 0080 12       		.uleb128 0x12
+ 475 0081 06       		.uleb128 0x6
+ 476 0082 00       		.byte	0
+ 477 0083 00       		.byte	0
+ 478 0084 09       		.uleb128 0x9
+ 479 0085 34       		.uleb128 0x34
+ 480 0086 00       		.byte	0
+ 481 0087 03       		.uleb128 0x3
+ 482 0088 0E       		.uleb128 0xe
+ 483 0089 3A       		.uleb128 0x3a
+ 484 008a 0B       		.uleb128 0xb
+ 485 008b 3B       		.uleb128 0x3b
+ 486 008c 0B       		.uleb128 0xb
+ 487 008d 49       		.uleb128 0x49
+ 488 008e 13       		.uleb128 0x13
+ 489 008f 02       		.uleb128 0x2
+ 490 0090 18       		.uleb128 0x18
+ 491 0091 00       		.byte	0
+ 492 0092 00       		.byte	0
+ 493 0093 0A       		.uleb128 0xa
+ 494 0094 01       		.uleb128 0x1
+ 495 0095 01       		.byte	0x1
+ 496 0096 49       		.uleb128 0x49
+ 497 0097 13       		.uleb128 0x13
+ 498 0098 01       		.uleb128 0x1
+ 499 0099 13       		.uleb128 0x13
+ 500 009a 00       		.byte	0
+ 501 009b 00       		.byte	0
+ 502 009c 0B       		.uleb128 0xb
+ 503 009d 21       		.uleb128 0x21
+ 504 009e 00       		.byte	0
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 11
+
+
+ 505 009f 49       		.uleb128 0x49
+ 506 00a0 13       		.uleb128 0x13
+ 507 00a1 2F       		.uleb128 0x2f
+ 508 00a2 0B       		.uleb128 0xb
+ 509 00a3 00       		.byte	0
+ 510 00a4 00       		.byte	0
+ 511 00a5 0C       		.uleb128 0xc
+ 512 00a6 34       		.uleb128 0x34
+ 513 00a7 00       		.byte	0
+ 514 00a8 03       		.uleb128 0x3
+ 515 00a9 0E       		.uleb128 0xe
+ 516 00aa 3A       		.uleb128 0x3a
+ 517 00ab 0B       		.uleb128 0xb
+ 518 00ac 3B       		.uleb128 0x3b
+ 519 00ad 0B       		.uleb128 0xb
+ 520 00ae 49       		.uleb128 0x49
+ 521 00af 13       		.uleb128 0x13
+ 522 00b0 3F       		.uleb128 0x3f
+ 523 00b1 19       		.uleb128 0x19
+ 524 00b2 02       		.uleb128 0x2
+ 525 00b3 18       		.uleb128 0x18
+ 526 00b4 00       		.byte	0
+ 527 00b5 00       		.byte	0
+ 528 00b6 0D       		.uleb128 0xd
+ 529 00b7 35       		.uleb128 0x35
+ 530 00b8 00       		.byte	0
+ 531 00b9 49       		.uleb128 0x49
+ 532 00ba 13       		.uleb128 0x13
+ 533 00bb 00       		.byte	0
+ 534 00bc 00       		.byte	0
+ 535 00bd 00       		.byte	0
+ 536              		.section	.debug_aranges,"",%progbits
+ 537 0000 24000000 		.4byte	0x24
+ 538 0004 0200     		.2byte	0x2
+ 539 0006 00000000 		.4byte	.Ldebug_info0
+ 540 000a 04       		.byte	0x4
+ 541 000b 00       		.byte	0
+ 542 000c 0000     		.2byte	0
+ 543 000e 0000     		.2byte	0
+ 544 0010 00000000 		.4byte	.LFB35
+ 545 0014 48000000 		.4byte	.LFE35-.LFB35
+ 546 0018 00000000 		.4byte	.LFB36
+ 547 001c 64000000 		.4byte	.LFE36-.LFB36
+ 548 0020 00000000 		.4byte	0
+ 549 0024 00000000 		.4byte	0
+ 550              		.section	.debug_ranges,"",%progbits
+ 551              	.Ldebug_ranges0:
+ 552 0000 00000000 		.4byte	.LFB35
+ 553 0004 48000000 		.4byte	.LFE35
+ 554 0008 00000000 		.4byte	.LFB36
+ 555 000c 64000000 		.4byte	.LFE36
+ 556 0010 00000000 		.4byte	0
+ 557 0014 00000000 		.4byte	0
+ 558              		.section	.debug_line,"",%progbits
+ 559              	.Ldebug_line0:
+ 560 0000 65010000 		.section	.debug_str,"MS",%progbits,1
+ 560      02001A01 
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 12
+
+
+ 560      00000201 
+ 560      FB0E0D00 
+ 560      01010101 
+ 561              	.LASF8:
+ 562 0000 6C6F6E67 		.ascii	"long long int\000"
+ 562      206C6F6E 
+ 562      6720696E 
+ 562      7400
+ 563              	.LASF10:
+ 564 000e 756E7369 		.ascii	"unsigned int\000"
+ 564      676E6564 
+ 564      20696E74 
+ 564      00
+ 565              	.LASF20:
+ 566 001b 6D61696E 		.ascii	"main.c\000"
+ 566      2E6300
+ 567              	.LASF22:
+ 568 0022 4143435F 		.ascii	"ACC_ISR_Handler\000"
+ 568      4953525F 
+ 568      48616E64 
+ 568      6C657200 
+ 569              	.LASF6:
+ 570 0032 5F5F7569 		.ascii	"__uint32_t\000"
+ 570      6E743332 
+ 570      5F7400
+ 571              	.LASF7:
+ 572 003d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 572      20756E73 
+ 572      69676E65 
+ 572      6420696E 
+ 572      7400
+ 573              	.LASF9:
+ 574 004f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 574      206C6F6E 
+ 574      6720756E 
+ 574      7369676E 
+ 574      65642069 
+ 575              	.LASF5:
+ 576 0066 5F5F7569 		.ascii	"__uint8_t\000"
+ 576      6E74385F 
+ 576      7400
+ 577              	.LASF11:
+ 578 0070 75696E74 		.ascii	"uint8_t\000"
+ 578      385F7400 
+ 579              	.LASF1:
+ 580 0078 756E7369 		.ascii	"unsigned char\000"
+ 580      676E6564 
+ 580      20636861 
+ 580      7200
+ 581              	.LASF15:
+ 582 0086 63686172 		.ascii	"char\000"
+ 582      00
+ 583              	.LASF12:
+ 584 008b 75696E74 		.ascii	"uint32_t\000"
+ 584      33325F74 
+ 584      00
+ 585              	.LASF4:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 13
+
+
+ 586 0094 6C6F6E67 		.ascii	"long int\000"
+ 586      20696E74 
+ 586      00
+ 587              	.LASF24:
+ 588 009d 666C6167 		.ascii	"flag\000"
+ 588      00
+ 589              	.LASF14:
+ 590 00a2 646F7562 		.ascii	"double\000"
+ 590      6C6500
+ 591              	.LASF21:
+ 592 00a9 433A5C55 		.ascii	"C:\\Users\\marlokistvan\\Documents\\PSoC Creator\\t"
+ 592      73657273 
+ 592      5C6D6172 
+ 592      6C6F6B69 
+ 592      73747661 
+ 593 00d7 646D2E63 		.ascii	"dm.cydsn\000"
+ 593      7964736E 
+ 593      00
+ 594              	.LASF3:
+ 595 00e0 73686F72 		.ascii	"short unsigned int\000"
+ 595      7420756E 
+ 595      7369676E 
+ 595      65642069 
+ 595      6E7400
+ 596              	.LASF0:
+ 597 00f3 7369676E 		.ascii	"signed char\000"
+ 597      65642063 
+ 597      68617200 
+ 598              	.LASF16:
+ 599 00ff 6C6F6E67 		.ascii	"long double\000"
+ 599      20646F75 
+ 599      626C6500 
+ 600              	.LASF23:
+ 601 010b 6D61696E 		.ascii	"main\000"
+ 601      00
+ 602              	.LASF13:
+ 603 0110 666C6F61 		.ascii	"float\000"
+ 603      7400
+ 604              	.LASF2:
+ 605 0116 73686F72 		.ascii	"short int\000"
+ 605      7420696E 
+ 605      7400
+ 606              	.LASF19:
+ 607 0120 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 607      43313120 
+ 607      352E342E 
+ 607      31203230 
+ 607      31363036 
+ 608 0153 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 608      20726576 
+ 608      6973696F 
+ 608      6E203233 
+ 608      37373135 
+ 609 0186 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 609      66756E63 
+ 609      74696F6E 
+ 609      2D736563 
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccfXENDA.s 			page 14
+
+
+ 609      74696F6E 
+ 610              	.LASF18:
+ 611 01ae 6572726F 		.ascii	"error\000"
+ 611      7200
+ 612              	.LASF17:
+ 613 01b4 73697A65 		.ascii	"sizetype\000"
+ 613      74797065 
+ 613      00
+ 614              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

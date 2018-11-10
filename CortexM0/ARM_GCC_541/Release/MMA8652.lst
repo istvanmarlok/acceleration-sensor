@@ -1,0 +1,4942 @@
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"MMA8652.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.MMA8652_Write,"ax",%progbits
+  20              		.align	1
+  21              		.global	MMA8652_Write
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	MMA8652_Write, %function
+  25              	MMA8652_Write:
+  26              	.LFB35:
+  27              		.file 1 "MMA8652.c"
+   1:MMA8652.c     **** #include <MMA8652.h>
+   2:MMA8652.c     **** 
+   3:MMA8652.c     **** uint32_t MMA8652_Write(uint32_t address, uint32_t data)
+   4:MMA8652.c     **** {
+  28              		.loc 1 4 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 4, -16
+  36              		.cfi_offset 5, -12
+  37              		.cfi_offset 6, -8
+  38              		.cfi_offset 14, -4
+   5:MMA8652.c     ****     uint32_t error = 0;
+   6:MMA8652.c     ****     
+   7:MMA8652.c     ****     if ((error = I2C_I2CMasterSendStart(MMA8652_ADDR, I2C_WRITE, I2C_TIMEOUT)) != 0) {
+  39              		.loc 1 7 0
+  40 0002 C822     		movs	r2, #200
+   4:MMA8652.c     ****     uint32_t error = 0;
+  41              		.loc 1 4 0
+  42 0004 0600     		movs	r6, r0
+  43              	.LVL1:
+  44 0006 0D00     		movs	r5, r1
+  45              		.loc 1 7 0
+  46 0008 1D20     		movs	r0, #29
+  47              	.LVL2:
+  48 000a 0021     		movs	r1, #0
+  49              	.LVL3:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 2
+
+
+  50 000c FFF7FEFF 		bl	I2C_I2CMasterSendStart
+  51              	.LVL4:
+  52 0010 041E     		subs	r4, r0, #0
+  53              	.LVL5:
+  54 0012 05D1     		bne	.L6
+   8:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+   9:MMA8652.c     ****         return error;
+  10:MMA8652.c     ****     }
+  11:MMA8652.c     ****     
+  12:MMA8652.c     ****     if ((error = I2C_I2CMasterWriteByte(address, I2C_TIMEOUT)) != 0) {
+  55              		.loc 1 12 0
+  56 0014 C821     		movs	r1, #200
+  57 0016 3000     		movs	r0, r6
+  58              	.LVL6:
+  59 0018 FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+  60              	.LVL7:
+  61 001c 041E     		subs	r4, r0, #0
+  62              	.LVL8:
+  63 001e 01D0     		beq	.L4
+  64              	.L6:
+  13:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  65              		.loc 1 13 0
+  66 0020 C820     		movs	r0, #200
+  67              	.LVL9:
+  68 0022 07E0     		b	.L7
+  69              	.LVL10:
+  70              	.L4:
+  14:MMA8652.c     ****         return error;
+  15:MMA8652.c     ****     }
+  16:MMA8652.c     ****     
+  17:MMA8652.c     ****     if ((error = I2C_I2CMasterWriteByte(data, I2C_TIMEOUT)) != 0) {
+  71              		.loc 1 17 0
+  72 0024 C821     		movs	r1, #200
+  73 0026 2800     		movs	r0, r5
+  74              	.LVL11:
+  75 0028 FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+  76              	.LVL12:
+  77 002c 0400     		movs	r4, r0
+  78              	.LVL13:
+  18:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  79              		.loc 1 18 0
+  80 002e C820     		movs	r0, #200
+  81              	.LVL14:
+  17:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  82              		.loc 1 17 0
+  83 0030 002C     		cmp	r4, #0
+  84 0032 03D0     		beq	.L5
+  85              	.L7:
+  86              		.loc 1 18 0
+  87 0034 FFF7FEFF 		bl	I2C_I2CMasterSendStop
+  88              	.LVL15:
+  19:MMA8652.c     ****         return error;
+  89              		.loc 1 19 0
+  90 0038 2000     		movs	r0, r4
+  91 003a 01E0     		b	.L3
+  92              	.L5:
+  93              	.LVL16:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 3
+
+
+  94              	.LBB4:
+  95              	.LBB5:
+  20:MMA8652.c     ****     }  
+  21:MMA8652.c     ****     
+  22:MMA8652.c     ****     error = I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  23:MMA8652.c     ****     return error;
+  24:MMA8652.c     **** }
+  25:MMA8652.c     **** 
+  26:MMA8652.c     ****    
+  27:MMA8652.c     **** uint32_t MMA8652_Read(uint32_t address, uint8_t* received)
+  28:MMA8652.c     **** {
+  29:MMA8652.c     ****     uint32_t error = 0;
+  30:MMA8652.c     ****     
+  31:MMA8652.c     ****     if ((error = I2C_I2CMasterSendStart(MMA8652_ADDR, I2C_WRITE, I2C_TIMEOUT)) != 0) {
+  32:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  33:MMA8652.c     ****         return error;
+  34:MMA8652.c     ****     }
+  35:MMA8652.c     ****     
+  36:MMA8652.c     ****     if ((error = I2C_I2CMasterWriteByte(address, I2C_TIMEOUT)) != 0) {
+  37:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  38:MMA8652.c     ****         return error;
+  39:MMA8652.c     ****     }
+  40:MMA8652.c     ****     
+  41:MMA8652.c     ****     if ((error = I2C_I2CMasterSendRestart(MMA8652_ADDR, I2C_READ, I2C_TIMEOUT)) != 0) {
+  42:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  43:MMA8652.c     ****         return error;
+  44:MMA8652.c     ****     }
+  45:MMA8652.c     ****     
+  46:MMA8652.c     ****     if ((error = I2C_I2CMasterReadByte(I2C_NACK, received, I2C_TIMEOUT)) != 0) {
+  47:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  48:MMA8652.c     ****         return error;
+  49:MMA8652.c     ****     }
+  50:MMA8652.c     ****     
+  51:MMA8652.c     ****     error  = I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  96              		.loc 1 51 0
+  97 003c FFF7FEFF 		bl	I2C_I2CMasterSendStop
+  98              	.LVL17:
+  99              	.L3:
+ 100              	.LBE5:
+ 101              	.LBE4:
+  24:MMA8652.c     **** 
+ 102              		.loc 1 24 0
+ 103              		@ sp needed
+ 104              	.LVL18:
+ 105              	.LVL19:
+ 106              	.LVL20:
+ 107 0040 70BD     		pop	{r4, r5, r6, pc}
+ 108              		.cfi_endproc
+ 109              	.LFE35:
+ 110              		.size	MMA8652_Write, .-MMA8652_Write
+ 111              		.section	.text.MMA8652_Read,"ax",%progbits
+ 112              		.align	1
+ 113              		.global	MMA8652_Read
+ 114              		.code	16
+ 115              		.thumb_func
+ 116              		.type	MMA8652_Read, %function
+ 117              	MMA8652_Read:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 4
+
+
+ 118              	.LFB36:
+  28:MMA8652.c     ****     uint32_t error = 0;
+ 119              		.loc 1 28 0
+ 120              		.cfi_startproc
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              	.LVL21:
+ 124 0000 70B5     		push	{r4, r5, r6, lr}
+ 125              		.cfi_def_cfa_offset 16
+ 126              		.cfi_offset 4, -16
+ 127              		.cfi_offset 5, -12
+ 128              		.cfi_offset 6, -8
+ 129              		.cfi_offset 14, -4
+  31:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 130              		.loc 1 31 0
+ 131 0002 C822     		movs	r2, #200
+  28:MMA8652.c     ****     uint32_t error = 0;
+ 132              		.loc 1 28 0
+ 133 0004 0600     		movs	r6, r0
+ 134              	.LVL22:
+ 135 0006 0D00     		movs	r5, r1
+  31:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 136              		.loc 1 31 0
+ 137 0008 1D20     		movs	r0, #29
+ 138              	.LVL23:
+ 139 000a 0021     		movs	r1, #0
+ 140              	.LVL24:
+ 141 000c FFF7FEFF 		bl	I2C_I2CMasterSendStart
+ 142              	.LVL25:
+ 143 0010 041E     		subs	r4, r0, #0
+ 144              	.LVL26:
+ 145 0012 0CD1     		bne	.L17
+  36:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 146              		.loc 1 36 0
+ 147 0014 C821     		movs	r1, #200
+ 148 0016 3000     		movs	r0, r6
+ 149              	.LVL27:
+ 150 0018 FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+ 151              	.LVL28:
+ 152 001c 041E     		subs	r4, r0, #0
+ 153              	.LVL29:
+ 154 001e 06D1     		bne	.L17
+  41:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 155              		.loc 1 41 0
+ 156 0020 C822     		movs	r2, #200
+ 157 0022 FF21     		movs	r1, #255
+ 158 0024 1D20     		movs	r0, #29
+ 159              	.LVL30:
+ 160 0026 FFF7FEFF 		bl	I2C_I2CMasterSendRestart
+ 161              	.LVL31:
+ 162 002a 041E     		subs	r4, r0, #0
+ 163              	.LVL32:
+ 164 002c 01D0     		beq	.L13
+ 165              	.L17:
+  42:MMA8652.c     ****         return error;
+ 166              		.loc 1 42 0
+ 167 002e C820     		movs	r0, #200
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 5
+
+
+ 168              	.LVL33:
+ 169 0030 08E0     		b	.L16
+ 170              	.LVL34:
+ 171              	.L13:
+  46:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 172              		.loc 1 46 0
+ 173 0032 C822     		movs	r2, #200
+ 174 0034 2900     		movs	r1, r5
+ 175 0036 FF20     		movs	r0, #255
+ 176              	.LVL35:
+ 177 0038 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 178              	.LVL36:
+ 179 003c 0400     		movs	r4, r0
+ 180              	.LVL37:
+  47:MMA8652.c     ****         return error;
+ 181              		.loc 1 47 0
+ 182 003e C820     		movs	r0, #200
+ 183              	.LVL38:
+  46:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 184              		.loc 1 46 0
+ 185 0040 002C     		cmp	r4, #0
+ 186 0042 03D0     		beq	.L14
+ 187              	.L16:
+  47:MMA8652.c     ****         return error;
+ 188              		.loc 1 47 0
+ 189 0044 FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 190              	.LVL39:
+  48:MMA8652.c     ****     }
+ 191              		.loc 1 48 0
+ 192 0048 2000     		movs	r0, r4
+ 193 004a 01E0     		b	.L11
+ 194              	.L14:
+ 195              	.LVL40:
+ 196              	.LBB8:
+ 197              	.LBB9:
+ 198              		.loc 1 51 0
+ 199 004c FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 200              	.LVL41:
+ 201              	.L11:
+ 202              	.LBE9:
+ 203              	.LBE8:
+  52:MMA8652.c     ****     return error;
+  53:MMA8652.c     **** }
+ 204              		.loc 1 53 0
+ 205              		@ sp needed
+ 206              	.LVL42:
+ 207              	.LVL43:
+ 208              	.LVL44:
+ 209 0050 70BD     		pop	{r4, r5, r6, pc}
+ 210              		.cfi_endproc
+ 211              	.LFE36:
+ 212              		.size	MMA8652_Read, .-MMA8652_Read
+ 213              		.section	.text.MMA8652_ActiveMode,"ax",%progbits
+ 214              		.align	1
+ 215              		.global	MMA8652_ActiveMode
+ 216              		.code	16
+ 217              		.thumb_func
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 6
+
+
+ 218              		.type	MMA8652_ActiveMode, %function
+ 219              	MMA8652_ActiveMode:
+ 220              	.LFB38:
+  54:MMA8652.c     **** 
+  55:MMA8652.c     **** uint32_t MMA8652_Initialize(void)
+  56:MMA8652.c     **** {
+  57:MMA8652.c     ****     uint32_t error;
+  58:MMA8652.c     **** 
+  59:MMA8652.c     ****     error = MMA8652_StandByMode();
+  60:MMA8652.c     ****     if (error) {
+  61:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+  62:MMA8652.c     ****         return error;
+  63:MMA8652.c     ****     }
+  64:MMA8652.c     **** 
+  65:MMA8652.c     ****     // Accelerometer range of +/-2g range with high pass output filter disabled
+  66:MMA8652.c     ****     // 1024 counts/g = 1 mg/LSB
+  67:MMA8652.c     ****     error = MMA8652_Write(MMA8652_XYZ_DATA_CFG, 0x00);
+  68:MMA8652.c     ****     if (error) {
+  69:MMA8652.c     ****         return error;
+  70:MMA8652.c     ****     }
+  71:MMA8652.c     ****     
+  72:MMA8652.c     ****     // Data rate = 400 Hz, sleep rate = 12.5 Hz
+  73:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG1, 0x48);
+  74:MMA8652.c     ****     if (error) {
+  75:MMA8652.c     ****         return error;
+  76:MMA8652.c     ****     }
+  77:MMA8652.c     ****     
+  78:MMA8652.c     ****     // Active mode: low power, auto-sleep: disabled
+  79:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG2, 0x03);
+  80:MMA8652.c     ****     if (error) {
+  81:MMA8652.c     ****         return error;
+  82:MMA8652.c     ****     }
+  83:MMA8652.c     ****     
+  84:MMA8652.c     ****     // Enable interrupts - Push-pull output, ACTIVE low
+  85:MMA8652.c     ****     // Pulse function interrupt can wake-up system
+  86:MMA8652.c     ****     // Orientation interrupt can wake-up system
+  87:MMA8652.c     ****     // Free-fall/motion function interrupt can wake-up system
+  88:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG3, 0x79);
+  89:MMA8652.c     ****     if (error) {
+  90:MMA8652.c     ****         return error;
+  91:MMA8652.c     ****     }
+  92:MMA8652.c     ****     
+  93:MMA8652.c     ****     // Enable Pulse detection Interrupt
+  94:MMA8652.c     ****     // Enable Free-fall/motion Interrupt
+  95:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG4, 0x0C);
+  96:MMA8652.c     ****     if (error) {
+  97:MMA8652.c     ****         return error;
+  98:MMA8652.c     ****     }
+  99:MMA8652.c     ****     
+ 100:MMA8652.c     ****     // Orientation Interrupt and Free-fall/motion Interrupt to INT1 pin
+ 101:MMA8652.c     ****     // Pulse detection Interrupt to INT2 pin
+ 102:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG5, 0x08);
+ 103:MMA8652.c     ****     if (error) {
+ 104:MMA8652.c     ****         return error;
+ 105:MMA8652.c     ****     }
+ 106:MMA8652.c     ****     
+ 107:MMA8652.c     ****     error = MMA8652_ActiveMode();
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 7
+
+
+ 108:MMA8652.c     ****     return error;
+ 109:MMA8652.c     **** }
+ 110:MMA8652.c     **** 
+ 111:MMA8652.c     **** uint32_t MMA8652_ActiveMode(void)
+ 112:MMA8652.c     **** {
+ 221              		.loc 1 112 0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 8
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 225              	.LVL45:
+ 226 0000 13B5     		push	{r0, r1, r4, lr}
+ 227              		.cfi_def_cfa_offset 16
+ 228              		.cfi_offset 0, -16
+ 229              		.cfi_offset 1, -12
+ 230              		.cfi_offset 4, -8
+ 231              		.cfi_offset 14, -4
+ 113:MMA8652.c     ****     uint8_t received;
+ 114:MMA8652.c     ****     uint32_t error = 0;
+ 115:MMA8652.c     ****     
+ 116:MMA8652.c     ****     // Set ACTIVE bit to 1
+ 117:MMA8652.c     ****     error = MMA8652_Read(MMA8652_CTRL_REG1, &received);
+ 232              		.loc 1 117 0
+ 233 0002 6B46     		mov	r3, sp
+ 234 0004 DC1D     		adds	r4, r3, #7
+ 235 0006 2100     		movs	r1, r4
+ 236 0008 2A20     		movs	r0, #42
+ 237 000a FFF7FEFF 		bl	MMA8652_Read
+ 238              	.LVL46:
+ 118:MMA8652.c     ****     if (error) {
+ 239              		.loc 1 118 0
+ 240 000e 0028     		cmp	r0, #0
+ 241 0010 05D1     		bne	.L19
+ 119:MMA8652.c     ****         return error;
+ 120:MMA8652.c     ****     }
+ 121:MMA8652.c     ****     
+ 122:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG1, received | ACTIVE_MASK);
+ 242              		.loc 1 122 0
+ 243 0012 0121     		movs	r1, #1
+ 244 0014 2378     		ldrb	r3, [r4]
+ 245 0016 2A30     		adds	r0, r0, #42
+ 246              	.LVL47:
+ 247 0018 1943     		orrs	r1, r3
+ 248 001a FFF7FEFF 		bl	MMA8652_Write
+ 249              	.LVL48:
+ 250              	.L19:
+ 123:MMA8652.c     ****     return error;
+ 124:MMA8652.c     **** }
+ 251              		.loc 1 124 0
+ 252              		@ sp needed
+ 253 001e 16BD     		pop	{r1, r2, r4, pc}
+ 254              		.cfi_endproc
+ 255              	.LFE38:
+ 256              		.size	MMA8652_ActiveMode, .-MMA8652_ActiveMode
+ 257              		.section	.text.MMA8652_StandByMode,"ax",%progbits
+ 258              		.align	1
+ 259              		.global	MMA8652_StandByMode
+ 260              		.code	16
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 8
+
+
+ 261              		.thumb_func
+ 262              		.type	MMA8652_StandByMode, %function
+ 263              	MMA8652_StandByMode:
+ 264              	.LFB39:
+ 125:MMA8652.c     **** 
+ 126:MMA8652.c     **** uint32_t MMA8652_StandByMode(void)
+ 127:MMA8652.c     **** {
+ 265              		.loc 1 127 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 8
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              	.LVL49:
+ 270 0000 13B5     		push	{r0, r1, r4, lr}
+ 271              		.cfi_def_cfa_offset 16
+ 272              		.cfi_offset 0, -16
+ 273              		.cfi_offset 1, -12
+ 274              		.cfi_offset 4, -8
+ 275              		.cfi_offset 14, -4
+ 128:MMA8652.c     ****     uint8_t received;
+ 129:MMA8652.c     ****     uint32_t error = 0;
+ 130:MMA8652.c     ****     
+ 131:MMA8652.c     ****     // Set ACTIVE bit to 0
+ 132:MMA8652.c     ****     error = MMA8652_Read(MMA8652_CTRL_REG1, &received);
+ 276              		.loc 1 132 0
+ 277 0002 6B46     		mov	r3, sp
+ 278 0004 DC1D     		adds	r4, r3, #7
+ 279 0006 2100     		movs	r1, r4
+ 280 0008 2A20     		movs	r0, #42
+ 281 000a FFF7FEFF 		bl	MMA8652_Read
+ 282              	.LVL50:
+ 133:MMA8652.c     ****     if (error) {
+ 283              		.loc 1 133 0
+ 284 000e 0028     		cmp	r0, #0
+ 285 0010 05D1     		bne	.L22
+ 134:MMA8652.c     ****         return error;
+ 135:MMA8652.c     ****     }
+ 136:MMA8652.c     ****     
+ 137:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG1, received & ~ACTIVE_MASK);
+ 286              		.loc 1 137 0
+ 287 0012 0123     		movs	r3, #1
+ 288 0014 2178     		ldrb	r1, [r4]
+ 289 0016 2A30     		adds	r0, r0, #42
+ 290              	.LVL51:
+ 291 0018 9943     		bics	r1, r3
+ 292 001a FFF7FEFF 		bl	MMA8652_Write
+ 293              	.LVL52:
+ 294              	.L22:
+ 138:MMA8652.c     ****     return error;
+ 139:MMA8652.c     **** }
+ 295              		.loc 1 139 0
+ 296              		@ sp needed
+ 297 001e 16BD     		pop	{r1, r2, r4, pc}
+ 298              		.cfi_endproc
+ 299              	.LFE39:
+ 300              		.size	MMA8652_StandByMode, .-MMA8652_StandByMode
+ 301              		.section	.text.MMA8652_Initialize,"ax",%progbits
+ 302              		.align	1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 9
+
+
+ 303              		.global	MMA8652_Initialize
+ 304              		.code	16
+ 305              		.thumb_func
+ 306              		.type	MMA8652_Initialize, %function
+ 307              	MMA8652_Initialize:
+ 308              	.LFB37:
+  56:MMA8652.c     ****     uint32_t error;
+ 309              		.loc 1 56 0
+ 310              		.cfi_startproc
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 313 0000 10B5     		push	{r4, lr}
+ 314              		.cfi_def_cfa_offset 8
+ 315              		.cfi_offset 4, -8
+ 316              		.cfi_offset 14, -4
+  59:MMA8652.c     ****     if (error) {
+ 317              		.loc 1 59 0
+ 318 0002 FFF7FEFF 		bl	MMA8652_StandByMode
+ 319              	.LVL53:
+ 320 0006 041E     		subs	r4, r0, #0
+ 321              	.LVL54:
+  60:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 322              		.loc 1 60 0
+ 323 0008 04D0     		beq	.L25
+  61:MMA8652.c     ****         return error;
+ 324              		.loc 1 61 0
+ 325 000a C820     		movs	r0, #200
+ 326              	.LVL55:
+ 327 000c FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 328              	.LVL56:
+  62:MMA8652.c     ****     }
+ 329              		.loc 1 62 0
+ 330 0010 2000     		movs	r0, r4
+ 331 0012 25E0     		b	.L26
+ 332              	.L25:
+  67:MMA8652.c     ****     if (error) {
+ 333              		.loc 1 67 0
+ 334 0014 0100     		movs	r1, r0
+ 335 0016 0E20     		movs	r0, #14
+ 336 0018 FFF7FEFF 		bl	MMA8652_Write
+ 337              	.LVL57:
+  68:MMA8652.c     ****         return error;
+ 338              		.loc 1 68 0
+ 339 001c 0028     		cmp	r0, #0
+ 340 001e 1FD1     		bne	.L26
+  73:MMA8652.c     ****     if (error) {
+ 341              		.loc 1 73 0
+ 342 0020 4821     		movs	r1, #72
+ 343 0022 2A30     		adds	r0, r0, #42
+ 344              	.LVL58:
+ 345 0024 FFF7FEFF 		bl	MMA8652_Write
+ 346              	.LVL59:
+  74:MMA8652.c     ****         return error;
+ 347              		.loc 1 74 0
+ 348 0028 0028     		cmp	r0, #0
+ 349 002a 19D1     		bne	.L26
+  79:MMA8652.c     ****     if (error) {
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 10
+
+
+ 350              		.loc 1 79 0
+ 351 002c 0321     		movs	r1, #3
+ 352 002e 2B30     		adds	r0, r0, #43
+ 353              	.LVL60:
+ 354 0030 FFF7FEFF 		bl	MMA8652_Write
+ 355              	.LVL61:
+  80:MMA8652.c     ****         return error;
+ 356              		.loc 1 80 0
+ 357 0034 0028     		cmp	r0, #0
+ 358 0036 13D1     		bne	.L26
+  88:MMA8652.c     ****     if (error) {
+ 359              		.loc 1 88 0
+ 360 0038 7921     		movs	r1, #121
+ 361 003a 2C30     		adds	r0, r0, #44
+ 362              	.LVL62:
+ 363 003c FFF7FEFF 		bl	MMA8652_Write
+ 364              	.LVL63:
+  89:MMA8652.c     ****         return error;
+ 365              		.loc 1 89 0
+ 366 0040 0028     		cmp	r0, #0
+ 367 0042 0DD1     		bne	.L26
+  95:MMA8652.c     ****     if (error) {
+ 368              		.loc 1 95 0
+ 369 0044 0C21     		movs	r1, #12
+ 370 0046 2D30     		adds	r0, r0, #45
+ 371              	.LVL64:
+ 372 0048 FFF7FEFF 		bl	MMA8652_Write
+ 373              	.LVL65:
+  96:MMA8652.c     ****         return error;
+ 374              		.loc 1 96 0
+ 375 004c 0028     		cmp	r0, #0
+ 376 004e 07D1     		bne	.L26
+ 102:MMA8652.c     ****     if (error) {
+ 377              		.loc 1 102 0
+ 378 0050 0821     		movs	r1, #8
+ 379 0052 2E30     		adds	r0, r0, #46
+ 380              	.LVL66:
+ 381 0054 FFF7FEFF 		bl	MMA8652_Write
+ 382              	.LVL67:
+ 103:MMA8652.c     ****         return error;
+ 383              		.loc 1 103 0
+ 384 0058 0028     		cmp	r0, #0
+ 385 005a 01D1     		bne	.L26
+ 107:MMA8652.c     ****     return error;
+ 386              		.loc 1 107 0
+ 387 005c FFF7FEFF 		bl	MMA8652_ActiveMode
+ 388              	.LVL68:
+ 389              	.L26:
+ 109:MMA8652.c     **** 
+ 390              		.loc 1 109 0
+ 391              		@ sp needed
+ 392 0060 10BD     		pop	{r4, pc}
+ 393              		.cfi_endproc
+ 394              	.LFE37:
+ 395              		.size	MMA8652_Initialize, .-MMA8652_Initialize
+ 396              		.section	.text.MMA8652_Reset,"ax",%progbits
+ 397              		.align	1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 11
+
+
+ 398              		.global	MMA8652_Reset
+ 399              		.code	16
+ 400              		.thumb_func
+ 401              		.type	MMA8652_Reset, %function
+ 402              	MMA8652_Reset:
+ 403              	.LFB40:
+ 140:MMA8652.c     ****     
+ 141:MMA8652.c     **** uint32_t MMA8652_Reset(void)
+ 142:MMA8652.c     **** {
+ 404              		.loc 1 142 0
+ 405              		.cfi_startproc
+ 406              		@ args = 0, pretend = 0, frame = 8
+ 407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 408 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+ 409              		.cfi_def_cfa_offset 24
+ 410              		.cfi_offset 0, -24
+ 411              		.cfi_offset 1, -20
+ 412              		.cfi_offset 2, -16
+ 413              		.cfi_offset 4, -12
+ 414              		.cfi_offset 5, -8
+ 415              		.cfi_offset 14, -4
+ 143:MMA8652.c     ****     uint32_t error;
+ 144:MMA8652.c     ****     uint8_t received;
+ 145:MMA8652.c     ****     
+ 146:MMA8652.c     ****     error = MMA8652_Write(MMA8652_CTRL_REG2, RST_MASK);
+ 416              		.loc 1 146 0
+ 417 0002 4021     		movs	r1, #64
+ 418 0004 2B20     		movs	r0, #43
+ 419 0006 FFF7FEFF 		bl	MMA8652_Write
+ 420              	.LVL69:
+ 147:MMA8652.c     ****     if (error) {
+ 421              		.loc 1 147 0
+ 422 000a 0028     		cmp	r0, #0
+ 423 000c 0ED1     		bne	.L34
+ 148:MMA8652.c     ****         return error;
+ 149:MMA8652.c     ****     }
+ 150:MMA8652.c     ****     
+ 151:MMA8652.c     ****     CyDelay(1);
+ 424              		.loc 1 151 0
+ 425 000e 0130     		adds	r0, r0, #1
+ 426              	.LVL70:
+ 427 0010 FFF7FEFF 		bl	CyDelay
+ 428              	.LVL71:
+ 152:MMA8652.c     ****     
+ 153:MMA8652.c     ****     do {
+ 154:MMA8652.c     ****         error = MMA8652_Read(MMA8652_CTRL_REG2, &received);
+ 155:MMA8652.c     ****     } while ((error == 0) && ((received & RST_MASK) != 0));
+ 429              		.loc 1 155 0
+ 430 0014 4024     		movs	r4, #64
+ 431              	.L35:
+ 154:MMA8652.c     ****     } while ((error == 0) && ((received & RST_MASK) != 0));
+ 432              		.loc 1 154 0 discriminator 2
+ 433 0016 6B46     		mov	r3, sp
+ 434 0018 DD1D     		adds	r5, r3, #7
+ 435 001a 2900     		movs	r1, r5
+ 436 001c 2B20     		movs	r0, #43
+ 437 001e FFF7FEFF 		bl	MMA8652_Read
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 12
+
+
+ 438              	.LVL72:
+ 439              		.loc 1 155 0 discriminator 2
+ 440 0022 0028     		cmp	r0, #0
+ 441 0024 02D1     		bne	.L34
+ 442              		.loc 1 155 0 is_stmt 0 discriminator 1
+ 443 0026 2878     		ldrb	r0, [r5]
+ 444              	.LVL73:
+ 445 0028 2040     		ands	r0, r4
+ 446 002a F4D1     		bne	.L35
+ 447              	.L34:
+ 156:MMA8652.c     ****     
+ 157:MMA8652.c     ****     return error;
+ 158:MMA8652.c     **** }
+ 448              		.loc 1 158 0 is_stmt 1
+ 449              		@ sp needed
+ 450 002c 3EBD     		pop	{r1, r2, r3, r4, r5, pc}
+ 451              		.cfi_endproc
+ 452              	.LFE40:
+ 453              		.size	MMA8652_Reset, .-MMA8652_Reset
+ 454              		.section	.text.MMA8652_ConvertCountToMg,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	MMA8652_ConvertCountToMg
+ 457              		.code	16
+ 458              		.thumb_func
+ 459              		.type	MMA8652_ConvertCountToMg, %function
+ 460              	MMA8652_ConvertCountToMg:
+ 461              	.LFB42:
+ 159:MMA8652.c     **** 
+ 160:MMA8652.c     **** uint32_t MMA8652_ReadAcc(int16_t* acc)
+ 161:MMA8652.c     **** {
+ 162:MMA8652.c     ****     uint16_t acc_count[3];
+ 163:MMA8652.c     ****     uint8_t temp;
+ 164:MMA8652.c     ****     uint32_t error;
+ 165:MMA8652.c     **** 
+ 166:MMA8652.c     ****     // Read X, Y, Z data in continuous mode 
+ 167:MMA8652.c     ****     if ((error = I2C_I2CMasterSendStart(MMA8652_ADDR, I2C_WRITE, I2C_TIMEOUT)) != 0) {
+ 168:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 169:MMA8652.c     ****         return error;
+ 170:MMA8652.c     ****     }
+ 171:MMA8652.c     ****     
+ 172:MMA8652.c     ****     if ((error = I2C_I2CMasterWriteByte(0x01, I2C_TIMEOUT)) != 0) {
+ 173:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 174:MMA8652.c     ****         return error;
+ 175:MMA8652.c     ****     }
+ 176:MMA8652.c     **** 
+ 177:MMA8652.c     ****     if ((error = I2C_I2CMasterSendRestart(MMA8652_ADDR, I2C_READ, I2C_TIMEOUT)) != 0) {
+ 178:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 179:MMA8652.c     ****         return error;
+ 180:MMA8652.c     ****     }
+ 181:MMA8652.c     **** 
+ 182:MMA8652.c     ****     if ((error = I2C_I2CMasterReadByte(I2C_ACK, &temp, I2C_TIMEOUT)) != 0) {
+ 183:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 184:MMA8652.c     ****         return error;
+ 185:MMA8652.c     ****     }
+ 186:MMA8652.c     ****     acc_count[0] = temp << 8;
+ 187:MMA8652.c     **** 
+ 188:MMA8652.c     ****     if ((error = I2C_I2CMasterReadByte(I2C_ACK, &temp, I2C_TIMEOUT)) != 0) {
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 13
+
+
+ 189:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 190:MMA8652.c     ****         return error;
+ 191:MMA8652.c     ****     }
+ 192:MMA8652.c     ****     acc_count[0] |= temp;
+ 193:MMA8652.c     **** 
+ 194:MMA8652.c     ****     if ((error = I2C_I2CMasterReadByte(I2C_ACK, &temp, I2C_TIMEOUT)) != 0) {
+ 195:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 196:MMA8652.c     ****         return error;
+ 197:MMA8652.c     ****     }
+ 198:MMA8652.c     ****     acc_count[1] = temp << 8;
+ 199:MMA8652.c     **** 
+ 200:MMA8652.c     ****     if ((error = I2C_I2CMasterReadByte(I2C_ACK, &temp, I2C_TIMEOUT)) != 0) {
+ 201:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 202:MMA8652.c     ****         return error;
+ 203:MMA8652.c     ****     }
+ 204:MMA8652.c     ****     acc_count[1] |= temp;
+ 205:MMA8652.c     **** 
+ 206:MMA8652.c     ****     if ((error = I2C_I2CMasterReadByte(I2C_ACK, &temp, I2C_TIMEOUT)) != 0) {
+ 207:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 208:MMA8652.c     ****         return error;
+ 209:MMA8652.c     ****     }
+ 210:MMA8652.c     ****     acc_count[2] = temp << 8;
+ 211:MMA8652.c     **** 
+ 212:MMA8652.c     ****     if ((error = I2C_I2CMasterReadByte(I2C_NACK, &temp, I2C_TIMEOUT)) != 0) {
+ 213:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 214:MMA8652.c     ****         return error;
+ 215:MMA8652.c     ****     }
+ 216:MMA8652.c     ****     acc_count[2] |= temp;
+ 217:MMA8652.c     **** 
+ 218:MMA8652.c     ****     if ((error = I2C_I2CMasterSendStop(I2C_TIMEOUT)) != 0) {
+ 219:MMA8652.c     ****         return error;
+ 220:MMA8652.c     ****     }
+ 221:MMA8652.c     **** 
+ 222:MMA8652.c     ****     // Count is stored in 2 complementers, convert to signed mg
+ 223:MMA8652.c     ****     MMA8652_ConvertCountToMg(acc, acc_count);
+ 224:MMA8652.c     ****     
+ 225:MMA8652.c     ****     return error;
+ 226:MMA8652.c     **** }
+ 227:MMA8652.c     **** 
+ 228:MMA8652.c     **** void MMA8652_ConvertCountToMg(int16_t* acceleration, uint16_t* raw_count)
+ 229:MMA8652.c     **** {
+ 462              		.loc 1 229 0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+ 466              	.LVL74:
+ 467 0000 70B5     		push	{r4, r5, r6, lr}
+ 468              		.cfi_def_cfa_offset 16
+ 469              		.cfi_offset 4, -16
+ 470              		.cfi_offset 5, -12
+ 471              		.cfi_offset 6, -8
+ 472              		.cfi_offset 14, -4
+ 230:MMA8652.c     ****     unsigned int i;
+ 231:MMA8652.c     ****     int sign;
+ 232:MMA8652.c     ****     
+ 233:MMA8652.c     ****     for (i = 0; i < 3; ++i) {
+ 234:MMA8652.c     ****         sign = 1;
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 14
+
+
+ 235:MMA8652.c     ****         if ((raw_count[i] >> 8) > 0x7F) {
+ 236:MMA8652.c     ****             sign = -1;
+ 237:MMA8652.c     ****             raw_count[i] = ~raw_count[i] + 1;
+ 238:MMA8652.c     ****         }
+ 239:MMA8652.c     ****         raw_count[i] = raw_count[i] >> 4;
+ 240:MMA8652.c     ****         acceleration[i] = sign * ((uint32_t)(1000 * raw_count[i] + 512) >> 10);
+ 473              		.loc 1 240 0
+ 474 0002 FA24     		movs	r4, #250
+ 229:MMA8652.c     ****     unsigned int i;
+ 475              		.loc 1 229 0
+ 476 0004 0022     		movs	r2, #0
+ 477              		.loc 1 240 0
+ 478 0006 A400     		lsls	r4, r4, #2
+ 479              	.LVL75:
+ 480              	.L41:
+ 235:MMA8652.c     ****             sign = -1;
+ 481              		.loc 1 235 0
+ 482 0008 8B5A     		ldrh	r3, [r1, r2]
+ 234:MMA8652.c     ****         if ((raw_count[i] >> 8) > 0x7F) {
+ 483              		.loc 1 234 0
+ 484 000a 0125     		movs	r5, #1
+ 235:MMA8652.c     ****             sign = -1;
+ 485              		.loc 1 235 0
+ 486 000c 1E0A     		lsrs	r6, r3, #8
+ 487 000e 7F2E     		cmp	r6, #127
+ 488 0010 02D9     		bls	.L40
+ 489              	.LVL76:
+ 237:MMA8652.c     ****         }
+ 490              		.loc 1 237 0
+ 491 0012 5B42     		rsbs	r3, r3, #0
+ 492 0014 8B52     		strh	r3, [r1, r2]
+ 236:MMA8652.c     ****             raw_count[i] = ~raw_count[i] + 1;
+ 493              		.loc 1 236 0
+ 494 0016 023D     		subs	r5, r5, #2
+ 495              	.LVL77:
+ 496              	.L40:
+ 497              		.loc 1 240 0 discriminator 2
+ 498 0018 8026     		movs	r6, #128
+ 239:MMA8652.c     ****         acceleration[i] = sign * ((uint32_t)(1000 * raw_count[i] + 512) >> 10);
+ 499              		.loc 1 239 0 discriminator 2
+ 500 001a 8B5A     		ldrh	r3, [r1, r2]
+ 501              		.loc 1 240 0 discriminator 2
+ 502 001c B600     		lsls	r6, r6, #2
+ 239:MMA8652.c     ****         acceleration[i] = sign * ((uint32_t)(1000 * raw_count[i] + 512) >> 10);
+ 503              		.loc 1 239 0 discriminator 2
+ 504 001e 1B09     		lsrs	r3, r3, #4
+ 505 0020 8B52     		strh	r3, [r1, r2]
+ 506              		.loc 1 240 0 discriminator 2
+ 507 0022 6343     		muls	r3, r4
+ 508 0024 9B19     		adds	r3, r3, r6
+ 509 0026 9B0A     		lsrs	r3, r3, #10
+ 510 0028 6B43     		muls	r3, r5
+ 511 002a 8352     		strh	r3, [r0, r2]
+ 512 002c 0232     		adds	r2, r2, #2
+ 233:MMA8652.c     ****         sign = 1;
+ 513              		.loc 1 233 0 discriminator 2
+ 514 002e 062A     		cmp	r2, #6
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 15
+
+
+ 515 0030 EAD1     		bne	.L41
+ 241:MMA8652.c     ****     }
+ 242:MMA8652.c     **** }
+ 516              		.loc 1 242 0
+ 517              		@ sp needed
+ 518              	.LVL78:
+ 519 0032 70BD     		pop	{r4, r5, r6, pc}
+ 520              		.cfi_endproc
+ 521              	.LFE42:
+ 522              		.size	MMA8652_ConvertCountToMg, .-MMA8652_ConvertCountToMg
+ 523              		.section	.text.MMA8652_ReadAcc,"ax",%progbits
+ 524              		.align	1
+ 525              		.global	MMA8652_ReadAcc
+ 526              		.code	16
+ 527              		.thumb_func
+ 528              		.type	MMA8652_ReadAcc, %function
+ 529              	MMA8652_ReadAcc:
+ 530              	.LFB41:
+ 161:MMA8652.c     ****     uint16_t acc_count[3];
+ 531              		.loc 1 161 0
+ 532              		.cfi_startproc
+ 533              		@ args = 0, pretend = 0, frame = 16
+ 534              		@ frame_needed = 0, uses_anonymous_args = 0
+ 535              	.LVL79:
+ 536 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 537              		.cfi_def_cfa_offset 20
+ 538              		.cfi_offset 4, -20
+ 539              		.cfi_offset 5, -16
+ 540              		.cfi_offset 6, -12
+ 541              		.cfi_offset 7, -8
+ 542              		.cfi_offset 14, -4
+ 167:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 543              		.loc 1 167 0
+ 544 0002 C822     		movs	r2, #200
+ 161:MMA8652.c     ****     uint16_t acc_count[3];
+ 545              		.loc 1 161 0
+ 546 0004 85B0     		sub	sp, sp, #20
+ 547              		.cfi_def_cfa_offset 40
+ 161:MMA8652.c     ****     uint16_t acc_count[3];
+ 548              		.loc 1 161 0
+ 549 0006 0600     		movs	r6, r0
+ 167:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 550              		.loc 1 167 0
+ 551 0008 0021     		movs	r1, #0
+ 552 000a 1D20     		movs	r0, #29
+ 553              	.LVL80:
+ 554 000c FFF7FEFF 		bl	I2C_I2CMasterSendStart
+ 555              	.LVL81:
+ 556 0010 041E     		subs	r4, r0, #0
+ 557              	.LVL82:
+ 558 0012 45D1     		bne	.L57
+ 172:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 559              		.loc 1 172 0
+ 560 0014 C821     		movs	r1, #200
+ 561 0016 0120     		movs	r0, #1
+ 562              	.LVL83:
+ 563 0018 FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 16
+
+
+ 564              	.LVL84:
+ 565 001c 041E     		subs	r4, r0, #0
+ 566              	.LVL85:
+ 567 001e 3FD1     		bne	.L57
+ 177:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 568              		.loc 1 177 0
+ 569 0020 C822     		movs	r2, #200
+ 570 0022 FF21     		movs	r1, #255
+ 571 0024 1D20     		movs	r0, #29
+ 572              	.LVL86:
+ 573 0026 FFF7FEFF 		bl	I2C_I2CMasterSendRestart
+ 574              	.LVL87:
+ 575 002a 041E     		subs	r4, r0, #0
+ 576              	.LVL88:
+ 577 002c 38D1     		bne	.L57
+ 182:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 578              		.loc 1 182 0
+ 579 002e 6B46     		mov	r3, sp
+ 580 0030 DF1D     		adds	r7, r3, #7
+ 581 0032 C822     		movs	r2, #200
+ 582 0034 3900     		movs	r1, r7
+ 583 0036 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 584              	.LVL89:
+ 585 003a 041E     		subs	r4, r0, #0
+ 586              	.LVL90:
+ 587 003c 30D1     		bne	.L57
+ 186:MMA8652.c     **** 
+ 588              		.loc 1 186 0
+ 589 003e 3B78     		ldrb	r3, [r7]
+ 590 0040 02AD     		add	r5, sp, #8
+ 591 0042 1B02     		lsls	r3, r3, #8
+ 188:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 592              		.loc 1 188 0
+ 593 0044 C822     		movs	r2, #200
+ 594 0046 3900     		movs	r1, r7
+ 186:MMA8652.c     **** 
+ 595              		.loc 1 186 0
+ 596 0048 2B80     		strh	r3, [r5]
+ 188:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 597              		.loc 1 188 0
+ 598 004a FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 599              	.LVL91:
+ 600 004e 041E     		subs	r4, r0, #0
+ 601              	.LVL92:
+ 602 0050 26D1     		bne	.L57
+ 192:MMA8652.c     **** 
+ 603              		.loc 1 192 0
+ 604 0052 3A78     		ldrb	r2, [r7]
+ 605 0054 2B88     		ldrh	r3, [r5]
+ 194:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 606              		.loc 1 194 0
+ 607 0056 3900     		movs	r1, r7
+ 192:MMA8652.c     **** 
+ 608              		.loc 1 192 0
+ 609 0058 1343     		orrs	r3, r2
+ 194:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 610              		.loc 1 194 0
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 17
+
+
+ 611 005a C822     		movs	r2, #200
+ 192:MMA8652.c     **** 
+ 612              		.loc 1 192 0
+ 613 005c 2B80     		strh	r3, [r5]
+ 194:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 614              		.loc 1 194 0
+ 615 005e FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 616              	.LVL93:
+ 617 0062 041E     		subs	r4, r0, #0
+ 618              	.LVL94:
+ 619 0064 1CD1     		bne	.L57
+ 198:MMA8652.c     **** 
+ 620              		.loc 1 198 0
+ 621 0066 3B78     		ldrb	r3, [r7]
+ 200:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 622              		.loc 1 200 0
+ 623 0068 C822     		movs	r2, #200
+ 198:MMA8652.c     **** 
+ 624              		.loc 1 198 0
+ 625 006a 1B02     		lsls	r3, r3, #8
+ 200:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 626              		.loc 1 200 0
+ 627 006c 3900     		movs	r1, r7
+ 198:MMA8652.c     **** 
+ 628              		.loc 1 198 0
+ 629 006e 6B80     		strh	r3, [r5, #2]
+ 200:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 630              		.loc 1 200 0
+ 631 0070 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 632              	.LVL95:
+ 633 0074 041E     		subs	r4, r0, #0
+ 634              	.LVL96:
+ 635 0076 13D1     		bne	.L57
+ 204:MMA8652.c     **** 
+ 636              		.loc 1 204 0
+ 637 0078 3A78     		ldrb	r2, [r7]
+ 638 007a 6B88     		ldrh	r3, [r5, #2]
+ 206:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 639              		.loc 1 206 0
+ 640 007c 3900     		movs	r1, r7
+ 204:MMA8652.c     **** 
+ 641              		.loc 1 204 0
+ 642 007e 1343     		orrs	r3, r2
+ 206:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 643              		.loc 1 206 0
+ 644 0080 C822     		movs	r2, #200
+ 204:MMA8652.c     **** 
+ 645              		.loc 1 204 0
+ 646 0082 6B80     		strh	r3, [r5, #2]
+ 206:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 647              		.loc 1 206 0
+ 648 0084 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 649              	.LVL97:
+ 650 0088 041E     		subs	r4, r0, #0
+ 651              	.LVL98:
+ 652 008a 09D1     		bne	.L57
+ 210:MMA8652.c     **** 
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 18
+
+
+ 653              		.loc 1 210 0
+ 654 008c 3B78     		ldrb	r3, [r7]
+ 212:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 655              		.loc 1 212 0
+ 656 008e C822     		movs	r2, #200
+ 210:MMA8652.c     **** 
+ 657              		.loc 1 210 0
+ 658 0090 1B02     		lsls	r3, r3, #8
+ 212:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 659              		.loc 1 212 0
+ 660 0092 3900     		movs	r1, r7
+ 661 0094 FF20     		movs	r0, #255
+ 662              	.LVL99:
+ 210:MMA8652.c     **** 
+ 663              		.loc 1 210 0
+ 664 0096 AB80     		strh	r3, [r5, #4]
+ 212:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 665              		.loc 1 212 0
+ 666 0098 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 667              	.LVL100:
+ 668 009c 041E     		subs	r4, r0, #0
+ 669              	.LVL101:
+ 670 009e 04D0     		beq	.L54
+ 671              	.L57:
+ 213:MMA8652.c     ****         return error;
+ 672              		.loc 1 213 0
+ 673 00a0 C820     		movs	r0, #200
+ 674              	.LVL102:
+ 675 00a2 FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 676              	.LVL103:
+ 214:MMA8652.c     ****     }
+ 677              		.loc 1 214 0
+ 678 00a6 2000     		movs	r0, r4
+ 679 00a8 0DE0     		b	.L46
+ 680              	.LVL104:
+ 681              	.L54:
+ 216:MMA8652.c     **** 
+ 682              		.loc 1 216 0
+ 683 00aa AB88     		ldrh	r3, [r5, #4]
+ 684 00ac 3A78     		ldrb	r2, [r7]
+ 218:MMA8652.c     ****         return error;
+ 685              		.loc 1 218 0
+ 686 00ae C820     		movs	r0, #200
+ 687              	.LVL105:
+ 216:MMA8652.c     **** 
+ 688              		.loc 1 216 0
+ 689 00b0 1343     		orrs	r3, r2
+ 690 00b2 AB80     		strh	r3, [r5, #4]
+ 218:MMA8652.c     ****         return error;
+ 691              		.loc 1 218 0
+ 692 00b4 FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 693              	.LVL106:
+ 694 00b8 0028     		cmp	r0, #0
+ 695 00ba 04D1     		bne	.L46
+ 223:MMA8652.c     ****     
+ 696              		.loc 1 223 0
+ 697 00bc 3000     		movs	r0, r6
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 19
+
+
+ 698              	.LVL107:
+ 699 00be 2900     		movs	r1, r5
+ 700 00c0 FFF7FEFF 		bl	MMA8652_ConvertCountToMg
+ 701              	.LVL108:
+ 225:MMA8652.c     **** }
+ 702              		.loc 1 225 0
+ 703 00c4 0020     		movs	r0, #0
+ 704              	.L46:
+ 226:MMA8652.c     **** 
+ 705              		.loc 1 226 0
+ 706 00c6 05B0     		add	sp, sp, #20
+ 707              		@ sp needed
+ 708              	.LVL109:
+ 709 00c8 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 710              		.cfi_endproc
+ 711              	.LFE41:
+ 712              		.size	MMA8652_ReadAcc, .-MMA8652_ReadAcc
+ 713              		.section	.text.MMA8652_ReadMultipleBytes,"ax",%progbits
+ 714              		.align	1
+ 715              		.global	MMA8652_ReadMultipleBytes
+ 716              		.code	16
+ 717              		.thumb_func
+ 718              		.type	MMA8652_ReadMultipleBytes, %function
+ 719              	MMA8652_ReadMultipleBytes:
+ 720              	.LFB43:
+ 243:MMA8652.c     **** 
+ 244:MMA8652.c     **** uint32_t MMA8652_ReadMultipleBytes(uint8_t register_addr, uint8_t* data, size_t data_len)
+ 245:MMA8652.c     **** {
+ 721              		.loc 1 245 0
+ 722              		.cfi_startproc
+ 723              		@ args = 0, pretend = 0, frame = 0
+ 724              		@ frame_needed = 0, uses_anonymous_args = 0
+ 725              	.LVL110:
+ 726 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 727              		.cfi_def_cfa_offset 24
+ 728              		.cfi_offset 3, -24
+ 729              		.cfi_offset 4, -20
+ 730              		.cfi_offset 5, -16
+ 731              		.cfi_offset 6, -12
+ 732              		.cfi_offset 7, -8
+ 733              		.cfi_offset 14, -4
+ 734              		.loc 1 245 0
+ 735 0002 0500     		movs	r5, r0
+ 736 0004 0F00     		movs	r7, r1
+ 737 0006 1600     		movs	r6, r2
+ 246:MMA8652.c     ****     unsigned int i;
+ 247:MMA8652.c     ****     uint32_t error;
+ 248:MMA8652.c     ****     uint8_t ack;
+ 249:MMA8652.c     **** 
+ 250:MMA8652.c     ****     if ((error = I2C_I2CMasterSendStart(MMA8652_ADDR, I2C_WRITE, I2C_TIMEOUT)) != 0) {
+ 738              		.loc 1 250 0
+ 739 0008 0021     		movs	r1, #0
+ 740              	.LVL111:
+ 741 000a C822     		movs	r2, #200
+ 742              	.LVL112:
+ 743 000c 1D20     		movs	r0, #29
+ 744              	.LVL113:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 20
+
+
+ 745 000e FFF7FEFF 		bl	I2C_I2CMasterSendStart
+ 746              	.LVL114:
+ 747 0012 041E     		subs	r4, r0, #0
+ 748              	.LVL115:
+ 749 0014 0CD1     		bne	.L67
+ 251:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 252:MMA8652.c     ****         return error;
+ 253:MMA8652.c     ****     }
+ 254:MMA8652.c     ****     
+ 255:MMA8652.c     ****     if ((error = I2C_I2CMasterWriteByte(register_addr, I2C_TIMEOUT)) != 0) {
+ 750              		.loc 1 255 0
+ 751 0016 C821     		movs	r1, #200
+ 752 0018 2800     		movs	r0, r5
+ 753              	.LVL116:
+ 754 001a FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+ 755              	.LVL117:
+ 756 001e 041E     		subs	r4, r0, #0
+ 757              	.LVL118:
+ 758 0020 06D1     		bne	.L67
+ 256:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 257:MMA8652.c     ****         return error;
+ 258:MMA8652.c     ****     }
+ 259:MMA8652.c     ****     
+ 260:MMA8652.c     ****     if ((error = I2C_I2CMasterSendRestart(MMA8652_ADDR, I2C_READ, I2C_TIMEOUT)) != 0) {
+ 759              		.loc 1 260 0
+ 760 0022 C822     		movs	r2, #200
+ 761 0024 FF21     		movs	r1, #255
+ 762 0026 1D20     		movs	r0, #29
+ 763              	.LVL119:
+ 764 0028 FFF7FEFF 		bl	I2C_I2CMasterSendRestart
+ 765              	.LVL120:
+ 766 002c 041E     		subs	r4, r0, #0
+ 767              	.LVL121:
+ 768 002e 05D0     		beq	.L63
+ 769              	.L67:
+ 261:MMA8652.c     ****         I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 770              		.loc 1 261 0
+ 771 0030 C820     		movs	r0, #200
+ 772              	.LVL122:
+ 773 0032 FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 774              	.LVL123:
+ 262:MMA8652.c     ****         return error;
+ 775              		.loc 1 262 0
+ 776 0036 2000     		movs	r0, r4
+ 777 0038 16E0     		b	.L60
+ 778              	.LVL124:
+ 779              	.L64:
+ 263:MMA8652.c     ****     }
+ 264:MMA8652.c     ****     
+ 265:MMA8652.c     ****     for (i = 0; i < data_len; ++i) {
+ 780              		.loc 1 265 0 discriminator 2
+ 781 003a 0134     		adds	r4, r4, #1
+ 782              	.LVL125:
+ 783              	.L63:
+ 784              		.loc 1 265 0 is_stmt 0 discriminator 1
+ 785 003c B442     		cmp	r4, r6
+ 786 003e 10D0     		beq	.L68
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 21
+
+
+ 787              	.LVL126:
+ 266:MMA8652.c     ****         if (i == data_len - 1) {
+ 267:MMA8652.c     ****             ack = I2C_NACK;
+ 268:MMA8652.c     ****         } else {
+ 269:MMA8652.c     ****             ack = I2C_ACK;
+ 270:MMA8652.c     ****         }
+ 271:MMA8652.c     ****         
+ 272:MMA8652.c     ****         if ((error = I2C_I2CMasterReadByte(ack, &data[i], I2C_TIMEOUT)) != 0) {
+ 788              		.loc 1 272 0 is_stmt 1
+ 789 0040 701E     		subs	r0, r6, #1
+ 790              	.LVL127:
+ 791 0042 001B     		subs	r0, r0, r4
+ 792 0044 4342     		rsbs	r3, r0, #0
+ 793 0046 5841     		adcs	r0, r0, r3
+ 794 0048 4042     		rsbs	r0, r0, #0
+ 795 004a 3919     		adds	r1, r7, r4
+ 796 004c C0B2     		uxtb	r0, r0
+ 797 004e C822     		movs	r2, #200
+ 798 0050 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 799              	.LVL128:
+ 800 0054 051E     		subs	r5, r0, #0
+ 801              	.LVL129:
+ 802 0056 F0D0     		beq	.L64
+ 273:MMA8652.c     ****             I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 803              		.loc 1 273 0
+ 804 0058 C820     		movs	r0, #200
+ 805              	.LVL130:
+ 806 005a FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 807              	.LVL131:
+ 272:MMA8652.c     ****             I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 808              		.loc 1 272 0
+ 809 005e 2800     		movs	r0, r5
+ 274:MMA8652.c     ****             return error;
+ 810              		.loc 1 274 0
+ 811 0060 02E0     		b	.L60
+ 812              	.LVL132:
+ 813              	.L68:
+ 275:MMA8652.c     ****         }
+ 276:MMA8652.c     ****     }
+ 277:MMA8652.c     ****     
+ 278:MMA8652.c     ****     error = I2C_I2CMasterSendStop(I2C_TIMEOUT);
+ 814              		.loc 1 278 0
+ 815 0062 C820     		movs	r0, #200
+ 816              	.LVL133:
+ 817 0064 FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 818              	.LVL134:
+ 819              	.L60:
+ 279:MMA8652.c     ****     return error;
+ 280:MMA8652.c     **** }
+ 820              		.loc 1 280 0
+ 821              		@ sp needed
+ 822              	.LVL135:
+ 823              	.LVL136:
+ 824 0068 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 825              		.cfi_endproc
+ 826              	.LFE43:
+ 827              		.size	MMA8652_ReadMultipleBytes, .-MMA8652_ReadMultipleBytes
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 22
+
+
+ 828              		.section	.text.MMA8652_PulseSetup,"ax",%progbits
+ 829              		.align	1
+ 830              		.global	MMA8652_PulseSetup
+ 831              		.code	16
+ 832              		.thumb_func
+ 833              		.type	MMA8652_PulseSetup, %function
+ 834              	MMA8652_PulseSetup:
+ 835              	.LFB44:
+ 281:MMA8652.c     **** 
+ 282:MMA8652.c     **** uint32_t MMA8652_PulseSetup(uint8_t thresholdx, uint8_t thresholdy, uint8_t thresholdz, uint8_t tim
+ 283:MMA8652.c     **** {
+ 836              		.loc 1 283 0
+ 837              		.cfi_startproc
+ 838              		@ args = 0, pretend = 0, frame = 0
+ 839              		@ frame_needed = 0, uses_anonymous_args = 0
+ 840              	.LVL137:
+ 841 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 842              		.cfi_def_cfa_offset 24
+ 843              		.cfi_offset 3, -24
+ 844              		.cfi_offset 4, -20
+ 845              		.cfi_offset 5, -16
+ 846              		.cfi_offset 6, -12
+ 847              		.cfi_offset 7, -8
+ 848              		.cfi_offset 14, -4
+ 849              		.loc 1 283 0
+ 850 0002 0700     		movs	r7, r0
+ 851 0004 0E00     		movs	r6, r1
+ 852 0006 1500     		movs	r5, r2
+ 853 0008 1C00     		movs	r4, r3
+ 284:MMA8652.c     ****     uint32_t error;
+ 285:MMA8652.c     ****     
+ 286:MMA8652.c     ****     error = MMA8652_StandByMode();
+ 854              		.loc 1 286 0
+ 855 000a FFF7FEFF 		bl	MMA8652_StandByMode
+ 856              	.LVL138:
+ 287:MMA8652.c     ****     if (error) {
+ 857              		.loc 1 287 0
+ 858 000e 0028     		cmp	r0, #0
+ 859 0010 25D1     		bne	.L70
+ 288:MMA8652.c     ****         return error;
+ 289:MMA8652.c     ****     }
+ 290:MMA8652.c     ****    
+ 291:MMA8652.c     ****     //Enable Single Pulse on X, Y, Z
+ 292:MMA8652.c     ****     error = MMA8652_Write(MMA8652_PULSE_CFG, 0x15);
+ 860              		.loc 1 292 0
+ 861 0012 1521     		movs	r1, #21
+ 862 0014 2130     		adds	r0, r0, #33
+ 863              	.LVL139:
+ 864 0016 FFF7FEFF 		bl	MMA8652_Write
+ 865              	.LVL140:
+ 293:MMA8652.c     ****     if (error) {
+ 866              		.loc 1 293 0
+ 867 001a 0028     		cmp	r0, #0
+ 868 001c 1FD1     		bne	.L70
+ 294:MMA8652.c     ****         return error;
+ 295:MMA8652.c     ****     }
+ 296:MMA8652.c     **** 
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 23
+
+
+ 297:MMA8652.c     ****     // Threshold X, Y, Z 0 - 127 (7 bits unsigned ), 63mg / LSB
+ 298:MMA8652.c     ****     error = MMA8652_Write(MMA8652_PULSE_THSX, thresholdx);
+ 869              		.loc 1 298 0
+ 870 001e 3900     		movs	r1, r7
+ 871 0020 2330     		adds	r0, r0, #35
+ 872              	.LVL141:
+ 873 0022 FFF7FEFF 		bl	MMA8652_Write
+ 874              	.LVL142:
+ 299:MMA8652.c     ****     if (error) {
+ 875              		.loc 1 299 0
+ 876 0026 0028     		cmp	r0, #0
+ 877 0028 19D1     		bne	.L70
+ 300:MMA8652.c     ****         return error;
+ 301:MMA8652.c     ****     }
+ 302:MMA8652.c     **** 
+ 303:MMA8652.c     ****     error = MMA8652_Write(MMA8652_PULSE_THSY, thresholdy);
+ 878              		.loc 1 303 0
+ 879 002a 3100     		movs	r1, r6
+ 880 002c 2430     		adds	r0, r0, #36
+ 881              	.LVL143:
+ 882 002e FFF7FEFF 		bl	MMA8652_Write
+ 883              	.LVL144:
+ 304:MMA8652.c     ****     if (error) {
+ 884              		.loc 1 304 0
+ 885 0032 0028     		cmp	r0, #0
+ 886 0034 13D1     		bne	.L70
+ 305:MMA8652.c     ****         return error;
+ 306:MMA8652.c     ****     }
+ 307:MMA8652.c     **** 
+ 308:MMA8652.c     ****     error = MMA8652_Write(MMA8652_PULSE_THSZ, thresholdz);
+ 887              		.loc 1 308 0
+ 888 0036 2900     		movs	r1, r5
+ 889 0038 2530     		adds	r0, r0, #37
+ 890              	.LVL145:
+ 891 003a FFF7FEFF 		bl	MMA8652_Write
+ 892              	.LVL146:
+ 309:MMA8652.c     ****     if (error) {
+ 893              		.loc 1 309 0
+ 894 003e 0028     		cmp	r0, #0
+ 895 0040 0DD1     		bne	.L70
+ 310:MMA8652.c     ****         return error;
+ 311:MMA8652.c     ****     }
+ 312:MMA8652.c     **** 
+ 313:MMA8652.c     ****     // 0 - 255 8 bits, 0.625 ms/step, max: 0.159 sec
+ 314:MMA8652.c     ****     error = MMA8652_Write(MMA8652_PULSE_TMLT, timelimit);
+ 896              		.loc 1 314 0
+ 897 0042 2100     		movs	r1, r4
+ 898 0044 2630     		adds	r0, r0, #38
+ 899              	.LVL147:
+ 900 0046 FFF7FEFF 		bl	MMA8652_Write
+ 901              	.LVL148:
+ 315:MMA8652.c     ****     if (error) {
+ 902              		.loc 1 315 0
+ 903 004a 0028     		cmp	r0, #0
+ 904 004c 07D1     		bne	.L70
+ 316:MMA8652.c     ****         return error;
+ 317:MMA8652.c     ****     }
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 24
+
+
+ 318:MMA8652.c     **** 
+ 319:MMA8652.c     ****     // 0 - 255 8 bits, 1.25 ms/step, max: 0.318 sec - only for double taps?
+ 320:MMA8652.c     ****     error = MMA8652_Write(MMA8652_PULSE_LTCY, 0);
+ 905              		.loc 1 320 0
+ 906 004e 0100     		movs	r1, r0
+ 907 0050 2730     		adds	r0, r0, #39
+ 908              	.LVL149:
+ 909 0052 FFF7FEFF 		bl	MMA8652_Write
+ 910              	.LVL150:
+ 321:MMA8652.c     ****     if (error) {
+ 911              		.loc 1 321 0
+ 912 0056 0028     		cmp	r0, #0
+ 913 0058 01D1     		bne	.L70
+ 322:MMA8652.c     ****         return error;
+ 323:MMA8652.c     ****     }
+ 324:MMA8652.c     ****     
+ 325:MMA8652.c     ****     // Enter active mode
+ 326:MMA8652.c     ****     error = MMA8652_ActiveMode();
+ 914              		.loc 1 326 0
+ 915 005a FFF7FEFF 		bl	MMA8652_ActiveMode
+ 916              	.LVL151:
+ 917              	.L70:
+ 327:MMA8652.c     ****     return error;
+ 328:MMA8652.c     **** }
+ 918              		.loc 1 328 0
+ 919              		@ sp needed
+ 920 005e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 921              		.cfi_endproc
+ 922              	.LFE44:
+ 923              		.size	MMA8652_PulseSetup, .-MMA8652_PulseSetup
+ 924              		.section	.text.MMA8652_MotionSetup,"ax",%progbits
+ 925              		.align	1
+ 926              		.global	MMA8652_MotionSetup
+ 927              		.code	16
+ 928              		.thumb_func
+ 929              		.type	MMA8652_MotionSetup, %function
+ 930              	MMA8652_MotionSetup:
+ 931              	.LFB45:
+ 329:MMA8652.c     **** 
+ 330:MMA8652.c     **** uint32_t MMA8652_MotionSetup(uint8_t threshold, uint8_t debounce_count)
+ 331:MMA8652.c     **** {
+ 932              		.loc 1 331 0
+ 933              		.cfi_startproc
+ 934              		@ args = 0, pretend = 0, frame = 0
+ 935              		@ frame_needed = 0, uses_anonymous_args = 0
+ 936              	.LVL152:
+ 937 0000 70B5     		push	{r4, r5, r6, lr}
+ 938              		.cfi_def_cfa_offset 16
+ 939              		.cfi_offset 4, -16
+ 940              		.cfi_offset 5, -12
+ 941              		.cfi_offset 6, -8
+ 942              		.cfi_offset 14, -4
+ 943              		.loc 1 331 0
+ 944 0002 0500     		movs	r5, r0
+ 945 0004 0C00     		movs	r4, r1
+ 332:MMA8652.c     ****     uint32_t error;    
+ 333:MMA8652.c     ****     
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 25
+
+
+ 334:MMA8652.c     ****     error = MMA8652_StandByMode();
+ 946              		.loc 1 334 0
+ 947 0006 FFF7FEFF 		bl	MMA8652_StandByMode
+ 948              	.LVL153:
+ 335:MMA8652.c     ****     if (error) {
+ 949              		.loc 1 335 0
+ 950 000a 0028     		cmp	r0, #0
+ 951 000c 13D1     		bne	.L79
+ 336:MMA8652.c     ****         return error;
+ 337:MMA8652.c     ****     }
+ 338:MMA8652.c     ****    
+ 339:MMA8652.c     ****     // Event values not latched, set motion OR freefal events on X, Y, Z-t nem
+ 340:MMA8652.c     ****     error = MMA8652_Write(MMA8652_FF_MT_CFG, 0x58);
+ 952              		.loc 1 340 0
+ 953 000e 5821     		movs	r1, #88
+ 954 0010 1530     		adds	r0, r0, #21
+ 955              	.LVL154:
+ 956 0012 FFF7FEFF 		bl	MMA8652_Write
+ 957              	.LVL155:
+ 341:MMA8652.c     ****     if (error) {
+ 958              		.loc 1 341 0
+ 959 0016 0028     		cmp	r0, #0
+ 960 0018 0DD1     		bne	.L79
+ 342:MMA8652.c     ****         return error;
+ 343:MMA8652.c     ****     }
+ 344:MMA8652.c     **** 
+ 345:MMA8652.c     ****     // Set debounce counter to increments/decrements, set acceleration threshold
+ 346:MMA8652.c     ****     // 0 - 127, 7 bits, 0.063 g/LSB max range is +/-8 g
+ 347:MMA8652.c     ****     error = MMA8652_Write(MMA8652_FF_MT_THS, threshold);
+ 961              		.loc 1 347 0
+ 962 001a 2900     		movs	r1, r5
+ 963 001c 1730     		adds	r0, r0, #23
+ 964              	.LVL156:
+ 965 001e FFF7FEFF 		bl	MMA8652_Write
+ 966              	.LVL157:
+ 348:MMA8652.c     ****     if (error) {
+ 967              		.loc 1 348 0
+ 968 0022 0028     		cmp	r0, #0
+ 969 0024 07D1     		bne	.L79
+ 349:MMA8652.c     ****         return error;
+ 350:MMA8652.c     ****     }
+ 351:MMA8652.c     ****     
+ 352:MMA8652.c     ****     // Set debounce counter value
+ 353:MMA8652.c     ****     // 0 - 255 8 bits 2.5 ms / step @ 400 Hz
+ 354:MMA8652.c     ****     error = MMA8652_Write(MMA8652_FF_MT_COUNT, debounce_count);
+ 970              		.loc 1 354 0
+ 971 0026 2100     		movs	r1, r4
+ 972 0028 1830     		adds	r0, r0, #24
+ 973              	.LVL158:
+ 974 002a FFF7FEFF 		bl	MMA8652_Write
+ 975              	.LVL159:
+ 355:MMA8652.c     ****     if (error) {
+ 976              		.loc 1 355 0
+ 977 002e 0028     		cmp	r0, #0
+ 978 0030 01D1     		bne	.L79
+ 356:MMA8652.c     ****         return error;
+ 357:MMA8652.c     ****     }
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 26
+
+
+ 358:MMA8652.c     ****     
+ 359:MMA8652.c     ****     
+ 360:MMA8652.c     ****     // Enter active mode
+ 361:MMA8652.c     ****     error = MMA8652_ActiveMode();
+ 979              		.loc 1 361 0
+ 980 0032 FFF7FEFF 		bl	MMA8652_ActiveMode
+ 981              	.LVL160:
+ 982              	.L79:
+ 362:MMA8652.c     ****     return error;
+ 363:MMA8652.c     **** }
+ 983              		.loc 1 363 0
+ 984              		@ sp needed
+ 985 0036 70BD     		pop	{r4, r5, r6, pc}
+ 986              		.cfi_endproc
+ 987              	.LFE45:
+ 988              		.size	MMA8652_MotionSetup, .-MMA8652_MotionSetup
+ 989              		.section	.text.MMA8652_TransientSetup,"ax",%progbits
+ 990              		.align	1
+ 991              		.global	MMA8652_TransientSetup
+ 992              		.code	16
+ 993              		.thumb_func
+ 994              		.type	MMA8652_TransientSetup, %function
+ 995              	MMA8652_TransientSetup:
+ 996              	.LFB46:
+ 364:MMA8652.c     **** 
+ 365:MMA8652.c     **** uint32_t MMA8652_TransientSetup(uint8_t threshold, uint8_t debounce_count)
+ 366:MMA8652.c     **** {
+ 997              		.loc 1 366 0
+ 998              		.cfi_startproc
+ 999              		@ args = 0, pretend = 0, frame = 0
+ 1000              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1001              	.LVL161:
+ 1002 0000 70B5     		push	{r4, r5, r6, lr}
+ 1003              		.cfi_def_cfa_offset 16
+ 1004              		.cfi_offset 4, -16
+ 1005              		.cfi_offset 5, -12
+ 1006              		.cfi_offset 6, -8
+ 1007              		.cfi_offset 14, -4
+ 1008              		.loc 1 366 0
+ 1009 0002 0500     		movs	r5, r0
+ 1010 0004 0C00     		movs	r4, r1
+ 367:MMA8652.c     ****     uint32_t error;
+ 368:MMA8652.c     ****     
+ 369:MMA8652.c     ****     error = MMA8652_StandByMode();
+ 1011              		.loc 1 369 0
+ 1012 0006 FFF7FEFF 		bl	MMA8652_StandByMode
+ 1013              	.LVL162:
+ 370:MMA8652.c     ****     if (error) {
+ 1014              		.loc 1 370 0
+ 1015 000a 0028     		cmp	r0, #0
+ 1016 000c 13D1     		bne	.L85
+ 371:MMA8652.c     ****         return error;
+ 372:MMA8652.c     ****     }
+ 373:MMA8652.c     ****    
+ 374:MMA8652.c     ****     // Event values not latched, set transient detection on X, Y, Z
+ 375:MMA8652.c     ****     error = MMA8652_Write(MMA8652_TRANSIENT_CFG, 0x0E);
+ 1017              		.loc 1 375 0
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 27
+
+
+ 1018 000e 0E21     		movs	r1, #14
+ 1019 0010 1D30     		adds	r0, r0, #29
+ 1020              	.LVL163:
+ 1021 0012 FFF7FEFF 		bl	MMA8652_Write
+ 1022              	.LVL164:
+ 376:MMA8652.c     ****     if (error) {
+ 1023              		.loc 1 376 0
+ 1024 0016 0028     		cmp	r0, #0
+ 1025 0018 0DD1     		bne	.L85
+ 377:MMA8652.c     ****         return error;
+ 378:MMA8652.c     ****     }
+ 379:MMA8652.c     **** 
+ 380:MMA8652.c     ****     // set debounce counter to increments/decrements, set transient threshold
+ 381:MMA8652.c     ****     // 0 - 127, 7 bits, 0.063 g/LSB max range is +/-8 g
+ 382:MMA8652.c     ****     error = MMA8652_Write(MMA8652_TRANSIENT_THS, threshold);
+ 1026              		.loc 1 382 0
+ 1027 001a 2900     		movs	r1, r5
+ 1028 001c 1F30     		adds	r0, r0, #31
+ 1029              	.LVL165:
+ 1030 001e FFF7FEFF 		bl	MMA8652_Write
+ 1031              	.LVL166:
+ 383:MMA8652.c     ****     if (error) {
+ 1032              		.loc 1 383 0
+ 1033 0022 0028     		cmp	r0, #0
+ 1034 0024 07D1     		bne	.L85
+ 384:MMA8652.c     ****         return error;
+ 385:MMA8652.c     ****     }
+ 386:MMA8652.c     ****     
+ 387:MMA8652.c     ****     // Set tranisent debounce counter value
+ 388:MMA8652.c     ****     // 0 - 255 8 bits 2.5 ms / step @ 400 Hz
+ 389:MMA8652.c     ****     error = MMA8652_Write(MMA8652_TRANSIENT_COUNT, debounce_count);
+ 1035              		.loc 1 389 0
+ 1036 0026 2100     		movs	r1, r4
+ 1037 0028 2030     		adds	r0, r0, #32
+ 1038              	.LVL167:
+ 1039 002a FFF7FEFF 		bl	MMA8652_Write
+ 1040              	.LVL168:
+ 390:MMA8652.c     ****     if (error) {
+ 1041              		.loc 1 390 0
+ 1042 002e 0028     		cmp	r0, #0
+ 1043 0030 01D1     		bne	.L85
+ 391:MMA8652.c     ****         return error;
+ 392:MMA8652.c     ****     }
+ 393:MMA8652.c     ****     
+ 394:MMA8652.c     ****     // Enter active mode
+ 395:MMA8652.c     ****     error = MMA8652_ActiveMode();
+ 1044              		.loc 1 395 0
+ 1045 0032 FFF7FEFF 		bl	MMA8652_ActiveMode
+ 1046              	.LVL169:
+ 1047              	.L85:
+ 396:MMA8652.c     ****     return error;
+ 397:MMA8652.c     **** }
+ 1048              		.loc 1 397 0
+ 1049              		@ sp needed
+ 1050 0036 70BD     		pop	{r4, r5, r6, pc}
+ 1051              		.cfi_endproc
+ 1052              	.LFE46:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 28
+
+
+ 1053              		.size	MMA8652_TransientSetup, .-MMA8652_TransientSetup
+ 1054              		.section	.text.MMA8652_WhoAmI,"ax",%progbits
+ 1055              		.align	1
+ 1056              		.global	MMA8652_WhoAmI
+ 1057              		.code	16
+ 1058              		.thumb_func
+ 1059              		.type	MMA8652_WhoAmI, %function
+ 1060              	MMA8652_WhoAmI:
+ 1061              	.LFB47:
+ 398:MMA8652.c     **** 
+ 399:MMA8652.c     **** uint32_t MMA8652_WhoAmI(uint8_t* id)
+ 400:MMA8652.c     **** {
+ 1062              		.loc 1 400 0
+ 1063              		.cfi_startproc
+ 1064              		@ args = 0, pretend = 0, frame = 0
+ 1065              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1066              	.LVL170:
+ 1067 0000 10B5     		push	{r4, lr}
+ 1068              		.cfi_def_cfa_offset 8
+ 1069              		.cfi_offset 4, -8
+ 1070              		.cfi_offset 14, -4
+ 1071              		.loc 1 400 0
+ 1072 0002 0100     		movs	r1, r0
+ 401:MMA8652.c     ****     return MMA8652_Read(MMA8652_WHO_AM_I, id);
+ 1073              		.loc 1 401 0
+ 1074 0004 0D20     		movs	r0, #13
+ 1075              	.LVL171:
+ 1076 0006 FFF7FEFF 		bl	MMA8652_Read
+ 1077              	.LVL172:
+ 402:MMA8652.c     **** }
+ 1078              		.loc 1 402 0
+ 1079              		@ sp needed
+ 1080 000a 10BD     		pop	{r4, pc}
+ 1081              		.cfi_endproc
+ 1082              	.LFE47:
+ 1083              		.size	MMA8652_WhoAmI, .-MMA8652_WhoAmI
+ 1084              		.text
+ 1085              	.Letext0:
+ 1086              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1087              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1088              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1089              		.file 5 "Generated_Source\\PSoC4/I2C_I2C.h"
+ 1090              		.file 6 "Generated_Source\\PSoC4/CyLib.h"
+ 1091              		.section	.debug_info,"",%progbits
+ 1092              	.Ldebug_info0:
+ 1093 0000 C50A0000 		.4byte	0xac5
+ 1094 0004 0400     		.2byte	0x4
+ 1095 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1096 000a 04       		.byte	0x4
+ 1097 000b 01       		.uleb128 0x1
+ 1098 000c E6020000 		.4byte	.LASF58
+ 1099 0010 0C       		.byte	0xc
+ 1100 0011 E4000000 		.4byte	.LASF59
+ 1101 0015 A5020000 		.4byte	.LASF60
+ 1102 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1103 001d 00000000 		.4byte	0
+ 1104 0021 00000000 		.4byte	.Ldebug_line0
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 29
+
+
+ 1105 0025 02       		.uleb128 0x2
+ 1106 0026 01       		.byte	0x1
+ 1107 0027 06       		.byte	0x6
+ 1108 0028 AD010000 		.4byte	.LASF0
+ 1109 002c 03       		.uleb128 0x3
+ 1110 002d 5F010000 		.4byte	.LASF2
+ 1111 0031 02       		.byte	0x2
+ 1112 0032 1D       		.byte	0x1d
+ 1113 0033 37000000 		.4byte	0x37
+ 1114 0037 02       		.uleb128 0x2
+ 1115 0038 01       		.byte	0x1
+ 1116 0039 08       		.byte	0x8
+ 1117 003a 72010000 		.4byte	.LASF1
+ 1118 003e 03       		.uleb128 0x3
+ 1119 003f DC020000 		.4byte	.LASF3
+ 1120 0043 02       		.byte	0x2
+ 1121 0044 29       		.byte	0x29
+ 1122 0045 49000000 		.4byte	0x49
+ 1123 0049 02       		.uleb128 0x2
+ 1124 004a 02       		.byte	0x2
+ 1125 004b 05       		.byte	0x5
+ 1126 004c 28000000 		.4byte	.LASF4
+ 1127 0050 03       		.uleb128 0x3
+ 1128 0051 63000000 		.4byte	.LASF5
+ 1129 0055 02       		.byte	0x2
+ 1130 0056 2B       		.byte	0x2b
+ 1131 0057 5B000000 		.4byte	0x5b
+ 1132 005b 02       		.uleb128 0x2
+ 1133 005c 02       		.byte	0x2
+ 1134 005d 07       		.byte	0x7
+ 1135 005e E8010000 		.4byte	.LASF6
+ 1136 0062 02       		.uleb128 0x2
+ 1137 0063 04       		.byte	0x4
+ 1138 0064 05       		.byte	0x5
+ 1139 0065 37010000 		.4byte	.LASF7
+ 1140 0069 03       		.uleb128 0x3
+ 1141 006a 58000000 		.4byte	.LASF8
+ 1142 006e 02       		.byte	0x2
+ 1143 006f 41       		.byte	0x41
+ 1144 0070 74000000 		.4byte	0x74
+ 1145 0074 02       		.uleb128 0x2
+ 1146 0075 04       		.byte	0x4
+ 1147 0076 07       		.byte	0x7
+ 1148 0077 74020000 		.4byte	.LASF9
+ 1149 007b 02       		.uleb128 0x2
+ 1150 007c 08       		.byte	0x8
+ 1151 007d 05       		.byte	0x5
+ 1152 007e 08010000 		.4byte	.LASF10
+ 1153 0082 02       		.uleb128 0x2
+ 1154 0083 08       		.byte	0x8
+ 1155 0084 07       		.byte	0x7
+ 1156 0085 16010000 		.4byte	.LASF11
+ 1157 0089 04       		.uleb128 0x4
+ 1158 008a 04       		.byte	0x4
+ 1159 008b 05       		.byte	0x5
+ 1160 008c 696E7400 		.ascii	"int\000"
+ 1161 0090 02       		.uleb128 0x2
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 30
+
+
+ 1162 0091 04       		.byte	0x4
+ 1163 0092 07       		.byte	0x7
+ 1164 0093 D2010000 		.4byte	.LASF12
+ 1165 0097 03       		.uleb128 0x3
+ 1166 0098 32000000 		.4byte	.LASF13
+ 1167 009c 03       		.byte	0x3
+ 1168 009d D8       		.byte	0xd8
+ 1169 009e 90000000 		.4byte	0x90
+ 1170 00a2 02       		.uleb128 0x2
+ 1171 00a3 08       		.byte	0x8
+ 1172 00a4 04       		.byte	0x4
+ 1173 00a5 8E010000 		.4byte	.LASF14
+ 1174 00a9 02       		.uleb128 0x2
+ 1175 00aa 04       		.byte	0x4
+ 1176 00ab 07       		.byte	0x7
+ 1177 00ac 4F000000 		.4byte	.LASF15
+ 1178 00b0 02       		.uleb128 0x2
+ 1179 00b1 01       		.byte	0x1
+ 1180 00b2 08       		.byte	0x8
+ 1181 00b3 0E020000 		.4byte	.LASF16
+ 1182 00b7 03       		.uleb128 0x3
+ 1183 00b8 B2000000 		.4byte	.LASF17
+ 1184 00bc 04       		.byte	0x4
+ 1185 00bd 18       		.byte	0x18
+ 1186 00be 2C000000 		.4byte	0x2c
+ 1187 00c2 03       		.uleb128 0x3
+ 1188 00c3 34020000 		.4byte	.LASF18
+ 1189 00c7 04       		.byte	0x4
+ 1190 00c8 20       		.byte	0x20
+ 1191 00c9 3E000000 		.4byte	0x3e
+ 1192 00cd 03       		.uleb128 0x3
+ 1193 00ce DF010000 		.4byte	.LASF19
+ 1194 00d2 04       		.byte	0x4
+ 1195 00d3 24       		.byte	0x24
+ 1196 00d4 50000000 		.4byte	0x50
+ 1197 00d8 03       		.uleb128 0x3
+ 1198 00d9 C9010000 		.4byte	.LASF20
+ 1199 00dd 04       		.byte	0x4
+ 1200 00de 30       		.byte	0x30
+ 1201 00df 69000000 		.4byte	0x69
+ 1202 00e3 02       		.uleb128 0x2
+ 1203 00e4 04       		.byte	0x4
+ 1204 00e5 04       		.byte	0x4
+ 1205 00e6 02010000 		.4byte	.LASF21
+ 1206 00ea 02       		.uleb128 0x2
+ 1207 00eb 08       		.byte	0x8
+ 1208 00ec 04       		.byte	0x4
+ 1209 00ed 8B020000 		.4byte	.LASF22
+ 1210 00f1 05       		.uleb128 0x5
+ 1211 00f2 80010000 		.4byte	.LASF25
+ 1212 00f6 01       		.byte	0x1
+ 1213 00f7 03       		.byte	0x3
+ 1214 00f8 D8000000 		.4byte	0xd8
+ 1215 00fc 01       		.byte	0x1
+ 1216 00fd 23010000 		.4byte	0x123
+ 1217 0101 06       		.uleb128 0x6
+ 1218 0102 40010000 		.4byte	.LASF23
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 31
+
+
+ 1219 0106 01       		.byte	0x1
+ 1220 0107 03       		.byte	0x3
+ 1221 0108 D8000000 		.4byte	0xd8
+ 1222 010c 06       		.uleb128 0x6
+ 1223 010d 55020000 		.4byte	.LASF24
+ 1224 0111 01       		.byte	0x1
+ 1225 0112 03       		.byte	0x3
+ 1226 0113 D8000000 		.4byte	0xd8
+ 1227 0117 07       		.uleb128 0x7
+ 1228 0118 74030000 		.4byte	.LASF28
+ 1229 011c 01       		.byte	0x1
+ 1230 011d 05       		.byte	0x5
+ 1231 011e D8000000 		.4byte	0xd8
+ 1232 0122 00       		.byte	0
+ 1233 0123 05       		.uleb128 0x5
+ 1234 0124 C9000000 		.4byte	.LASF26
+ 1235 0128 01       		.byte	0x1
+ 1236 0129 1B       		.byte	0x1b
+ 1237 012a D8000000 		.4byte	0xd8
+ 1238 012e 01       		.byte	0x1
+ 1239 012f 55010000 		.4byte	0x155
+ 1240 0133 06       		.uleb128 0x6
+ 1241 0134 40010000 		.4byte	.LASF23
+ 1242 0138 01       		.byte	0x1
+ 1243 0139 1B       		.byte	0x1b
+ 1244 013a D8000000 		.4byte	0xd8
+ 1245 013e 06       		.uleb128 0x6
+ 1246 013f 9C020000 		.4byte	.LASF27
+ 1247 0143 01       		.byte	0x1
+ 1248 0144 1B       		.byte	0x1b
+ 1249 0145 55010000 		.4byte	0x155
+ 1250 0149 07       		.uleb128 0x7
+ 1251 014a 74030000 		.4byte	.LASF28
+ 1252 014e 01       		.byte	0x1
+ 1253 014f 1D       		.byte	0x1d
+ 1254 0150 D8000000 		.4byte	0xd8
+ 1255 0154 00       		.byte	0
+ 1256 0155 08       		.uleb128 0x8
+ 1257 0156 04       		.byte	0x4
+ 1258 0157 B7000000 		.4byte	0xb7
+ 1259 015b 09       		.uleb128 0x9
+ 1260 015c F1000000 		.4byte	0xf1
+ 1261 0160 00000000 		.4byte	.LFB35
+ 1262 0164 42000000 		.4byte	.LFE35-.LFB35
+ 1263 0168 01       		.uleb128 0x1
+ 1264 0169 9C       		.byte	0x9c
+ 1265 016a 15020000 		.4byte	0x215
+ 1266 016e 0A       		.uleb128 0xa
+ 1267 016f 01010000 		.4byte	0x101
+ 1268 0173 00000000 		.4byte	.LLST0
+ 1269 0177 0A       		.uleb128 0xa
+ 1270 0178 0C010000 		.4byte	0x10c
+ 1271 017c 2C000000 		.4byte	.LLST1
+ 1272 0180 0B       		.uleb128 0xb
+ 1273 0181 17010000 		.4byte	0x117
+ 1274 0185 58000000 		.4byte	.LLST2
+ 1275 0189 0C       		.uleb128 0xc
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 32
+
+
+ 1276 018a 3C000000 		.4byte	.LBB4
+ 1277 018e 04000000 		.4byte	.LBE4-.LBB4
+ 1278 0192 B9010000 		.4byte	0x1b9
+ 1279 0196 0D       		.uleb128 0xd
+ 1280 0197 33010000 		.4byte	0x133
+ 1281 019b 0D       		.uleb128 0xd
+ 1282 019c 3E010000 		.4byte	0x13e
+ 1283 01a0 0E       		.uleb128 0xe
+ 1284 01a1 3C000000 		.4byte	.LBB5
+ 1285 01a5 04000000 		.4byte	.LBE5-.LBB5
+ 1286 01a9 0F       		.uleb128 0xf
+ 1287 01aa 49010000 		.4byte	0x149
+ 1288 01ae 10       		.uleb128 0x10
+ 1289 01af 40000000 		.4byte	.LVL17
+ 1290 01b3 810A0000 		.4byte	0xa81
+ 1291 01b7 00       		.byte	0
+ 1292 01b8 00       		.byte	0
+ 1293 01b9 11       		.uleb128 0x11
+ 1294 01ba 10000000 		.4byte	.LVL4
+ 1295 01be 8D0A0000 		.4byte	0xa8d
+ 1296 01c2 D7010000 		.4byte	0x1d7
+ 1297 01c6 12       		.uleb128 0x12
+ 1298 01c7 01       		.uleb128 0x1
+ 1299 01c8 50       		.byte	0x50
+ 1300 01c9 01       		.uleb128 0x1
+ 1301 01ca 4D       		.byte	0x4d
+ 1302 01cb 12       		.uleb128 0x12
+ 1303 01cc 01       		.uleb128 0x1
+ 1304 01cd 51       		.byte	0x51
+ 1305 01ce 01       		.uleb128 0x1
+ 1306 01cf 30       		.byte	0x30
+ 1307 01d0 12       		.uleb128 0x12
+ 1308 01d1 01       		.uleb128 0x1
+ 1309 01d2 52       		.byte	0x52
+ 1310 01d3 02       		.uleb128 0x2
+ 1311 01d4 08       		.byte	0x8
+ 1312 01d5 C8       		.byte	0xc8
+ 1313 01d6 00       		.byte	0
+ 1314 01d7 11       		.uleb128 0x11
+ 1315 01d8 1C000000 		.4byte	.LVL7
+ 1316 01dc 990A0000 		.4byte	0xa99
+ 1317 01e0 F1010000 		.4byte	0x1f1
+ 1318 01e4 12       		.uleb128 0x12
+ 1319 01e5 01       		.uleb128 0x1
+ 1320 01e6 50       		.byte	0x50
+ 1321 01e7 02       		.uleb128 0x2
+ 1322 01e8 76       		.byte	0x76
+ 1323 01e9 00       		.sleb128 0
+ 1324 01ea 12       		.uleb128 0x12
+ 1325 01eb 01       		.uleb128 0x1
+ 1326 01ec 51       		.byte	0x51
+ 1327 01ed 02       		.uleb128 0x2
+ 1328 01ee 08       		.byte	0x8
+ 1329 01ef C8       		.byte	0xc8
+ 1330 01f0 00       		.byte	0
+ 1331 01f1 11       		.uleb128 0x11
+ 1332 01f2 2C000000 		.4byte	.LVL12
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 33
+
+
+ 1333 01f6 990A0000 		.4byte	0xa99
+ 1334 01fa 0B020000 		.4byte	0x20b
+ 1335 01fe 12       		.uleb128 0x12
+ 1336 01ff 01       		.uleb128 0x1
+ 1337 0200 50       		.byte	0x50
+ 1338 0201 02       		.uleb128 0x2
+ 1339 0202 75       		.byte	0x75
+ 1340 0203 00       		.sleb128 0
+ 1341 0204 12       		.uleb128 0x12
+ 1342 0205 01       		.uleb128 0x1
+ 1343 0206 51       		.byte	0x51
+ 1344 0207 02       		.uleb128 0x2
+ 1345 0208 08       		.byte	0x8
+ 1346 0209 C8       		.byte	0xc8
+ 1347 020a 00       		.byte	0
+ 1348 020b 10       		.uleb128 0x10
+ 1349 020c 38000000 		.4byte	.LVL15
+ 1350 0210 810A0000 		.4byte	0xa81
+ 1351 0214 00       		.byte	0
+ 1352 0215 09       		.uleb128 0x9
+ 1353 0216 23010000 		.4byte	0x123
+ 1354 021a 00000000 		.4byte	.LFB36
+ 1355 021e 52000000 		.4byte	.LFE36-.LFB36
+ 1356 0222 01       		.uleb128 0x1
+ 1357 0223 9C       		.byte	0x9c
+ 1358 0224 FC020000 		.4byte	0x2fc
+ 1359 0228 0A       		.uleb128 0xa
+ 1360 0229 33010000 		.4byte	0x133
+ 1361 022d C4000000 		.4byte	.LLST3
+ 1362 0231 0A       		.uleb128 0xa
+ 1363 0232 3E010000 		.4byte	0x13e
+ 1364 0236 F0000000 		.4byte	.LLST4
+ 1365 023a 0B       		.uleb128 0xb
+ 1366 023b 49010000 		.4byte	0x149
+ 1367 023f 1C010000 		.4byte	.LLST5
+ 1368 0243 0C       		.uleb128 0xc
+ 1369 0244 4C000000 		.4byte	.LBB8
+ 1370 0248 04000000 		.4byte	.LBE8-.LBB8
+ 1371 024c 7B020000 		.4byte	0x27b
+ 1372 0250 0A       		.uleb128 0xa
+ 1373 0251 33010000 		.4byte	0x133
+ 1374 0255 9E010000 		.4byte	.LLST6
+ 1375 0259 0A       		.uleb128 0xa
+ 1376 025a 3E010000 		.4byte	0x13e
+ 1377 025e B1010000 		.4byte	.LLST7
+ 1378 0262 0E       		.uleb128 0xe
+ 1379 0263 4C000000 		.4byte	.LBB9
+ 1380 0267 04000000 		.4byte	.LBE9-.LBB9
+ 1381 026b 0F       		.uleb128 0xf
+ 1382 026c 49010000 		.4byte	0x149
+ 1383 0270 10       		.uleb128 0x10
+ 1384 0271 50000000 		.4byte	.LVL41
+ 1385 0275 810A0000 		.4byte	0xa81
+ 1386 0279 00       		.byte	0
+ 1387 027a 00       		.byte	0
+ 1388 027b 11       		.uleb128 0x11
+ 1389 027c 10000000 		.4byte	.LVL25
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 34
+
+
+ 1390 0280 8D0A0000 		.4byte	0xa8d
+ 1391 0284 99020000 		.4byte	0x299
+ 1392 0288 12       		.uleb128 0x12
+ 1393 0289 01       		.uleb128 0x1
+ 1394 028a 50       		.byte	0x50
+ 1395 028b 01       		.uleb128 0x1
+ 1396 028c 4D       		.byte	0x4d
+ 1397 028d 12       		.uleb128 0x12
+ 1398 028e 01       		.uleb128 0x1
+ 1399 028f 51       		.byte	0x51
+ 1400 0290 01       		.uleb128 0x1
+ 1401 0291 30       		.byte	0x30
+ 1402 0292 12       		.uleb128 0x12
+ 1403 0293 01       		.uleb128 0x1
+ 1404 0294 52       		.byte	0x52
+ 1405 0295 02       		.uleb128 0x2
+ 1406 0296 08       		.byte	0x8
+ 1407 0297 C8       		.byte	0xc8
+ 1408 0298 00       		.byte	0
+ 1409 0299 11       		.uleb128 0x11
+ 1410 029a 1C000000 		.4byte	.LVL28
+ 1411 029e 990A0000 		.4byte	0xa99
+ 1412 02a2 B3020000 		.4byte	0x2b3
+ 1413 02a6 12       		.uleb128 0x12
+ 1414 02a7 01       		.uleb128 0x1
+ 1415 02a8 50       		.byte	0x50
+ 1416 02a9 02       		.uleb128 0x2
+ 1417 02aa 76       		.byte	0x76
+ 1418 02ab 00       		.sleb128 0
+ 1419 02ac 12       		.uleb128 0x12
+ 1420 02ad 01       		.uleb128 0x1
+ 1421 02ae 51       		.byte	0x51
+ 1422 02af 02       		.uleb128 0x2
+ 1423 02b0 08       		.byte	0x8
+ 1424 02b1 C8       		.byte	0xc8
+ 1425 02b2 00       		.byte	0
+ 1426 02b3 11       		.uleb128 0x11
+ 1427 02b4 2A000000 		.4byte	.LVL31
+ 1428 02b8 A50A0000 		.4byte	0xaa5
+ 1429 02bc D2020000 		.4byte	0x2d2
+ 1430 02c0 12       		.uleb128 0x12
+ 1431 02c1 01       		.uleb128 0x1
+ 1432 02c2 50       		.byte	0x50
+ 1433 02c3 01       		.uleb128 0x1
+ 1434 02c4 4D       		.byte	0x4d
+ 1435 02c5 12       		.uleb128 0x12
+ 1436 02c6 01       		.uleb128 0x1
+ 1437 02c7 51       		.byte	0x51
+ 1438 02c8 02       		.uleb128 0x2
+ 1439 02c9 08       		.byte	0x8
+ 1440 02ca FF       		.byte	0xff
+ 1441 02cb 12       		.uleb128 0x12
+ 1442 02cc 01       		.uleb128 0x1
+ 1443 02cd 52       		.byte	0x52
+ 1444 02ce 02       		.uleb128 0x2
+ 1445 02cf 08       		.byte	0x8
+ 1446 02d0 C8       		.byte	0xc8
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 35
+
+
+ 1447 02d1 00       		.byte	0
+ 1448 02d2 11       		.uleb128 0x11
+ 1449 02d3 3C000000 		.4byte	.LVL36
+ 1450 02d7 B10A0000 		.4byte	0xab1
+ 1451 02db F2020000 		.4byte	0x2f2
+ 1452 02df 12       		.uleb128 0x12
+ 1453 02e0 01       		.uleb128 0x1
+ 1454 02e1 50       		.byte	0x50
+ 1455 02e2 02       		.uleb128 0x2
+ 1456 02e3 08       		.byte	0x8
+ 1457 02e4 FF       		.byte	0xff
+ 1458 02e5 12       		.uleb128 0x12
+ 1459 02e6 01       		.uleb128 0x1
+ 1460 02e7 51       		.byte	0x51
+ 1461 02e8 02       		.uleb128 0x2
+ 1462 02e9 75       		.byte	0x75
+ 1463 02ea 00       		.sleb128 0
+ 1464 02eb 12       		.uleb128 0x12
+ 1465 02ec 01       		.uleb128 0x1
+ 1466 02ed 52       		.byte	0x52
+ 1467 02ee 02       		.uleb128 0x2
+ 1468 02ef 08       		.byte	0x8
+ 1469 02f0 C8       		.byte	0xc8
+ 1470 02f1 00       		.byte	0
+ 1471 02f2 10       		.uleb128 0x10
+ 1472 02f3 48000000 		.4byte	.LVL39
+ 1473 02f7 810A0000 		.4byte	0xa81
+ 1474 02fb 00       		.byte	0
+ 1475 02fc 13       		.uleb128 0x13
+ 1476 02fd FB010000 		.4byte	.LASF29
+ 1477 0301 01       		.byte	0x1
+ 1478 0302 6F       		.byte	0x6f
+ 1479 0303 D8000000 		.4byte	0xd8
+ 1480 0307 00000000 		.4byte	.LFB38
+ 1481 030b 20000000 		.4byte	.LFE38-.LFB38
+ 1482 030f 01       		.uleb128 0x1
+ 1483 0310 9C       		.byte	0x9c
+ 1484 0311 56030000 		.4byte	0x356
+ 1485 0315 14       		.uleb128 0x14
+ 1486 0316 9C020000 		.4byte	.LASF27
+ 1487 031a 01       		.byte	0x1
+ 1488 031b 71       		.byte	0x71
+ 1489 031c B7000000 		.4byte	0xb7
+ 1490 0320 02       		.uleb128 0x2
+ 1491 0321 91       		.byte	0x91
+ 1492 0322 77       		.sleb128 -9
+ 1493 0323 15       		.uleb128 0x15
+ 1494 0324 74030000 		.4byte	.LASF28
+ 1495 0328 01       		.byte	0x1
+ 1496 0329 72       		.byte	0x72
+ 1497 032a D8000000 		.4byte	0xd8
+ 1498 032e C4010000 		.4byte	.LLST8
+ 1499 0332 11       		.uleb128 0x11
+ 1500 0333 0E000000 		.4byte	.LVL46
+ 1501 0337 23010000 		.4byte	0x123
+ 1502 033b 4C030000 		.4byte	0x34c
+ 1503 033f 12       		.uleb128 0x12
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 36
+
+
+ 1504 0340 01       		.uleb128 0x1
+ 1505 0341 50       		.byte	0x50
+ 1506 0342 02       		.uleb128 0x2
+ 1507 0343 08       		.byte	0x8
+ 1508 0344 2A       		.byte	0x2a
+ 1509 0345 12       		.uleb128 0x12
+ 1510 0346 01       		.uleb128 0x1
+ 1511 0347 51       		.byte	0x51
+ 1512 0348 02       		.uleb128 0x2
+ 1513 0349 74       		.byte	0x74
+ 1514 034a 00       		.sleb128 0
+ 1515 034b 00       		.byte	0
+ 1516 034c 10       		.uleb128 0x10
+ 1517 034d 1E000000 		.4byte	.LVL48
+ 1518 0351 F1000000 		.4byte	0xf1
+ 1519 0355 00       		.byte	0
+ 1520 0356 13       		.uleb128 0x13
+ 1521 0357 EE000000 		.4byte	.LASF30
+ 1522 035b 01       		.byte	0x1
+ 1523 035c 7E       		.byte	0x7e
+ 1524 035d D8000000 		.4byte	0xd8
+ 1525 0361 00000000 		.4byte	.LFB39
+ 1526 0365 20000000 		.4byte	.LFE39-.LFB39
+ 1527 0369 01       		.uleb128 0x1
+ 1528 036a 9C       		.byte	0x9c
+ 1529 036b B0030000 		.4byte	0x3b0
+ 1530 036f 14       		.uleb128 0x14
+ 1531 0370 9C020000 		.4byte	.LASF27
+ 1532 0374 01       		.byte	0x1
+ 1533 0375 80       		.byte	0x80
+ 1534 0376 B7000000 		.4byte	0xb7
+ 1535 037a 02       		.uleb128 0x2
+ 1536 037b 91       		.byte	0x91
+ 1537 037c 77       		.sleb128 -9
+ 1538 037d 15       		.uleb128 0x15
+ 1539 037e 74030000 		.4byte	.LASF28
+ 1540 0382 01       		.byte	0x1
+ 1541 0383 81       		.byte	0x81
+ 1542 0384 D8000000 		.4byte	0xd8
+ 1543 0388 F0010000 		.4byte	.LLST9
+ 1544 038c 11       		.uleb128 0x11
+ 1545 038d 0E000000 		.4byte	.LVL50
+ 1546 0391 23010000 		.4byte	0x123
+ 1547 0395 A6030000 		.4byte	0x3a6
+ 1548 0399 12       		.uleb128 0x12
+ 1549 039a 01       		.uleb128 0x1
+ 1550 039b 50       		.byte	0x50
+ 1551 039c 02       		.uleb128 0x2
+ 1552 039d 08       		.byte	0x8
+ 1553 039e 2A       		.byte	0x2a
+ 1554 039f 12       		.uleb128 0x12
+ 1555 03a0 01       		.uleb128 0x1
+ 1556 03a1 51       		.byte	0x51
+ 1557 03a2 02       		.uleb128 0x2
+ 1558 03a3 74       		.byte	0x74
+ 1559 03a4 00       		.sleb128 0
+ 1560 03a5 00       		.byte	0
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 37
+
+
+ 1561 03a6 10       		.uleb128 0x10
+ 1562 03a7 1E000000 		.4byte	.LVL52
+ 1563 03ab F1000000 		.4byte	0xf1
+ 1564 03af 00       		.byte	0
+ 1565 03b0 13       		.uleb128 0x13
+ 1566 03b1 87000000 		.4byte	.LASF31
+ 1567 03b5 01       		.byte	0x1
+ 1568 03b6 37       		.byte	0x37
+ 1569 03b7 D8000000 		.4byte	0xd8
+ 1570 03bb 00000000 		.4byte	.LFB37
+ 1571 03bf 62000000 		.4byte	.LFE37-.LFB37
+ 1572 03c3 01       		.uleb128 0x1
+ 1573 03c4 9C       		.byte	0x9c
+ 1574 03c5 79040000 		.4byte	0x479
+ 1575 03c9 15       		.uleb128 0x15
+ 1576 03ca 74030000 		.4byte	.LASF28
+ 1577 03ce 01       		.byte	0x1
+ 1578 03cf 39       		.byte	0x39
+ 1579 03d0 D8000000 		.4byte	0xd8
+ 1580 03d4 1C020000 		.4byte	.LLST10
+ 1581 03d8 10       		.uleb128 0x10
+ 1582 03d9 06000000 		.4byte	.LVL53
+ 1583 03dd 56030000 		.4byte	0x356
+ 1584 03e1 11       		.uleb128 0x11
+ 1585 03e2 10000000 		.4byte	.LVL56
+ 1586 03e6 810A0000 		.4byte	0xa81
+ 1587 03ea F5030000 		.4byte	0x3f5
+ 1588 03ee 12       		.uleb128 0x12
+ 1589 03ef 01       		.uleb128 0x1
+ 1590 03f0 50       		.byte	0x50
+ 1591 03f1 02       		.uleb128 0x2
+ 1592 03f2 08       		.byte	0x8
+ 1593 03f3 C8       		.byte	0xc8
+ 1594 03f4 00       		.byte	0
+ 1595 03f5 11       		.uleb128 0x11
+ 1596 03f6 1C000000 		.4byte	.LVL57
+ 1597 03fa F1000000 		.4byte	0xf1
+ 1598 03fe 0E040000 		.4byte	0x40e
+ 1599 0402 12       		.uleb128 0x12
+ 1600 0403 01       		.uleb128 0x1
+ 1601 0404 50       		.byte	0x50
+ 1602 0405 01       		.uleb128 0x1
+ 1603 0406 3E       		.byte	0x3e
+ 1604 0407 12       		.uleb128 0x12
+ 1605 0408 01       		.uleb128 0x1
+ 1606 0409 51       		.byte	0x51
+ 1607 040a 02       		.uleb128 0x2
+ 1608 040b 74       		.byte	0x74
+ 1609 040c 00       		.sleb128 0
+ 1610 040d 00       		.byte	0
+ 1611 040e 11       		.uleb128 0x11
+ 1612 040f 28000000 		.4byte	.LVL59
+ 1613 0413 F1000000 		.4byte	0xf1
+ 1614 0417 22040000 		.4byte	0x422
+ 1615 041b 12       		.uleb128 0x12
+ 1616 041c 01       		.uleb128 0x1
+ 1617 041d 51       		.byte	0x51
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 38
+
+
+ 1618 041e 02       		.uleb128 0x2
+ 1619 041f 08       		.byte	0x8
+ 1620 0420 48       		.byte	0x48
+ 1621 0421 00       		.byte	0
+ 1622 0422 11       		.uleb128 0x11
+ 1623 0423 34000000 		.4byte	.LVL61
+ 1624 0427 F1000000 		.4byte	0xf1
+ 1625 042b 35040000 		.4byte	0x435
+ 1626 042f 12       		.uleb128 0x12
+ 1627 0430 01       		.uleb128 0x1
+ 1628 0431 51       		.byte	0x51
+ 1629 0432 01       		.uleb128 0x1
+ 1630 0433 33       		.byte	0x33
+ 1631 0434 00       		.byte	0
+ 1632 0435 11       		.uleb128 0x11
+ 1633 0436 40000000 		.4byte	.LVL63
+ 1634 043a F1000000 		.4byte	0xf1
+ 1635 043e 49040000 		.4byte	0x449
+ 1636 0442 12       		.uleb128 0x12
+ 1637 0443 01       		.uleb128 0x1
+ 1638 0444 51       		.byte	0x51
+ 1639 0445 02       		.uleb128 0x2
+ 1640 0446 08       		.byte	0x8
+ 1641 0447 79       		.byte	0x79
+ 1642 0448 00       		.byte	0
+ 1643 0449 11       		.uleb128 0x11
+ 1644 044a 4C000000 		.4byte	.LVL65
+ 1645 044e F1000000 		.4byte	0xf1
+ 1646 0452 5C040000 		.4byte	0x45c
+ 1647 0456 12       		.uleb128 0x12
+ 1648 0457 01       		.uleb128 0x1
+ 1649 0458 51       		.byte	0x51
+ 1650 0459 01       		.uleb128 0x1
+ 1651 045a 3C       		.byte	0x3c
+ 1652 045b 00       		.byte	0
+ 1653 045c 11       		.uleb128 0x11
+ 1654 045d 58000000 		.4byte	.LVL67
+ 1655 0461 F1000000 		.4byte	0xf1
+ 1656 0465 6F040000 		.4byte	0x46f
+ 1657 0469 12       		.uleb128 0x12
+ 1658 046a 01       		.uleb128 0x1
+ 1659 046b 51       		.byte	0x51
+ 1660 046c 01       		.uleb128 0x1
+ 1661 046d 38       		.byte	0x38
+ 1662 046e 00       		.byte	0
+ 1663 046f 10       		.uleb128 0x10
+ 1664 0470 60000000 		.4byte	.LVL68
+ 1665 0474 FC020000 		.4byte	0x2fc
+ 1666 0478 00       		.byte	0
+ 1667 0479 13       		.uleb128 0x13
+ 1668 047a A4000000 		.4byte	.LASF32
+ 1669 047e 01       		.byte	0x1
+ 1670 047f 8D       		.byte	0x8d
+ 1671 0480 D8000000 		.4byte	0xd8
+ 1672 0484 00000000 		.4byte	.LFB40
+ 1673 0488 2E000000 		.4byte	.LFE40-.LFB40
+ 1674 048c 01       		.uleb128 0x1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 39
+
+
+ 1675 048d 9C       		.byte	0x9c
+ 1676 048e E9040000 		.4byte	0x4e9
+ 1677 0492 15       		.uleb128 0x15
+ 1678 0493 74030000 		.4byte	.LASF28
+ 1679 0497 01       		.byte	0x1
+ 1680 0498 8F       		.byte	0x8f
+ 1681 0499 D8000000 		.4byte	0xd8
+ 1682 049d BD020000 		.4byte	.LLST11
+ 1683 04a1 14       		.uleb128 0x14
+ 1684 04a2 9C020000 		.4byte	.LASF27
+ 1685 04a6 01       		.byte	0x1
+ 1686 04a7 90       		.byte	0x90
+ 1687 04a8 B7000000 		.4byte	0xb7
+ 1688 04ac 02       		.uleb128 0x2
+ 1689 04ad 91       		.byte	0x91
+ 1690 04ae 6F       		.sleb128 -17
+ 1691 04af 11       		.uleb128 0x11
+ 1692 04b0 0A000000 		.4byte	.LVL69
+ 1693 04b4 F1000000 		.4byte	0xf1
+ 1694 04b8 C9040000 		.4byte	0x4c9
+ 1695 04bc 12       		.uleb128 0x12
+ 1696 04bd 01       		.uleb128 0x1
+ 1697 04be 50       		.byte	0x50
+ 1698 04bf 02       		.uleb128 0x2
+ 1699 04c0 08       		.byte	0x8
+ 1700 04c1 2B       		.byte	0x2b
+ 1701 04c2 12       		.uleb128 0x12
+ 1702 04c3 01       		.uleb128 0x1
+ 1703 04c4 51       		.byte	0x51
+ 1704 04c5 02       		.uleb128 0x2
+ 1705 04c6 08       		.byte	0x8
+ 1706 04c7 40       		.byte	0x40
+ 1707 04c8 00       		.byte	0
+ 1708 04c9 10       		.uleb128 0x10
+ 1709 04ca 14000000 		.4byte	.LVL71
+ 1710 04ce BD0A0000 		.4byte	0xabd
+ 1711 04d2 16       		.uleb128 0x16
+ 1712 04d3 22000000 		.4byte	.LVL72
+ 1713 04d7 23010000 		.4byte	0x123
+ 1714 04db 12       		.uleb128 0x12
+ 1715 04dc 01       		.uleb128 0x1
+ 1716 04dd 50       		.byte	0x50
+ 1717 04de 02       		.uleb128 0x2
+ 1718 04df 08       		.byte	0x8
+ 1719 04e0 2B       		.byte	0x2b
+ 1720 04e1 12       		.uleb128 0x12
+ 1721 04e2 01       		.uleb128 0x1
+ 1722 04e3 51       		.byte	0x51
+ 1723 04e4 02       		.uleb128 0x2
+ 1724 04e5 75       		.byte	0x75
+ 1725 04e6 00       		.sleb128 0
+ 1726 04e7 00       		.byte	0
+ 1727 04e8 00       		.byte	0
+ 1728 04e9 17       		.uleb128 0x17
+ 1729 04ea 3C020000 		.4byte	.LASF61
+ 1730 04ee 01       		.byte	0x1
+ 1731 04ef E4       		.byte	0xe4
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 40
+
+
+ 1732 04f0 00000000 		.4byte	.LFB42
+ 1733 04f4 34000000 		.4byte	.LFE42-.LFB42
+ 1734 04f8 01       		.uleb128 0x1
+ 1735 04f9 9C       		.byte	0x9c
+ 1736 04fa 35050000 		.4byte	0x535
+ 1737 04fe 18       		.uleb128 0x18
+ 1738 04ff 16000000 		.4byte	.LASF33
+ 1739 0503 01       		.byte	0x1
+ 1740 0504 E4       		.byte	0xe4
+ 1741 0505 35050000 		.4byte	0x535
+ 1742 0509 01       		.uleb128 0x1
+ 1743 050a 50       		.byte	0x50
+ 1744 050b 18       		.uleb128 0x18
+ 1745 050c 9A000000 		.4byte	.LASF34
+ 1746 0510 01       		.byte	0x1
+ 1747 0511 E4       		.byte	0xe4
+ 1748 0512 3B050000 		.4byte	0x53b
+ 1749 0516 01       		.uleb128 0x1
+ 1750 0517 51       		.byte	0x51
+ 1751 0518 19       		.uleb128 0x19
+ 1752 0519 6900     		.ascii	"i\000"
+ 1753 051b 01       		.byte	0x1
+ 1754 051c E6       		.byte	0xe6
+ 1755 051d 90000000 		.4byte	0x90
+ 1756 0521 E8020000 		.4byte	.LLST12
+ 1757 0525 15       		.uleb128 0x15
+ 1758 0526 86020000 		.4byte	.LASF35
+ 1759 052a 01       		.byte	0x1
+ 1760 052b E7       		.byte	0xe7
+ 1761 052c 89000000 		.4byte	0x89
+ 1762 0530 FC020000 		.4byte	.LLST13
+ 1763 0534 00       		.byte	0
+ 1764 0535 08       		.uleb128 0x8
+ 1765 0536 04       		.byte	0x4
+ 1766 0537 C2000000 		.4byte	0xc2
+ 1767 053b 08       		.uleb128 0x8
+ 1768 053c 04       		.byte	0x4
+ 1769 053d CD000000 		.4byte	0xcd
+ 1770 0541 13       		.uleb128 0x13
+ 1771 0542 B9010000 		.4byte	.LASF36
+ 1772 0546 01       		.byte	0x1
+ 1773 0547 A0       		.byte	0xa0
+ 1774 0548 D8000000 		.4byte	0xd8
+ 1775 054c 00000000 		.4byte	.LFB41
+ 1776 0550 CA000000 		.4byte	.LFE41-.LFB41
+ 1777 0554 01       		.uleb128 0x1
+ 1778 0555 9C       		.byte	0x9c
+ 1779 0556 E9060000 		.4byte	0x6e9
+ 1780 055a 1A       		.uleb128 0x1a
+ 1781 055b 61636300 		.ascii	"acc\000"
+ 1782 055f 01       		.byte	0x1
+ 1783 0560 A0       		.byte	0xa0
+ 1784 0561 35050000 		.4byte	0x535
+ 1785 0565 28030000 		.4byte	.LLST14
+ 1786 0569 14       		.uleb128 0x14
+ 1787 056a AD030000 		.4byte	.LASF37
+ 1788 056e 01       		.byte	0x1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 41
+
+
+ 1789 056f A2       		.byte	0xa2
+ 1790 0570 E9060000 		.4byte	0x6e9
+ 1791 0574 02       		.uleb128 0x2
+ 1792 0575 91       		.byte	0x91
+ 1793 0576 60       		.sleb128 -32
+ 1794 0577 14       		.uleb128 0x14
+ 1795 0578 23000000 		.4byte	.LASF38
+ 1796 057c 01       		.byte	0x1
+ 1797 057d A3       		.byte	0xa3
+ 1798 057e B7000000 		.4byte	0xb7
+ 1799 0582 02       		.uleb128 0x2
+ 1800 0583 91       		.byte	0x91
+ 1801 0584 5F       		.sleb128 -33
+ 1802 0585 15       		.uleb128 0x15
+ 1803 0586 74030000 		.4byte	.LASF28
+ 1804 058a 01       		.byte	0x1
+ 1805 058b A4       		.byte	0xa4
+ 1806 058c D8000000 		.4byte	0xd8
+ 1807 0590 54030000 		.4byte	.LLST15
+ 1808 0594 11       		.uleb128 0x11
+ 1809 0595 10000000 		.4byte	.LVL81
+ 1810 0599 8D0A0000 		.4byte	0xa8d
+ 1811 059d B2050000 		.4byte	0x5b2
+ 1812 05a1 12       		.uleb128 0x12
+ 1813 05a2 01       		.uleb128 0x1
+ 1814 05a3 50       		.byte	0x50
+ 1815 05a4 01       		.uleb128 0x1
+ 1816 05a5 4D       		.byte	0x4d
+ 1817 05a6 12       		.uleb128 0x12
+ 1818 05a7 01       		.uleb128 0x1
+ 1819 05a8 51       		.byte	0x51
+ 1820 05a9 01       		.uleb128 0x1
+ 1821 05aa 30       		.byte	0x30
+ 1822 05ab 12       		.uleb128 0x12
+ 1823 05ac 01       		.uleb128 0x1
+ 1824 05ad 52       		.byte	0x52
+ 1825 05ae 02       		.uleb128 0x2
+ 1826 05af 08       		.byte	0x8
+ 1827 05b0 C8       		.byte	0xc8
+ 1828 05b1 00       		.byte	0
+ 1829 05b2 11       		.uleb128 0x11
+ 1830 05b3 1C000000 		.4byte	.LVL84
+ 1831 05b7 990A0000 		.4byte	0xa99
+ 1832 05bb CB050000 		.4byte	0x5cb
+ 1833 05bf 12       		.uleb128 0x12
+ 1834 05c0 01       		.uleb128 0x1
+ 1835 05c1 50       		.byte	0x50
+ 1836 05c2 01       		.uleb128 0x1
+ 1837 05c3 31       		.byte	0x31
+ 1838 05c4 12       		.uleb128 0x12
+ 1839 05c5 01       		.uleb128 0x1
+ 1840 05c6 51       		.byte	0x51
+ 1841 05c7 02       		.uleb128 0x2
+ 1842 05c8 08       		.byte	0x8
+ 1843 05c9 C8       		.byte	0xc8
+ 1844 05ca 00       		.byte	0
+ 1845 05cb 11       		.uleb128 0x11
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 42
+
+
+ 1846 05cc 2A000000 		.4byte	.LVL87
+ 1847 05d0 A50A0000 		.4byte	0xaa5
+ 1848 05d4 EA050000 		.4byte	0x5ea
+ 1849 05d8 12       		.uleb128 0x12
+ 1850 05d9 01       		.uleb128 0x1
+ 1851 05da 50       		.byte	0x50
+ 1852 05db 01       		.uleb128 0x1
+ 1853 05dc 4D       		.byte	0x4d
+ 1854 05dd 12       		.uleb128 0x12
+ 1855 05de 01       		.uleb128 0x1
+ 1856 05df 51       		.byte	0x51
+ 1857 05e0 02       		.uleb128 0x2
+ 1858 05e1 08       		.byte	0x8
+ 1859 05e2 FF       		.byte	0xff
+ 1860 05e3 12       		.uleb128 0x12
+ 1861 05e4 01       		.uleb128 0x1
+ 1862 05e5 52       		.byte	0x52
+ 1863 05e6 02       		.uleb128 0x2
+ 1864 05e7 08       		.byte	0x8
+ 1865 05e8 C8       		.byte	0xc8
+ 1866 05e9 00       		.byte	0
+ 1867 05ea 11       		.uleb128 0x11
+ 1868 05eb 3A000000 		.4byte	.LVL89
+ 1869 05ef B10A0000 		.4byte	0xab1
+ 1870 05f3 0A060000 		.4byte	0x60a
+ 1871 05f7 12       		.uleb128 0x12
+ 1872 05f8 01       		.uleb128 0x1
+ 1873 05f9 50       		.byte	0x50
+ 1874 05fa 02       		.uleb128 0x2
+ 1875 05fb 74       		.byte	0x74
+ 1876 05fc 00       		.sleb128 0
+ 1877 05fd 12       		.uleb128 0x12
+ 1878 05fe 01       		.uleb128 0x1
+ 1879 05ff 51       		.byte	0x51
+ 1880 0600 02       		.uleb128 0x2
+ 1881 0601 77       		.byte	0x77
+ 1882 0602 00       		.sleb128 0
+ 1883 0603 12       		.uleb128 0x12
+ 1884 0604 01       		.uleb128 0x1
+ 1885 0605 52       		.byte	0x52
+ 1886 0606 02       		.uleb128 0x2
+ 1887 0607 08       		.byte	0x8
+ 1888 0608 C8       		.byte	0xc8
+ 1889 0609 00       		.byte	0
+ 1890 060a 11       		.uleb128 0x11
+ 1891 060b 4E000000 		.4byte	.LVL91
+ 1892 060f B10A0000 		.4byte	0xab1
+ 1893 0613 2A060000 		.4byte	0x62a
+ 1894 0617 12       		.uleb128 0x12
+ 1895 0618 01       		.uleb128 0x1
+ 1896 0619 50       		.byte	0x50
+ 1897 061a 02       		.uleb128 0x2
+ 1898 061b 74       		.byte	0x74
+ 1899 061c 00       		.sleb128 0
+ 1900 061d 12       		.uleb128 0x12
+ 1901 061e 01       		.uleb128 0x1
+ 1902 061f 51       		.byte	0x51
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 43
+
+
+ 1903 0620 02       		.uleb128 0x2
+ 1904 0621 77       		.byte	0x77
+ 1905 0622 00       		.sleb128 0
+ 1906 0623 12       		.uleb128 0x12
+ 1907 0624 01       		.uleb128 0x1
+ 1908 0625 52       		.byte	0x52
+ 1909 0626 02       		.uleb128 0x2
+ 1910 0627 08       		.byte	0x8
+ 1911 0628 C8       		.byte	0xc8
+ 1912 0629 00       		.byte	0
+ 1913 062a 11       		.uleb128 0x11
+ 1914 062b 62000000 		.4byte	.LVL93
+ 1915 062f B10A0000 		.4byte	0xab1
+ 1916 0633 4A060000 		.4byte	0x64a
+ 1917 0637 12       		.uleb128 0x12
+ 1918 0638 01       		.uleb128 0x1
+ 1919 0639 50       		.byte	0x50
+ 1920 063a 02       		.uleb128 0x2
+ 1921 063b 74       		.byte	0x74
+ 1922 063c 00       		.sleb128 0
+ 1923 063d 12       		.uleb128 0x12
+ 1924 063e 01       		.uleb128 0x1
+ 1925 063f 51       		.byte	0x51
+ 1926 0640 02       		.uleb128 0x2
+ 1927 0641 77       		.byte	0x77
+ 1928 0642 00       		.sleb128 0
+ 1929 0643 12       		.uleb128 0x12
+ 1930 0644 01       		.uleb128 0x1
+ 1931 0645 52       		.byte	0x52
+ 1932 0646 02       		.uleb128 0x2
+ 1933 0647 08       		.byte	0x8
+ 1934 0648 C8       		.byte	0xc8
+ 1935 0649 00       		.byte	0
+ 1936 064a 11       		.uleb128 0x11
+ 1937 064b 74000000 		.4byte	.LVL95
+ 1938 064f B10A0000 		.4byte	0xab1
+ 1939 0653 6A060000 		.4byte	0x66a
+ 1940 0657 12       		.uleb128 0x12
+ 1941 0658 01       		.uleb128 0x1
+ 1942 0659 50       		.byte	0x50
+ 1943 065a 02       		.uleb128 0x2
+ 1944 065b 74       		.byte	0x74
+ 1945 065c 00       		.sleb128 0
+ 1946 065d 12       		.uleb128 0x12
+ 1947 065e 01       		.uleb128 0x1
+ 1948 065f 51       		.byte	0x51
+ 1949 0660 02       		.uleb128 0x2
+ 1950 0661 77       		.byte	0x77
+ 1951 0662 00       		.sleb128 0
+ 1952 0663 12       		.uleb128 0x12
+ 1953 0664 01       		.uleb128 0x1
+ 1954 0665 52       		.byte	0x52
+ 1955 0666 02       		.uleb128 0x2
+ 1956 0667 08       		.byte	0x8
+ 1957 0668 C8       		.byte	0xc8
+ 1958 0669 00       		.byte	0
+ 1959 066a 11       		.uleb128 0x11
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 44
+
+
+ 1960 066b 88000000 		.4byte	.LVL97
+ 1961 066f B10A0000 		.4byte	0xab1
+ 1962 0673 8A060000 		.4byte	0x68a
+ 1963 0677 12       		.uleb128 0x12
+ 1964 0678 01       		.uleb128 0x1
+ 1965 0679 50       		.byte	0x50
+ 1966 067a 02       		.uleb128 0x2
+ 1967 067b 74       		.byte	0x74
+ 1968 067c 00       		.sleb128 0
+ 1969 067d 12       		.uleb128 0x12
+ 1970 067e 01       		.uleb128 0x1
+ 1971 067f 51       		.byte	0x51
+ 1972 0680 02       		.uleb128 0x2
+ 1973 0681 77       		.byte	0x77
+ 1974 0682 00       		.sleb128 0
+ 1975 0683 12       		.uleb128 0x12
+ 1976 0684 01       		.uleb128 0x1
+ 1977 0685 52       		.byte	0x52
+ 1978 0686 02       		.uleb128 0x2
+ 1979 0687 08       		.byte	0x8
+ 1980 0688 C8       		.byte	0xc8
+ 1981 0689 00       		.byte	0
+ 1982 068a 11       		.uleb128 0x11
+ 1983 068b 9C000000 		.4byte	.LVL100
+ 1984 068f B10A0000 		.4byte	0xab1
+ 1985 0693 AA060000 		.4byte	0x6aa
+ 1986 0697 12       		.uleb128 0x12
+ 1987 0698 01       		.uleb128 0x1
+ 1988 0699 50       		.byte	0x50
+ 1989 069a 02       		.uleb128 0x2
+ 1990 069b 08       		.byte	0x8
+ 1991 069c FF       		.byte	0xff
+ 1992 069d 12       		.uleb128 0x12
+ 1993 069e 01       		.uleb128 0x1
+ 1994 069f 51       		.byte	0x51
+ 1995 06a0 02       		.uleb128 0x2
+ 1996 06a1 77       		.byte	0x77
+ 1997 06a2 00       		.sleb128 0
+ 1998 06a3 12       		.uleb128 0x12
+ 1999 06a4 01       		.uleb128 0x1
+ 2000 06a5 52       		.byte	0x52
+ 2001 06a6 02       		.uleb128 0x2
+ 2002 06a7 08       		.byte	0x8
+ 2003 06a8 C8       		.byte	0xc8
+ 2004 06a9 00       		.byte	0
+ 2005 06aa 11       		.uleb128 0x11
+ 2006 06ab A6000000 		.4byte	.LVL103
+ 2007 06af 810A0000 		.4byte	0xa81
+ 2008 06b3 BE060000 		.4byte	0x6be
+ 2009 06b7 12       		.uleb128 0x12
+ 2010 06b8 01       		.uleb128 0x1
+ 2011 06b9 50       		.byte	0x50
+ 2012 06ba 02       		.uleb128 0x2
+ 2013 06bb 08       		.byte	0x8
+ 2014 06bc C8       		.byte	0xc8
+ 2015 06bd 00       		.byte	0
+ 2016 06be 11       		.uleb128 0x11
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 45
+
+
+ 2017 06bf B8000000 		.4byte	.LVL106
+ 2018 06c3 810A0000 		.4byte	0xa81
+ 2019 06c7 D2060000 		.4byte	0x6d2
+ 2020 06cb 12       		.uleb128 0x12
+ 2021 06cc 01       		.uleb128 0x1
+ 2022 06cd 50       		.byte	0x50
+ 2023 06ce 02       		.uleb128 0x2
+ 2024 06cf 08       		.byte	0x8
+ 2025 06d0 C8       		.byte	0xc8
+ 2026 06d1 00       		.byte	0
+ 2027 06d2 16       		.uleb128 0x16
+ 2028 06d3 C4000000 		.4byte	.LVL108
+ 2029 06d7 E9040000 		.4byte	0x4e9
+ 2030 06db 12       		.uleb128 0x12
+ 2031 06dc 01       		.uleb128 0x1
+ 2032 06dd 50       		.byte	0x50
+ 2033 06de 02       		.uleb128 0x2
+ 2034 06df 76       		.byte	0x76
+ 2035 06e0 00       		.sleb128 0
+ 2036 06e1 12       		.uleb128 0x12
+ 2037 06e2 01       		.uleb128 0x1
+ 2038 06e3 51       		.byte	0x51
+ 2039 06e4 02       		.uleb128 0x2
+ 2040 06e5 75       		.byte	0x75
+ 2041 06e6 00       		.sleb128 0
+ 2042 06e7 00       		.byte	0
+ 2043 06e8 00       		.byte	0
+ 2044 06e9 1B       		.uleb128 0x1b
+ 2045 06ea CD000000 		.4byte	0xcd
+ 2046 06ee F9060000 		.4byte	0x6f9
+ 2047 06f2 1C       		.uleb128 0x1c
+ 2048 06f3 A9000000 		.4byte	0xa9
+ 2049 06f7 02       		.byte	0x2
+ 2050 06f8 00       		.byte	0
+ 2051 06f9 13       		.uleb128 0x13
+ 2052 06fa 5A020000 		.4byte	.LASF39
+ 2053 06fe 01       		.byte	0x1
+ 2054 06ff F4       		.byte	0xf4
+ 2055 0700 D8000000 		.4byte	0xd8
+ 2056 0704 00000000 		.4byte	.LFB43
+ 2057 0708 6A000000 		.4byte	.LFE43-.LFB43
+ 2058 070c 01       		.uleb128 0x1
+ 2059 070d 9C       		.byte	0x9c
+ 2060 070e 27080000 		.4byte	0x827
+ 2061 0712 1D       		.uleb128 0x1d
+ 2062 0713 D6000000 		.4byte	.LASF40
+ 2063 0717 01       		.byte	0x1
+ 2064 0718 F4       		.byte	0xf4
+ 2065 0719 B7000000 		.4byte	0xb7
+ 2066 071d 43040000 		.4byte	.LLST16
+ 2067 0721 1D       		.uleb128 0x1d
+ 2068 0722 55020000 		.4byte	.LASF24
+ 2069 0726 01       		.byte	0x1
+ 2070 0727 F4       		.byte	0xf4
+ 2071 0728 55010000 		.4byte	0x155
+ 2072 072c 64040000 		.4byte	.LLST17
+ 2073 0730 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 46
+
+
+ 2074 0731 69010000 		.4byte	.LASF41
+ 2075 0735 01       		.byte	0x1
+ 2076 0736 F4       		.byte	0xf4
+ 2077 0737 97000000 		.4byte	0x97
+ 2078 073b 90040000 		.4byte	.LLST18
+ 2079 073f 19       		.uleb128 0x19
+ 2080 0740 6900     		.ascii	"i\000"
+ 2081 0742 01       		.byte	0x1
+ 2082 0743 F6       		.byte	0xf6
+ 2083 0744 90000000 		.4byte	0x90
+ 2084 0748 BC040000 		.4byte	.LLST19
+ 2085 074c 15       		.uleb128 0x15
+ 2086 074d 74030000 		.4byte	.LASF28
+ 2087 0751 01       		.byte	0x1
+ 2088 0752 F7       		.byte	0xf7
+ 2089 0753 D8000000 		.4byte	0xd8
+ 2090 0757 CF040000 		.4byte	.LLST20
+ 2091 075b 19       		.uleb128 0x19
+ 2092 075c 61636B00 		.ascii	"ack\000"
+ 2093 0760 01       		.byte	0x1
+ 2094 0761 F8       		.byte	0xf8
+ 2095 0762 B7000000 		.4byte	0xb7
+ 2096 0766 45050000 		.4byte	.LLST21
+ 2097 076a 11       		.uleb128 0x11
+ 2098 076b 12000000 		.4byte	.LVL114
+ 2099 076f 8D0A0000 		.4byte	0xa8d
+ 2100 0773 88070000 		.4byte	0x788
+ 2101 0777 12       		.uleb128 0x12
+ 2102 0778 01       		.uleb128 0x1
+ 2103 0779 50       		.byte	0x50
+ 2104 077a 01       		.uleb128 0x1
+ 2105 077b 4D       		.byte	0x4d
+ 2106 077c 12       		.uleb128 0x12
+ 2107 077d 01       		.uleb128 0x1
+ 2108 077e 51       		.byte	0x51
+ 2109 077f 01       		.uleb128 0x1
+ 2110 0780 30       		.byte	0x30
+ 2111 0781 12       		.uleb128 0x12
+ 2112 0782 01       		.uleb128 0x1
+ 2113 0783 52       		.byte	0x52
+ 2114 0784 02       		.uleb128 0x2
+ 2115 0785 08       		.byte	0x8
+ 2116 0786 C8       		.byte	0xc8
+ 2117 0787 00       		.byte	0
+ 2118 0788 11       		.uleb128 0x11
+ 2119 0789 1E000000 		.4byte	.LVL117
+ 2120 078d 990A0000 		.4byte	0xa99
+ 2121 0791 A2070000 		.4byte	0x7a2
+ 2122 0795 12       		.uleb128 0x12
+ 2123 0796 01       		.uleb128 0x1
+ 2124 0797 50       		.byte	0x50
+ 2125 0798 02       		.uleb128 0x2
+ 2126 0799 75       		.byte	0x75
+ 2127 079a 00       		.sleb128 0
+ 2128 079b 12       		.uleb128 0x12
+ 2129 079c 01       		.uleb128 0x1
+ 2130 079d 51       		.byte	0x51
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 47
+
+
+ 2131 079e 02       		.uleb128 0x2
+ 2132 079f 08       		.byte	0x8
+ 2133 07a0 C8       		.byte	0xc8
+ 2134 07a1 00       		.byte	0
+ 2135 07a2 11       		.uleb128 0x11
+ 2136 07a3 2C000000 		.4byte	.LVL120
+ 2137 07a7 A50A0000 		.4byte	0xaa5
+ 2138 07ab C1070000 		.4byte	0x7c1
+ 2139 07af 12       		.uleb128 0x12
+ 2140 07b0 01       		.uleb128 0x1
+ 2141 07b1 50       		.byte	0x50
+ 2142 07b2 01       		.uleb128 0x1
+ 2143 07b3 4D       		.byte	0x4d
+ 2144 07b4 12       		.uleb128 0x12
+ 2145 07b5 01       		.uleb128 0x1
+ 2146 07b6 51       		.byte	0x51
+ 2147 07b7 02       		.uleb128 0x2
+ 2148 07b8 08       		.byte	0x8
+ 2149 07b9 FF       		.byte	0xff
+ 2150 07ba 12       		.uleb128 0x12
+ 2151 07bb 01       		.uleb128 0x1
+ 2152 07bc 52       		.byte	0x52
+ 2153 07bd 02       		.uleb128 0x2
+ 2154 07be 08       		.byte	0x8
+ 2155 07bf C8       		.byte	0xc8
+ 2156 07c0 00       		.byte	0
+ 2157 07c1 11       		.uleb128 0x11
+ 2158 07c2 36000000 		.4byte	.LVL123
+ 2159 07c6 810A0000 		.4byte	0xa81
+ 2160 07ca D5070000 		.4byte	0x7d5
+ 2161 07ce 12       		.uleb128 0x12
+ 2162 07cf 01       		.uleb128 0x1
+ 2163 07d0 50       		.byte	0x50
+ 2164 07d1 02       		.uleb128 0x2
+ 2165 07d2 08       		.byte	0x8
+ 2166 07d3 C8       		.byte	0xc8
+ 2167 07d4 00       		.byte	0
+ 2168 07d5 11       		.uleb128 0x11
+ 2169 07d6 54000000 		.4byte	.LVL128
+ 2170 07da B10A0000 		.4byte	0xab1
+ 2171 07de 02080000 		.4byte	0x802
+ 2172 07e2 12       		.uleb128 0x12
+ 2173 07e3 01       		.uleb128 0x1
+ 2174 07e4 50       		.byte	0x50
+ 2175 07e5 0C       		.uleb128 0xc
+ 2176 07e6 74       		.byte	0x74
+ 2177 07e7 00       		.sleb128 0
+ 2178 07e8 20       		.byte	0x20
+ 2179 07e9 76       		.byte	0x76
+ 2180 07ea 00       		.sleb128 0
+ 2181 07eb 22       		.byte	0x22
+ 2182 07ec 30       		.byte	0x30
+ 2183 07ed 29       		.byte	0x29
+ 2184 07ee 1F       		.byte	0x1f
+ 2185 07ef 08       		.byte	0x8
+ 2186 07f0 FF       		.byte	0xff
+ 2187 07f1 1A       		.byte	0x1a
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 48
+
+
+ 2188 07f2 12       		.uleb128 0x12
+ 2189 07f3 01       		.uleb128 0x1
+ 2190 07f4 51       		.byte	0x51
+ 2191 07f5 05       		.uleb128 0x5
+ 2192 07f6 77       		.byte	0x77
+ 2193 07f7 00       		.sleb128 0
+ 2194 07f8 74       		.byte	0x74
+ 2195 07f9 00       		.sleb128 0
+ 2196 07fa 22       		.byte	0x22
+ 2197 07fb 12       		.uleb128 0x12
+ 2198 07fc 01       		.uleb128 0x1
+ 2199 07fd 52       		.byte	0x52
+ 2200 07fe 02       		.uleb128 0x2
+ 2201 07ff 08       		.byte	0x8
+ 2202 0800 C8       		.byte	0xc8
+ 2203 0801 00       		.byte	0
+ 2204 0802 11       		.uleb128 0x11
+ 2205 0803 5E000000 		.4byte	.LVL131
+ 2206 0807 810A0000 		.4byte	0xa81
+ 2207 080b 16080000 		.4byte	0x816
+ 2208 080f 12       		.uleb128 0x12
+ 2209 0810 01       		.uleb128 0x1
+ 2210 0811 50       		.byte	0x50
+ 2211 0812 02       		.uleb128 0x2
+ 2212 0813 08       		.byte	0x8
+ 2213 0814 C8       		.byte	0xc8
+ 2214 0815 00       		.byte	0
+ 2215 0816 16       		.uleb128 0x16
+ 2216 0817 68000000 		.4byte	.LVL134
+ 2217 081b 810A0000 		.4byte	0xa81
+ 2218 081f 12       		.uleb128 0x12
+ 2219 0820 01       		.uleb128 0x1
+ 2220 0821 50       		.byte	0x50
+ 2221 0822 02       		.uleb128 0x2
+ 2222 0823 08       		.byte	0x8
+ 2223 0824 C8       		.byte	0xc8
+ 2224 0825 00       		.byte	0
+ 2225 0826 00       		.byte	0
+ 2226 0827 1E       		.uleb128 0x1e
+ 2227 0828 9A010000 		.4byte	.LASF42
+ 2228 082c 01       		.byte	0x1
+ 2229 082d 1A01     		.2byte	0x11a
+ 2230 082f D8000000 		.4byte	0xd8
+ 2231 0833 00000000 		.4byte	.LFB44
+ 2232 0837 60000000 		.4byte	.LFE44-.LFB44
+ 2233 083b 01       		.uleb128 0x1
+ 2234 083c 9C       		.byte	0x9c
+ 2235 083d 10090000 		.4byte	0x910
+ 2236 0841 1F       		.uleb128 0x1f
+ 2237 0842 13020000 		.4byte	.LASF43
+ 2238 0846 01       		.byte	0x1
+ 2239 0847 1A01     		.2byte	0x11a
+ 2240 0849 B7000000 		.4byte	0xb7
+ 2241 084d 6F050000 		.4byte	.LLST22
+ 2242 0851 1F       		.uleb128 0x1f
+ 2243 0852 1E020000 		.4byte	.LASF44
+ 2244 0856 01       		.byte	0x1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 49
+
+
+ 2245 0857 1A01     		.2byte	0x11a
+ 2246 0859 B7000000 		.4byte	0xb7
+ 2247 085d 90050000 		.4byte	.LLST23
+ 2248 0861 1F       		.uleb128 0x1f
+ 2249 0862 29020000 		.4byte	.LASF45
+ 2250 0866 01       		.byte	0x1
+ 2251 0867 1A01     		.2byte	0x11a
+ 2252 0869 B7000000 		.4byte	0xb7
+ 2253 086d B1050000 		.4byte	.LLST24
+ 2254 0871 1F       		.uleb128 0x1f
+ 2255 0872 92020000 		.4byte	.LASF46
+ 2256 0876 01       		.byte	0x1
+ 2257 0877 1A01     		.2byte	0x11a
+ 2258 0879 B7000000 		.4byte	0xb7
+ 2259 087d D2050000 		.4byte	.LLST25
+ 2260 0881 20       		.uleb128 0x20
+ 2261 0882 74030000 		.4byte	.LASF28
+ 2262 0886 01       		.byte	0x1
+ 2263 0887 1C01     		.2byte	0x11c
+ 2264 0889 D8000000 		.4byte	0xd8
+ 2265 088d F3050000 		.4byte	.LLST26
+ 2266 0891 10       		.uleb128 0x10
+ 2267 0892 0E000000 		.4byte	.LVL138
+ 2268 0896 56030000 		.4byte	0x356
+ 2269 089a 11       		.uleb128 0x11
+ 2270 089b 1A000000 		.4byte	.LVL140
+ 2271 089f F1000000 		.4byte	0xf1
+ 2272 08a3 AD080000 		.4byte	0x8ad
+ 2273 08a7 12       		.uleb128 0x12
+ 2274 08a8 01       		.uleb128 0x1
+ 2275 08a9 51       		.byte	0x51
+ 2276 08aa 01       		.uleb128 0x1
+ 2277 08ab 45       		.byte	0x45
+ 2278 08ac 00       		.byte	0
+ 2279 08ad 11       		.uleb128 0x11
+ 2280 08ae 26000000 		.4byte	.LVL142
+ 2281 08b2 F1000000 		.4byte	0xf1
+ 2282 08b6 C1080000 		.4byte	0x8c1
+ 2283 08ba 12       		.uleb128 0x12
+ 2284 08bb 01       		.uleb128 0x1
+ 2285 08bc 51       		.byte	0x51
+ 2286 08bd 02       		.uleb128 0x2
+ 2287 08be 77       		.byte	0x77
+ 2288 08bf 00       		.sleb128 0
+ 2289 08c0 00       		.byte	0
+ 2290 08c1 11       		.uleb128 0x11
+ 2291 08c2 32000000 		.4byte	.LVL144
+ 2292 08c6 F1000000 		.4byte	0xf1
+ 2293 08ca D5080000 		.4byte	0x8d5
+ 2294 08ce 12       		.uleb128 0x12
+ 2295 08cf 01       		.uleb128 0x1
+ 2296 08d0 51       		.byte	0x51
+ 2297 08d1 02       		.uleb128 0x2
+ 2298 08d2 76       		.byte	0x76
+ 2299 08d3 00       		.sleb128 0
+ 2300 08d4 00       		.byte	0
+ 2301 08d5 11       		.uleb128 0x11
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 50
+
+
+ 2302 08d6 3E000000 		.4byte	.LVL146
+ 2303 08da F1000000 		.4byte	0xf1
+ 2304 08de E9080000 		.4byte	0x8e9
+ 2305 08e2 12       		.uleb128 0x12
+ 2306 08e3 01       		.uleb128 0x1
+ 2307 08e4 51       		.byte	0x51
+ 2308 08e5 02       		.uleb128 0x2
+ 2309 08e6 75       		.byte	0x75
+ 2310 08e7 00       		.sleb128 0
+ 2311 08e8 00       		.byte	0
+ 2312 08e9 11       		.uleb128 0x11
+ 2313 08ea 4A000000 		.4byte	.LVL148
+ 2314 08ee F1000000 		.4byte	0xf1
+ 2315 08f2 FD080000 		.4byte	0x8fd
+ 2316 08f6 12       		.uleb128 0x12
+ 2317 08f7 01       		.uleb128 0x1
+ 2318 08f8 51       		.byte	0x51
+ 2319 08f9 02       		.uleb128 0x2
+ 2320 08fa 74       		.byte	0x74
+ 2321 08fb 00       		.sleb128 0
+ 2322 08fc 00       		.byte	0
+ 2323 08fd 10       		.uleb128 0x10
+ 2324 08fe 56000000 		.4byte	.LVL150
+ 2325 0902 F1000000 		.4byte	0xf1
+ 2326 0906 10       		.uleb128 0x10
+ 2327 0907 5E000000 		.4byte	.LVL151
+ 2328 090b FC020000 		.4byte	0x2fc
+ 2329 090f 00       		.byte	0
+ 2330 0910 1E       		.uleb128 0x1e
+ 2331 0911 7A030000 		.4byte	.LASF47
+ 2332 0915 01       		.byte	0x1
+ 2333 0916 4A01     		.2byte	0x14a
+ 2334 0918 D8000000 		.4byte	0xd8
+ 2335 091c 00000000 		.4byte	.LFB45
+ 2336 0920 38000000 		.4byte	.LFE45-.LFB45
+ 2337 0924 01       		.uleb128 0x1
+ 2338 0925 9C       		.byte	0x9c
+ 2339 0926 A9090000 		.4byte	0x9a9
+ 2340 092a 1F       		.uleb128 0x1f
+ 2341 092b 2D010000 		.4byte	.LASF48
+ 2342 092f 01       		.byte	0x1
+ 2343 0930 4A01     		.2byte	0x14a
+ 2344 0932 B7000000 		.4byte	0xb7
+ 2345 0936 94060000 		.4byte	.LLST27
+ 2346 093a 1F       		.uleb128 0x1f
+ 2347 093b CE030000 		.4byte	.LASF49
+ 2348 093f 01       		.byte	0x1
+ 2349 0940 4A01     		.2byte	0x14a
+ 2350 0942 B7000000 		.4byte	0xb7
+ 2351 0946 B5060000 		.4byte	.LLST28
+ 2352 094a 20       		.uleb128 0x20
+ 2353 094b 74030000 		.4byte	.LASF28
+ 2354 094f 01       		.byte	0x1
+ 2355 0950 4C01     		.2byte	0x14c
+ 2356 0952 D8000000 		.4byte	0xd8
+ 2357 0956 D6060000 		.4byte	.LLST29
+ 2358 095a 10       		.uleb128 0x10
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 51
+
+
+ 2359 095b 0A000000 		.4byte	.LVL153
+ 2360 095f 56030000 		.4byte	0x356
+ 2361 0963 11       		.uleb128 0x11
+ 2362 0964 16000000 		.4byte	.LVL155
+ 2363 0968 F1000000 		.4byte	0xf1
+ 2364 096c 77090000 		.4byte	0x977
+ 2365 0970 12       		.uleb128 0x12
+ 2366 0971 01       		.uleb128 0x1
+ 2367 0972 51       		.byte	0x51
+ 2368 0973 02       		.uleb128 0x2
+ 2369 0974 08       		.byte	0x8
+ 2370 0975 58       		.byte	0x58
+ 2371 0976 00       		.byte	0
+ 2372 0977 11       		.uleb128 0x11
+ 2373 0978 22000000 		.4byte	.LVL157
+ 2374 097c F1000000 		.4byte	0xf1
+ 2375 0980 8B090000 		.4byte	0x98b
+ 2376 0984 12       		.uleb128 0x12
+ 2377 0985 01       		.uleb128 0x1
+ 2378 0986 51       		.byte	0x51
+ 2379 0987 02       		.uleb128 0x2
+ 2380 0988 75       		.byte	0x75
+ 2381 0989 00       		.sleb128 0
+ 2382 098a 00       		.byte	0
+ 2383 098b 11       		.uleb128 0x11
+ 2384 098c 2E000000 		.4byte	.LVL159
+ 2385 0990 F1000000 		.4byte	0xf1
+ 2386 0994 9F090000 		.4byte	0x99f
+ 2387 0998 12       		.uleb128 0x12
+ 2388 0999 01       		.uleb128 0x1
+ 2389 099a 51       		.byte	0x51
+ 2390 099b 02       		.uleb128 0x2
+ 2391 099c 74       		.byte	0x74
+ 2392 099d 00       		.sleb128 0
+ 2393 099e 00       		.byte	0
+ 2394 099f 10       		.uleb128 0x10
+ 2395 09a0 36000000 		.4byte	.LVL160
+ 2396 09a4 FC020000 		.4byte	0x2fc
+ 2397 09a8 00       		.byte	0
+ 2398 09a9 1E       		.uleb128 0x1e
+ 2399 09aa B7030000 		.4byte	.LASF50
+ 2400 09ae 01       		.byte	0x1
+ 2401 09af 6D01     		.2byte	0x16d
+ 2402 09b1 D8000000 		.4byte	0xd8
+ 2403 09b5 00000000 		.4byte	.LFB46
+ 2404 09b9 38000000 		.4byte	.LFE46-.LFB46
+ 2405 09bd 01       		.uleb128 0x1
+ 2406 09be 9C       		.byte	0x9c
+ 2407 09bf 410A0000 		.4byte	0xa41
+ 2408 09c3 1F       		.uleb128 0x1f
+ 2409 09c4 2D010000 		.4byte	.LASF48
+ 2410 09c8 01       		.byte	0x1
+ 2411 09c9 6D01     		.2byte	0x16d
+ 2412 09cb B7000000 		.4byte	0xb7
+ 2413 09cf 31070000 		.4byte	.LLST30
+ 2414 09d3 1F       		.uleb128 0x1f
+ 2415 09d4 CE030000 		.4byte	.LASF49
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 52
+
+
+ 2416 09d8 01       		.byte	0x1
+ 2417 09d9 6D01     		.2byte	0x16d
+ 2418 09db B7000000 		.4byte	0xb7
+ 2419 09df 52070000 		.4byte	.LLST31
+ 2420 09e3 20       		.uleb128 0x20
+ 2421 09e4 74030000 		.4byte	.LASF28
+ 2422 09e8 01       		.byte	0x1
+ 2423 09e9 6F01     		.2byte	0x16f
+ 2424 09eb D8000000 		.4byte	0xd8
+ 2425 09ef 73070000 		.4byte	.LLST32
+ 2426 09f3 10       		.uleb128 0x10
+ 2427 09f4 0A000000 		.4byte	.LVL162
+ 2428 09f8 56030000 		.4byte	0x356
+ 2429 09fc 11       		.uleb128 0x11
+ 2430 09fd 16000000 		.4byte	.LVL164
+ 2431 0a01 F1000000 		.4byte	0xf1
+ 2432 0a05 0F0A0000 		.4byte	0xa0f
+ 2433 0a09 12       		.uleb128 0x12
+ 2434 0a0a 01       		.uleb128 0x1
+ 2435 0a0b 51       		.byte	0x51
+ 2436 0a0c 01       		.uleb128 0x1
+ 2437 0a0d 3E       		.byte	0x3e
+ 2438 0a0e 00       		.byte	0
+ 2439 0a0f 11       		.uleb128 0x11
+ 2440 0a10 22000000 		.4byte	.LVL166
+ 2441 0a14 F1000000 		.4byte	0xf1
+ 2442 0a18 230A0000 		.4byte	0xa23
+ 2443 0a1c 12       		.uleb128 0x12
+ 2444 0a1d 01       		.uleb128 0x1
+ 2445 0a1e 51       		.byte	0x51
+ 2446 0a1f 02       		.uleb128 0x2
+ 2447 0a20 75       		.byte	0x75
+ 2448 0a21 00       		.sleb128 0
+ 2449 0a22 00       		.byte	0
+ 2450 0a23 11       		.uleb128 0x11
+ 2451 0a24 2E000000 		.4byte	.LVL168
+ 2452 0a28 F1000000 		.4byte	0xf1
+ 2453 0a2c 370A0000 		.4byte	0xa37
+ 2454 0a30 12       		.uleb128 0x12
+ 2455 0a31 01       		.uleb128 0x1
+ 2456 0a32 51       		.byte	0x51
+ 2457 0a33 02       		.uleb128 0x2
+ 2458 0a34 74       		.byte	0x74
+ 2459 0a35 00       		.sleb128 0
+ 2460 0a36 00       		.byte	0
+ 2461 0a37 10       		.uleb128 0x10
+ 2462 0a38 36000000 		.4byte	.LVL169
+ 2463 0a3c FC020000 		.4byte	0x2fc
+ 2464 0a40 00       		.byte	0
+ 2465 0a41 1E       		.uleb128 0x1e
+ 2466 0a42 BA000000 		.4byte	.LASF51
+ 2467 0a46 01       		.byte	0x1
+ 2468 0a47 8F01     		.2byte	0x18f
+ 2469 0a49 D8000000 		.4byte	0xd8
+ 2470 0a4d 00000000 		.4byte	.LFB47
+ 2471 0a51 0C000000 		.4byte	.LFE47-.LFB47
+ 2472 0a55 01       		.uleb128 0x1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 53
+
+
+ 2473 0a56 9C       		.byte	0x9c
+ 2474 0a57 810A0000 		.4byte	0xa81
+ 2475 0a5b 21       		.uleb128 0x21
+ 2476 0a5c 696400   		.ascii	"id\000"
+ 2477 0a5f 01       		.byte	0x1
+ 2478 0a60 8F01     		.2byte	0x18f
+ 2479 0a62 55010000 		.4byte	0x155
+ 2480 0a66 CE070000 		.4byte	.LLST33
+ 2481 0a6a 16       		.uleb128 0x16
+ 2482 0a6b 0A000000 		.4byte	.LVL172
+ 2483 0a6f 23010000 		.4byte	0x123
+ 2484 0a73 12       		.uleb128 0x12
+ 2485 0a74 01       		.uleb128 0x1
+ 2486 0a75 50       		.byte	0x50
+ 2487 0a76 01       		.uleb128 0x1
+ 2488 0a77 3D       		.byte	0x3d
+ 2489 0a78 12       		.uleb128 0x12
+ 2490 0a79 01       		.uleb128 0x1
+ 2491 0a7a 51       		.byte	0x51
+ 2492 0a7b 03       		.uleb128 0x3
+ 2493 0a7c F3       		.byte	0xf3
+ 2494 0a7d 01       		.uleb128 0x1
+ 2495 0a7e 50       		.byte	0x50
+ 2496 0a7f 00       		.byte	0
+ 2497 0a80 00       		.byte	0
+ 2498 0a81 22       		.uleb128 0x22
+ 2499 0a82 00000000 		.4byte	.LASF52
+ 2500 0a86 00000000 		.4byte	.LASF52
+ 2501 0a8a 05       		.byte	0x5
+ 2502 0a8b 1D01     		.2byte	0x11d
+ 2503 0a8d 22       		.uleb128 0x22
+ 2504 0a8e 96030000 		.4byte	.LASF53
+ 2505 0a92 96030000 		.4byte	.LASF53
+ 2506 0a96 05       		.byte	0x5
+ 2507 0a97 1B01     		.2byte	0x11b
+ 2508 0a99 22       		.uleb128 0x22
+ 2509 0a9a 48010000 		.4byte	.LASF54
+ 2510 0a9e 48010000 		.4byte	.LASF54
+ 2511 0aa2 05       		.byte	0x5
+ 2512 0aa3 1E01     		.2byte	0x11e
+ 2513 0aa5 22       		.uleb128 0x22
+ 2514 0aa6 6E000000 		.4byte	.LASF55
+ 2515 0aaa 6E000000 		.4byte	.LASF55
+ 2516 0aae 05       		.byte	0x5
+ 2517 0aaf 1C01     		.2byte	0x11c
+ 2518 0ab1 22       		.uleb128 0x22
+ 2519 0ab2 39000000 		.4byte	.LASF56
+ 2520 0ab6 39000000 		.4byte	.LASF56
+ 2521 0aba 05       		.byte	0x5
+ 2522 0abb 1F01     		.2byte	0x11f
+ 2523 0abd 23       		.uleb128 0x23
+ 2524 0abe 8E030000 		.4byte	.LASF57
+ 2525 0ac2 8E030000 		.4byte	.LASF57
+ 2526 0ac6 06       		.byte	0x6
+ 2527 0ac7 D9       		.byte	0xd9
+ 2528 0ac8 00       		.byte	0
+ 2529              		.section	.debug_abbrev,"",%progbits
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 54
+
+
+ 2530              	.Ldebug_abbrev0:
+ 2531 0000 01       		.uleb128 0x1
+ 2532 0001 11       		.uleb128 0x11
+ 2533 0002 01       		.byte	0x1
+ 2534 0003 25       		.uleb128 0x25
+ 2535 0004 0E       		.uleb128 0xe
+ 2536 0005 13       		.uleb128 0x13
+ 2537 0006 0B       		.uleb128 0xb
+ 2538 0007 03       		.uleb128 0x3
+ 2539 0008 0E       		.uleb128 0xe
+ 2540 0009 1B       		.uleb128 0x1b
+ 2541 000a 0E       		.uleb128 0xe
+ 2542 000b 55       		.uleb128 0x55
+ 2543 000c 17       		.uleb128 0x17
+ 2544 000d 11       		.uleb128 0x11
+ 2545 000e 01       		.uleb128 0x1
+ 2546 000f 10       		.uleb128 0x10
+ 2547 0010 17       		.uleb128 0x17
+ 2548 0011 00       		.byte	0
+ 2549 0012 00       		.byte	0
+ 2550 0013 02       		.uleb128 0x2
+ 2551 0014 24       		.uleb128 0x24
+ 2552 0015 00       		.byte	0
+ 2553 0016 0B       		.uleb128 0xb
+ 2554 0017 0B       		.uleb128 0xb
+ 2555 0018 3E       		.uleb128 0x3e
+ 2556 0019 0B       		.uleb128 0xb
+ 2557 001a 03       		.uleb128 0x3
+ 2558 001b 0E       		.uleb128 0xe
+ 2559 001c 00       		.byte	0
+ 2560 001d 00       		.byte	0
+ 2561 001e 03       		.uleb128 0x3
+ 2562 001f 16       		.uleb128 0x16
+ 2563 0020 00       		.byte	0
+ 2564 0021 03       		.uleb128 0x3
+ 2565 0022 0E       		.uleb128 0xe
+ 2566 0023 3A       		.uleb128 0x3a
+ 2567 0024 0B       		.uleb128 0xb
+ 2568 0025 3B       		.uleb128 0x3b
+ 2569 0026 0B       		.uleb128 0xb
+ 2570 0027 49       		.uleb128 0x49
+ 2571 0028 13       		.uleb128 0x13
+ 2572 0029 00       		.byte	0
+ 2573 002a 00       		.byte	0
+ 2574 002b 04       		.uleb128 0x4
+ 2575 002c 24       		.uleb128 0x24
+ 2576 002d 00       		.byte	0
+ 2577 002e 0B       		.uleb128 0xb
+ 2578 002f 0B       		.uleb128 0xb
+ 2579 0030 3E       		.uleb128 0x3e
+ 2580 0031 0B       		.uleb128 0xb
+ 2581 0032 03       		.uleb128 0x3
+ 2582 0033 08       		.uleb128 0x8
+ 2583 0034 00       		.byte	0
+ 2584 0035 00       		.byte	0
+ 2585 0036 05       		.uleb128 0x5
+ 2586 0037 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 55
+
+
+ 2587 0038 01       		.byte	0x1
+ 2588 0039 3F       		.uleb128 0x3f
+ 2589 003a 19       		.uleb128 0x19
+ 2590 003b 03       		.uleb128 0x3
+ 2591 003c 0E       		.uleb128 0xe
+ 2592 003d 3A       		.uleb128 0x3a
+ 2593 003e 0B       		.uleb128 0xb
+ 2594 003f 3B       		.uleb128 0x3b
+ 2595 0040 0B       		.uleb128 0xb
+ 2596 0041 27       		.uleb128 0x27
+ 2597 0042 19       		.uleb128 0x19
+ 2598 0043 49       		.uleb128 0x49
+ 2599 0044 13       		.uleb128 0x13
+ 2600 0045 20       		.uleb128 0x20
+ 2601 0046 0B       		.uleb128 0xb
+ 2602 0047 01       		.uleb128 0x1
+ 2603 0048 13       		.uleb128 0x13
+ 2604 0049 00       		.byte	0
+ 2605 004a 00       		.byte	0
+ 2606 004b 06       		.uleb128 0x6
+ 2607 004c 05       		.uleb128 0x5
+ 2608 004d 00       		.byte	0
+ 2609 004e 03       		.uleb128 0x3
+ 2610 004f 0E       		.uleb128 0xe
+ 2611 0050 3A       		.uleb128 0x3a
+ 2612 0051 0B       		.uleb128 0xb
+ 2613 0052 3B       		.uleb128 0x3b
+ 2614 0053 0B       		.uleb128 0xb
+ 2615 0054 49       		.uleb128 0x49
+ 2616 0055 13       		.uleb128 0x13
+ 2617 0056 00       		.byte	0
+ 2618 0057 00       		.byte	0
+ 2619 0058 07       		.uleb128 0x7
+ 2620 0059 34       		.uleb128 0x34
+ 2621 005a 00       		.byte	0
+ 2622 005b 03       		.uleb128 0x3
+ 2623 005c 0E       		.uleb128 0xe
+ 2624 005d 3A       		.uleb128 0x3a
+ 2625 005e 0B       		.uleb128 0xb
+ 2626 005f 3B       		.uleb128 0x3b
+ 2627 0060 0B       		.uleb128 0xb
+ 2628 0061 49       		.uleb128 0x49
+ 2629 0062 13       		.uleb128 0x13
+ 2630 0063 00       		.byte	0
+ 2631 0064 00       		.byte	0
+ 2632 0065 08       		.uleb128 0x8
+ 2633 0066 0F       		.uleb128 0xf
+ 2634 0067 00       		.byte	0
+ 2635 0068 0B       		.uleb128 0xb
+ 2636 0069 0B       		.uleb128 0xb
+ 2637 006a 49       		.uleb128 0x49
+ 2638 006b 13       		.uleb128 0x13
+ 2639 006c 00       		.byte	0
+ 2640 006d 00       		.byte	0
+ 2641 006e 09       		.uleb128 0x9
+ 2642 006f 2E       		.uleb128 0x2e
+ 2643 0070 01       		.byte	0x1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 56
+
+
+ 2644 0071 31       		.uleb128 0x31
+ 2645 0072 13       		.uleb128 0x13
+ 2646 0073 11       		.uleb128 0x11
+ 2647 0074 01       		.uleb128 0x1
+ 2648 0075 12       		.uleb128 0x12
+ 2649 0076 06       		.uleb128 0x6
+ 2650 0077 40       		.uleb128 0x40
+ 2651 0078 18       		.uleb128 0x18
+ 2652 0079 9742     		.uleb128 0x2117
+ 2653 007b 19       		.uleb128 0x19
+ 2654 007c 01       		.uleb128 0x1
+ 2655 007d 13       		.uleb128 0x13
+ 2656 007e 00       		.byte	0
+ 2657 007f 00       		.byte	0
+ 2658 0080 0A       		.uleb128 0xa
+ 2659 0081 05       		.uleb128 0x5
+ 2660 0082 00       		.byte	0
+ 2661 0083 31       		.uleb128 0x31
+ 2662 0084 13       		.uleb128 0x13
+ 2663 0085 02       		.uleb128 0x2
+ 2664 0086 17       		.uleb128 0x17
+ 2665 0087 00       		.byte	0
+ 2666 0088 00       		.byte	0
+ 2667 0089 0B       		.uleb128 0xb
+ 2668 008a 34       		.uleb128 0x34
+ 2669 008b 00       		.byte	0
+ 2670 008c 31       		.uleb128 0x31
+ 2671 008d 13       		.uleb128 0x13
+ 2672 008e 02       		.uleb128 0x2
+ 2673 008f 17       		.uleb128 0x17
+ 2674 0090 00       		.byte	0
+ 2675 0091 00       		.byte	0
+ 2676 0092 0C       		.uleb128 0xc
+ 2677 0093 0B       		.uleb128 0xb
+ 2678 0094 01       		.byte	0x1
+ 2679 0095 11       		.uleb128 0x11
+ 2680 0096 01       		.uleb128 0x1
+ 2681 0097 12       		.uleb128 0x12
+ 2682 0098 06       		.uleb128 0x6
+ 2683 0099 01       		.uleb128 0x1
+ 2684 009a 13       		.uleb128 0x13
+ 2685 009b 00       		.byte	0
+ 2686 009c 00       		.byte	0
+ 2687 009d 0D       		.uleb128 0xd
+ 2688 009e 05       		.uleb128 0x5
+ 2689 009f 00       		.byte	0
+ 2690 00a0 31       		.uleb128 0x31
+ 2691 00a1 13       		.uleb128 0x13
+ 2692 00a2 00       		.byte	0
+ 2693 00a3 00       		.byte	0
+ 2694 00a4 0E       		.uleb128 0xe
+ 2695 00a5 0B       		.uleb128 0xb
+ 2696 00a6 01       		.byte	0x1
+ 2697 00a7 11       		.uleb128 0x11
+ 2698 00a8 01       		.uleb128 0x1
+ 2699 00a9 12       		.uleb128 0x12
+ 2700 00aa 06       		.uleb128 0x6
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 57
+
+
+ 2701 00ab 00       		.byte	0
+ 2702 00ac 00       		.byte	0
+ 2703 00ad 0F       		.uleb128 0xf
+ 2704 00ae 34       		.uleb128 0x34
+ 2705 00af 00       		.byte	0
+ 2706 00b0 31       		.uleb128 0x31
+ 2707 00b1 13       		.uleb128 0x13
+ 2708 00b2 00       		.byte	0
+ 2709 00b3 00       		.byte	0
+ 2710 00b4 10       		.uleb128 0x10
+ 2711 00b5 898201   		.uleb128 0x4109
+ 2712 00b8 00       		.byte	0
+ 2713 00b9 11       		.uleb128 0x11
+ 2714 00ba 01       		.uleb128 0x1
+ 2715 00bb 31       		.uleb128 0x31
+ 2716 00bc 13       		.uleb128 0x13
+ 2717 00bd 00       		.byte	0
+ 2718 00be 00       		.byte	0
+ 2719 00bf 11       		.uleb128 0x11
+ 2720 00c0 898201   		.uleb128 0x4109
+ 2721 00c3 01       		.byte	0x1
+ 2722 00c4 11       		.uleb128 0x11
+ 2723 00c5 01       		.uleb128 0x1
+ 2724 00c6 31       		.uleb128 0x31
+ 2725 00c7 13       		.uleb128 0x13
+ 2726 00c8 01       		.uleb128 0x1
+ 2727 00c9 13       		.uleb128 0x13
+ 2728 00ca 00       		.byte	0
+ 2729 00cb 00       		.byte	0
+ 2730 00cc 12       		.uleb128 0x12
+ 2731 00cd 8A8201   		.uleb128 0x410a
+ 2732 00d0 00       		.byte	0
+ 2733 00d1 02       		.uleb128 0x2
+ 2734 00d2 18       		.uleb128 0x18
+ 2735 00d3 9142     		.uleb128 0x2111
+ 2736 00d5 18       		.uleb128 0x18
+ 2737 00d6 00       		.byte	0
+ 2738 00d7 00       		.byte	0
+ 2739 00d8 13       		.uleb128 0x13
+ 2740 00d9 2E       		.uleb128 0x2e
+ 2741 00da 01       		.byte	0x1
+ 2742 00db 3F       		.uleb128 0x3f
+ 2743 00dc 19       		.uleb128 0x19
+ 2744 00dd 03       		.uleb128 0x3
+ 2745 00de 0E       		.uleb128 0xe
+ 2746 00df 3A       		.uleb128 0x3a
+ 2747 00e0 0B       		.uleb128 0xb
+ 2748 00e1 3B       		.uleb128 0x3b
+ 2749 00e2 0B       		.uleb128 0xb
+ 2750 00e3 27       		.uleb128 0x27
+ 2751 00e4 19       		.uleb128 0x19
+ 2752 00e5 49       		.uleb128 0x49
+ 2753 00e6 13       		.uleb128 0x13
+ 2754 00e7 11       		.uleb128 0x11
+ 2755 00e8 01       		.uleb128 0x1
+ 2756 00e9 12       		.uleb128 0x12
+ 2757 00ea 06       		.uleb128 0x6
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 58
+
+
+ 2758 00eb 40       		.uleb128 0x40
+ 2759 00ec 18       		.uleb128 0x18
+ 2760 00ed 9742     		.uleb128 0x2117
+ 2761 00ef 19       		.uleb128 0x19
+ 2762 00f0 01       		.uleb128 0x1
+ 2763 00f1 13       		.uleb128 0x13
+ 2764 00f2 00       		.byte	0
+ 2765 00f3 00       		.byte	0
+ 2766 00f4 14       		.uleb128 0x14
+ 2767 00f5 34       		.uleb128 0x34
+ 2768 00f6 00       		.byte	0
+ 2769 00f7 03       		.uleb128 0x3
+ 2770 00f8 0E       		.uleb128 0xe
+ 2771 00f9 3A       		.uleb128 0x3a
+ 2772 00fa 0B       		.uleb128 0xb
+ 2773 00fb 3B       		.uleb128 0x3b
+ 2774 00fc 0B       		.uleb128 0xb
+ 2775 00fd 49       		.uleb128 0x49
+ 2776 00fe 13       		.uleb128 0x13
+ 2777 00ff 02       		.uleb128 0x2
+ 2778 0100 18       		.uleb128 0x18
+ 2779 0101 00       		.byte	0
+ 2780 0102 00       		.byte	0
+ 2781 0103 15       		.uleb128 0x15
+ 2782 0104 34       		.uleb128 0x34
+ 2783 0105 00       		.byte	0
+ 2784 0106 03       		.uleb128 0x3
+ 2785 0107 0E       		.uleb128 0xe
+ 2786 0108 3A       		.uleb128 0x3a
+ 2787 0109 0B       		.uleb128 0xb
+ 2788 010a 3B       		.uleb128 0x3b
+ 2789 010b 0B       		.uleb128 0xb
+ 2790 010c 49       		.uleb128 0x49
+ 2791 010d 13       		.uleb128 0x13
+ 2792 010e 02       		.uleb128 0x2
+ 2793 010f 17       		.uleb128 0x17
+ 2794 0110 00       		.byte	0
+ 2795 0111 00       		.byte	0
+ 2796 0112 16       		.uleb128 0x16
+ 2797 0113 898201   		.uleb128 0x4109
+ 2798 0116 01       		.byte	0x1
+ 2799 0117 11       		.uleb128 0x11
+ 2800 0118 01       		.uleb128 0x1
+ 2801 0119 31       		.uleb128 0x31
+ 2802 011a 13       		.uleb128 0x13
+ 2803 011b 00       		.byte	0
+ 2804 011c 00       		.byte	0
+ 2805 011d 17       		.uleb128 0x17
+ 2806 011e 2E       		.uleb128 0x2e
+ 2807 011f 01       		.byte	0x1
+ 2808 0120 3F       		.uleb128 0x3f
+ 2809 0121 19       		.uleb128 0x19
+ 2810 0122 03       		.uleb128 0x3
+ 2811 0123 0E       		.uleb128 0xe
+ 2812 0124 3A       		.uleb128 0x3a
+ 2813 0125 0B       		.uleb128 0xb
+ 2814 0126 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 59
+
+
+ 2815 0127 0B       		.uleb128 0xb
+ 2816 0128 27       		.uleb128 0x27
+ 2817 0129 19       		.uleb128 0x19
+ 2818 012a 11       		.uleb128 0x11
+ 2819 012b 01       		.uleb128 0x1
+ 2820 012c 12       		.uleb128 0x12
+ 2821 012d 06       		.uleb128 0x6
+ 2822 012e 40       		.uleb128 0x40
+ 2823 012f 18       		.uleb128 0x18
+ 2824 0130 9742     		.uleb128 0x2117
+ 2825 0132 19       		.uleb128 0x19
+ 2826 0133 01       		.uleb128 0x1
+ 2827 0134 13       		.uleb128 0x13
+ 2828 0135 00       		.byte	0
+ 2829 0136 00       		.byte	0
+ 2830 0137 18       		.uleb128 0x18
+ 2831 0138 05       		.uleb128 0x5
+ 2832 0139 00       		.byte	0
+ 2833 013a 03       		.uleb128 0x3
+ 2834 013b 0E       		.uleb128 0xe
+ 2835 013c 3A       		.uleb128 0x3a
+ 2836 013d 0B       		.uleb128 0xb
+ 2837 013e 3B       		.uleb128 0x3b
+ 2838 013f 0B       		.uleb128 0xb
+ 2839 0140 49       		.uleb128 0x49
+ 2840 0141 13       		.uleb128 0x13
+ 2841 0142 02       		.uleb128 0x2
+ 2842 0143 18       		.uleb128 0x18
+ 2843 0144 00       		.byte	0
+ 2844 0145 00       		.byte	0
+ 2845 0146 19       		.uleb128 0x19
+ 2846 0147 34       		.uleb128 0x34
+ 2847 0148 00       		.byte	0
+ 2848 0149 03       		.uleb128 0x3
+ 2849 014a 08       		.uleb128 0x8
+ 2850 014b 3A       		.uleb128 0x3a
+ 2851 014c 0B       		.uleb128 0xb
+ 2852 014d 3B       		.uleb128 0x3b
+ 2853 014e 0B       		.uleb128 0xb
+ 2854 014f 49       		.uleb128 0x49
+ 2855 0150 13       		.uleb128 0x13
+ 2856 0151 02       		.uleb128 0x2
+ 2857 0152 17       		.uleb128 0x17
+ 2858 0153 00       		.byte	0
+ 2859 0154 00       		.byte	0
+ 2860 0155 1A       		.uleb128 0x1a
+ 2861 0156 05       		.uleb128 0x5
+ 2862 0157 00       		.byte	0
+ 2863 0158 03       		.uleb128 0x3
+ 2864 0159 08       		.uleb128 0x8
+ 2865 015a 3A       		.uleb128 0x3a
+ 2866 015b 0B       		.uleb128 0xb
+ 2867 015c 3B       		.uleb128 0x3b
+ 2868 015d 0B       		.uleb128 0xb
+ 2869 015e 49       		.uleb128 0x49
+ 2870 015f 13       		.uleb128 0x13
+ 2871 0160 02       		.uleb128 0x2
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 60
+
+
+ 2872 0161 17       		.uleb128 0x17
+ 2873 0162 00       		.byte	0
+ 2874 0163 00       		.byte	0
+ 2875 0164 1B       		.uleb128 0x1b
+ 2876 0165 01       		.uleb128 0x1
+ 2877 0166 01       		.byte	0x1
+ 2878 0167 49       		.uleb128 0x49
+ 2879 0168 13       		.uleb128 0x13
+ 2880 0169 01       		.uleb128 0x1
+ 2881 016a 13       		.uleb128 0x13
+ 2882 016b 00       		.byte	0
+ 2883 016c 00       		.byte	0
+ 2884 016d 1C       		.uleb128 0x1c
+ 2885 016e 21       		.uleb128 0x21
+ 2886 016f 00       		.byte	0
+ 2887 0170 49       		.uleb128 0x49
+ 2888 0171 13       		.uleb128 0x13
+ 2889 0172 2F       		.uleb128 0x2f
+ 2890 0173 0B       		.uleb128 0xb
+ 2891 0174 00       		.byte	0
+ 2892 0175 00       		.byte	0
+ 2893 0176 1D       		.uleb128 0x1d
+ 2894 0177 05       		.uleb128 0x5
+ 2895 0178 00       		.byte	0
+ 2896 0179 03       		.uleb128 0x3
+ 2897 017a 0E       		.uleb128 0xe
+ 2898 017b 3A       		.uleb128 0x3a
+ 2899 017c 0B       		.uleb128 0xb
+ 2900 017d 3B       		.uleb128 0x3b
+ 2901 017e 0B       		.uleb128 0xb
+ 2902 017f 49       		.uleb128 0x49
+ 2903 0180 13       		.uleb128 0x13
+ 2904 0181 02       		.uleb128 0x2
+ 2905 0182 17       		.uleb128 0x17
+ 2906 0183 00       		.byte	0
+ 2907 0184 00       		.byte	0
+ 2908 0185 1E       		.uleb128 0x1e
+ 2909 0186 2E       		.uleb128 0x2e
+ 2910 0187 01       		.byte	0x1
+ 2911 0188 3F       		.uleb128 0x3f
+ 2912 0189 19       		.uleb128 0x19
+ 2913 018a 03       		.uleb128 0x3
+ 2914 018b 0E       		.uleb128 0xe
+ 2915 018c 3A       		.uleb128 0x3a
+ 2916 018d 0B       		.uleb128 0xb
+ 2917 018e 3B       		.uleb128 0x3b
+ 2918 018f 05       		.uleb128 0x5
+ 2919 0190 27       		.uleb128 0x27
+ 2920 0191 19       		.uleb128 0x19
+ 2921 0192 49       		.uleb128 0x49
+ 2922 0193 13       		.uleb128 0x13
+ 2923 0194 11       		.uleb128 0x11
+ 2924 0195 01       		.uleb128 0x1
+ 2925 0196 12       		.uleb128 0x12
+ 2926 0197 06       		.uleb128 0x6
+ 2927 0198 40       		.uleb128 0x40
+ 2928 0199 18       		.uleb128 0x18
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 61
+
+
+ 2929 019a 9742     		.uleb128 0x2117
+ 2930 019c 19       		.uleb128 0x19
+ 2931 019d 01       		.uleb128 0x1
+ 2932 019e 13       		.uleb128 0x13
+ 2933 019f 00       		.byte	0
+ 2934 01a0 00       		.byte	0
+ 2935 01a1 1F       		.uleb128 0x1f
+ 2936 01a2 05       		.uleb128 0x5
+ 2937 01a3 00       		.byte	0
+ 2938 01a4 03       		.uleb128 0x3
+ 2939 01a5 0E       		.uleb128 0xe
+ 2940 01a6 3A       		.uleb128 0x3a
+ 2941 01a7 0B       		.uleb128 0xb
+ 2942 01a8 3B       		.uleb128 0x3b
+ 2943 01a9 05       		.uleb128 0x5
+ 2944 01aa 49       		.uleb128 0x49
+ 2945 01ab 13       		.uleb128 0x13
+ 2946 01ac 02       		.uleb128 0x2
+ 2947 01ad 17       		.uleb128 0x17
+ 2948 01ae 00       		.byte	0
+ 2949 01af 00       		.byte	0
+ 2950 01b0 20       		.uleb128 0x20
+ 2951 01b1 34       		.uleb128 0x34
+ 2952 01b2 00       		.byte	0
+ 2953 01b3 03       		.uleb128 0x3
+ 2954 01b4 0E       		.uleb128 0xe
+ 2955 01b5 3A       		.uleb128 0x3a
+ 2956 01b6 0B       		.uleb128 0xb
+ 2957 01b7 3B       		.uleb128 0x3b
+ 2958 01b8 05       		.uleb128 0x5
+ 2959 01b9 49       		.uleb128 0x49
+ 2960 01ba 13       		.uleb128 0x13
+ 2961 01bb 02       		.uleb128 0x2
+ 2962 01bc 17       		.uleb128 0x17
+ 2963 01bd 00       		.byte	0
+ 2964 01be 00       		.byte	0
+ 2965 01bf 21       		.uleb128 0x21
+ 2966 01c0 05       		.uleb128 0x5
+ 2967 01c1 00       		.byte	0
+ 2968 01c2 03       		.uleb128 0x3
+ 2969 01c3 08       		.uleb128 0x8
+ 2970 01c4 3A       		.uleb128 0x3a
+ 2971 01c5 0B       		.uleb128 0xb
+ 2972 01c6 3B       		.uleb128 0x3b
+ 2973 01c7 05       		.uleb128 0x5
+ 2974 01c8 49       		.uleb128 0x49
+ 2975 01c9 13       		.uleb128 0x13
+ 2976 01ca 02       		.uleb128 0x2
+ 2977 01cb 17       		.uleb128 0x17
+ 2978 01cc 00       		.byte	0
+ 2979 01cd 00       		.byte	0
+ 2980 01ce 22       		.uleb128 0x22
+ 2981 01cf 2E       		.uleb128 0x2e
+ 2982 01d0 00       		.byte	0
+ 2983 01d1 3F       		.uleb128 0x3f
+ 2984 01d2 19       		.uleb128 0x19
+ 2985 01d3 3C       		.uleb128 0x3c
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 62
+
+
+ 2986 01d4 19       		.uleb128 0x19
+ 2987 01d5 6E       		.uleb128 0x6e
+ 2988 01d6 0E       		.uleb128 0xe
+ 2989 01d7 03       		.uleb128 0x3
+ 2990 01d8 0E       		.uleb128 0xe
+ 2991 01d9 3A       		.uleb128 0x3a
+ 2992 01da 0B       		.uleb128 0xb
+ 2993 01db 3B       		.uleb128 0x3b
+ 2994 01dc 05       		.uleb128 0x5
+ 2995 01dd 00       		.byte	0
+ 2996 01de 00       		.byte	0
+ 2997 01df 23       		.uleb128 0x23
+ 2998 01e0 2E       		.uleb128 0x2e
+ 2999 01e1 00       		.byte	0
+ 3000 01e2 3F       		.uleb128 0x3f
+ 3001 01e3 19       		.uleb128 0x19
+ 3002 01e4 3C       		.uleb128 0x3c
+ 3003 01e5 19       		.uleb128 0x19
+ 3004 01e6 6E       		.uleb128 0x6e
+ 3005 01e7 0E       		.uleb128 0xe
+ 3006 01e8 03       		.uleb128 0x3
+ 3007 01e9 0E       		.uleb128 0xe
+ 3008 01ea 3A       		.uleb128 0x3a
+ 3009 01eb 0B       		.uleb128 0xb
+ 3010 01ec 3B       		.uleb128 0x3b
+ 3011 01ed 0B       		.uleb128 0xb
+ 3012 01ee 00       		.byte	0
+ 3013 01ef 00       		.byte	0
+ 3014 01f0 00       		.byte	0
+ 3015              		.section	.debug_loc,"",%progbits
+ 3016              	.Ldebug_loc0:
+ 3017              	.LLST0:
+ 3018 0000 00000000 		.4byte	.LVL0
+ 3019 0004 0A000000 		.4byte	.LVL2
+ 3020 0008 0100     		.2byte	0x1
+ 3021 000a 50       		.byte	0x50
+ 3022 000b 0A000000 		.4byte	.LVL2
+ 3023 000f 40000000 		.4byte	.LVL20
+ 3024 0013 0100     		.2byte	0x1
+ 3025 0015 56       		.byte	0x56
+ 3026 0016 40000000 		.4byte	.LVL20
+ 3027 001a 42000000 		.4byte	.LFE35
+ 3028 001e 0400     		.2byte	0x4
+ 3029 0020 F3       		.byte	0xf3
+ 3030 0021 01       		.uleb128 0x1
+ 3031 0022 50       		.byte	0x50
+ 3032 0023 9F       		.byte	0x9f
+ 3033 0024 00000000 		.4byte	0
+ 3034 0028 00000000 		.4byte	0
+ 3035              	.LLST1:
+ 3036 002c 00000000 		.4byte	.LVL0
+ 3037 0030 0C000000 		.4byte	.LVL3
+ 3038 0034 0100     		.2byte	0x1
+ 3039 0036 51       		.byte	0x51
+ 3040 0037 0C000000 		.4byte	.LVL3
+ 3041 003b 40000000 		.4byte	.LVL19
+ 3042 003f 0100     		.2byte	0x1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 63
+
+
+ 3043 0041 55       		.byte	0x55
+ 3044 0042 40000000 		.4byte	.LVL19
+ 3045 0046 42000000 		.4byte	.LFE35
+ 3046 004a 0400     		.2byte	0x4
+ 3047 004c F3       		.byte	0xf3
+ 3048 004d 01       		.uleb128 0x1
+ 3049 004e 51       		.byte	0x51
+ 3050 004f 9F       		.byte	0x9f
+ 3051 0050 00000000 		.4byte	0
+ 3052 0054 00000000 		.4byte	0
+ 3053              	.LLST2:
+ 3054 0058 06000000 		.4byte	.LVL1
+ 3055 005c 12000000 		.4byte	.LVL5
+ 3056 0060 0200     		.2byte	0x2
+ 3057 0062 30       		.byte	0x30
+ 3058 0063 9F       		.byte	0x9f
+ 3059 0064 12000000 		.4byte	.LVL5
+ 3060 0068 18000000 		.4byte	.LVL6
+ 3061 006c 0100     		.2byte	0x1
+ 3062 006e 50       		.byte	0x50
+ 3063 006f 18000000 		.4byte	.LVL6
+ 3064 0073 1E000000 		.4byte	.LVL8
+ 3065 0077 0100     		.2byte	0x1
+ 3066 0079 54       		.byte	0x54
+ 3067 007a 1E000000 		.4byte	.LVL8
+ 3068 007e 22000000 		.4byte	.LVL9
+ 3069 0082 0100     		.2byte	0x1
+ 3070 0084 50       		.byte	0x50
+ 3071 0085 22000000 		.4byte	.LVL9
+ 3072 0089 24000000 		.4byte	.LVL10
+ 3073 008d 0100     		.2byte	0x1
+ 3074 008f 54       		.byte	0x54
+ 3075 0090 24000000 		.4byte	.LVL10
+ 3076 0094 28000000 		.4byte	.LVL11
+ 3077 0098 0100     		.2byte	0x1
+ 3078 009a 50       		.byte	0x50
+ 3079 009b 28000000 		.4byte	.LVL11
+ 3080 009f 2E000000 		.4byte	.LVL13
+ 3081 00a3 0100     		.2byte	0x1
+ 3082 00a5 54       		.byte	0x54
+ 3083 00a6 2E000000 		.4byte	.LVL13
+ 3084 00aa 30000000 		.4byte	.LVL14
+ 3085 00ae 0100     		.2byte	0x1
+ 3086 00b0 50       		.byte	0x50
+ 3087 00b1 30000000 		.4byte	.LVL14
+ 3088 00b5 40000000 		.4byte	.LVL18
+ 3089 00b9 0100     		.2byte	0x1
+ 3090 00bb 54       		.byte	0x54
+ 3091 00bc 00000000 		.4byte	0
+ 3092 00c0 00000000 		.4byte	0
+ 3093              	.LLST3:
+ 3094 00c4 00000000 		.4byte	.LVL21
+ 3095 00c8 0A000000 		.4byte	.LVL23
+ 3096 00cc 0100     		.2byte	0x1
+ 3097 00ce 50       		.byte	0x50
+ 3098 00cf 0A000000 		.4byte	.LVL23
+ 3099 00d3 50000000 		.4byte	.LVL44
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 64
+
+
+ 3100 00d7 0100     		.2byte	0x1
+ 3101 00d9 56       		.byte	0x56
+ 3102 00da 50000000 		.4byte	.LVL44
+ 3103 00de 52000000 		.4byte	.LFE36
+ 3104 00e2 0400     		.2byte	0x4
+ 3105 00e4 F3       		.byte	0xf3
+ 3106 00e5 01       		.uleb128 0x1
+ 3107 00e6 50       		.byte	0x50
+ 3108 00e7 9F       		.byte	0x9f
+ 3109 00e8 00000000 		.4byte	0
+ 3110 00ec 00000000 		.4byte	0
+ 3111              	.LLST4:
+ 3112 00f0 00000000 		.4byte	.LVL21
+ 3113 00f4 0C000000 		.4byte	.LVL24
+ 3114 00f8 0100     		.2byte	0x1
+ 3115 00fa 51       		.byte	0x51
+ 3116 00fb 0C000000 		.4byte	.LVL24
+ 3117 00ff 50000000 		.4byte	.LVL43
+ 3118 0103 0100     		.2byte	0x1
+ 3119 0105 55       		.byte	0x55
+ 3120 0106 50000000 		.4byte	.LVL43
+ 3121 010a 52000000 		.4byte	.LFE36
+ 3122 010e 0400     		.2byte	0x4
+ 3123 0110 F3       		.byte	0xf3
+ 3124 0111 01       		.uleb128 0x1
+ 3125 0112 51       		.byte	0x51
+ 3126 0113 9F       		.byte	0x9f
+ 3127 0114 00000000 		.4byte	0
+ 3128 0118 00000000 		.4byte	0
+ 3129              	.LLST5:
+ 3130 011c 06000000 		.4byte	.LVL22
+ 3131 0120 12000000 		.4byte	.LVL26
+ 3132 0124 0200     		.2byte	0x2
+ 3133 0126 30       		.byte	0x30
+ 3134 0127 9F       		.byte	0x9f
+ 3135 0128 12000000 		.4byte	.LVL26
+ 3136 012c 18000000 		.4byte	.LVL27
+ 3137 0130 0100     		.2byte	0x1
+ 3138 0132 50       		.byte	0x50
+ 3139 0133 18000000 		.4byte	.LVL27
+ 3140 0137 1E000000 		.4byte	.LVL29
+ 3141 013b 0100     		.2byte	0x1
+ 3142 013d 54       		.byte	0x54
+ 3143 013e 1E000000 		.4byte	.LVL29
+ 3144 0142 26000000 		.4byte	.LVL30
+ 3145 0146 0100     		.2byte	0x1
+ 3146 0148 50       		.byte	0x50
+ 3147 0149 26000000 		.4byte	.LVL30
+ 3148 014d 2C000000 		.4byte	.LVL32
+ 3149 0151 0100     		.2byte	0x1
+ 3150 0153 54       		.byte	0x54
+ 3151 0154 2C000000 		.4byte	.LVL32
+ 3152 0158 30000000 		.4byte	.LVL33
+ 3153 015c 0100     		.2byte	0x1
+ 3154 015e 50       		.byte	0x50
+ 3155 015f 30000000 		.4byte	.LVL33
+ 3156 0163 32000000 		.4byte	.LVL34
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 65
+
+
+ 3157 0167 0100     		.2byte	0x1
+ 3158 0169 54       		.byte	0x54
+ 3159 016a 32000000 		.4byte	.LVL34
+ 3160 016e 38000000 		.4byte	.LVL35
+ 3161 0172 0100     		.2byte	0x1
+ 3162 0174 50       		.byte	0x50
+ 3163 0175 38000000 		.4byte	.LVL35
+ 3164 0179 3E000000 		.4byte	.LVL37
+ 3165 017d 0100     		.2byte	0x1
+ 3166 017f 54       		.byte	0x54
+ 3167 0180 3E000000 		.4byte	.LVL37
+ 3168 0184 40000000 		.4byte	.LVL38
+ 3169 0188 0100     		.2byte	0x1
+ 3170 018a 50       		.byte	0x50
+ 3171 018b 40000000 		.4byte	.LVL38
+ 3172 018f 50000000 		.4byte	.LVL42
+ 3173 0193 0100     		.2byte	0x1
+ 3174 0195 54       		.byte	0x54
+ 3175 0196 00000000 		.4byte	0
+ 3176 019a 00000000 		.4byte	0
+ 3177              	.LLST6:
+ 3178 019e 4C000000 		.4byte	.LVL40
+ 3179 01a2 50000000 		.4byte	.LVL41
+ 3180 01a6 0100     		.2byte	0x1
+ 3181 01a8 56       		.byte	0x56
+ 3182 01a9 00000000 		.4byte	0
+ 3183 01ad 00000000 		.4byte	0
+ 3184              	.LLST7:
+ 3185 01b1 4C000000 		.4byte	.LVL40
+ 3186 01b5 50000000 		.4byte	.LVL41
+ 3187 01b9 0100     		.2byte	0x1
+ 3188 01bb 55       		.byte	0x55
+ 3189 01bc 00000000 		.4byte	0
+ 3190 01c0 00000000 		.4byte	0
+ 3191              	.LLST8:
+ 3192 01c4 00000000 		.4byte	.LVL45
+ 3193 01c8 0E000000 		.4byte	.LVL46
+ 3194 01cc 0200     		.2byte	0x2
+ 3195 01ce 30       		.byte	0x30
+ 3196 01cf 9F       		.byte	0x9f
+ 3197 01d0 0E000000 		.4byte	.LVL46
+ 3198 01d4 18000000 		.4byte	.LVL47
+ 3199 01d8 0100     		.2byte	0x1
+ 3200 01da 50       		.byte	0x50
+ 3201 01db 18000000 		.4byte	.LVL47
+ 3202 01df 1D000000 		.4byte	.LVL48-1
+ 3203 01e3 0300     		.2byte	0x3
+ 3204 01e5 70       		.byte	0x70
+ 3205 01e6 56       		.sleb128 -42
+ 3206 01e7 9F       		.byte	0x9f
+ 3207 01e8 00000000 		.4byte	0
+ 3208 01ec 00000000 		.4byte	0
+ 3209              	.LLST9:
+ 3210 01f0 00000000 		.4byte	.LVL49
+ 3211 01f4 0E000000 		.4byte	.LVL50
+ 3212 01f8 0200     		.2byte	0x2
+ 3213 01fa 30       		.byte	0x30
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 66
+
+
+ 3214 01fb 9F       		.byte	0x9f
+ 3215 01fc 0E000000 		.4byte	.LVL50
+ 3216 0200 18000000 		.4byte	.LVL51
+ 3217 0204 0100     		.2byte	0x1
+ 3218 0206 50       		.byte	0x50
+ 3219 0207 18000000 		.4byte	.LVL51
+ 3220 020b 1D000000 		.4byte	.LVL52-1
+ 3221 020f 0300     		.2byte	0x3
+ 3222 0211 70       		.byte	0x70
+ 3223 0212 56       		.sleb128 -42
+ 3224 0213 9F       		.byte	0x9f
+ 3225 0214 00000000 		.4byte	0
+ 3226 0218 00000000 		.4byte	0
+ 3227              	.LLST10:
+ 3228 021c 08000000 		.4byte	.LVL54
+ 3229 0220 0C000000 		.4byte	.LVL55
+ 3230 0224 0100     		.2byte	0x1
+ 3231 0226 50       		.byte	0x50
+ 3232 0227 0C000000 		.4byte	.LVL55
+ 3233 022b 1C000000 		.4byte	.LVL57
+ 3234 022f 0100     		.2byte	0x1
+ 3235 0231 54       		.byte	0x54
+ 3236 0232 1C000000 		.4byte	.LVL57
+ 3237 0236 24000000 		.4byte	.LVL58
+ 3238 023a 0100     		.2byte	0x1
+ 3239 023c 50       		.byte	0x50
+ 3240 023d 24000000 		.4byte	.LVL58
+ 3241 0241 27000000 		.4byte	.LVL59-1
+ 3242 0245 0300     		.2byte	0x3
+ 3243 0247 70       		.byte	0x70
+ 3244 0248 56       		.sleb128 -42
+ 3245 0249 9F       		.byte	0x9f
+ 3246 024a 28000000 		.4byte	.LVL59
+ 3247 024e 30000000 		.4byte	.LVL60
+ 3248 0252 0100     		.2byte	0x1
+ 3249 0254 50       		.byte	0x50
+ 3250 0255 30000000 		.4byte	.LVL60
+ 3251 0259 33000000 		.4byte	.LVL61-1
+ 3252 025d 0300     		.2byte	0x3
+ 3253 025f 70       		.byte	0x70
+ 3254 0260 55       		.sleb128 -43
+ 3255 0261 9F       		.byte	0x9f
+ 3256 0262 34000000 		.4byte	.LVL61
+ 3257 0266 3C000000 		.4byte	.LVL62
+ 3258 026a 0100     		.2byte	0x1
+ 3259 026c 50       		.byte	0x50
+ 3260 026d 3C000000 		.4byte	.LVL62
+ 3261 0271 3F000000 		.4byte	.LVL63-1
+ 3262 0275 0300     		.2byte	0x3
+ 3263 0277 70       		.byte	0x70
+ 3264 0278 54       		.sleb128 -44
+ 3265 0279 9F       		.byte	0x9f
+ 3266 027a 40000000 		.4byte	.LVL63
+ 3267 027e 48000000 		.4byte	.LVL64
+ 3268 0282 0100     		.2byte	0x1
+ 3269 0284 50       		.byte	0x50
+ 3270 0285 48000000 		.4byte	.LVL64
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 67
+
+
+ 3271 0289 4B000000 		.4byte	.LVL65-1
+ 3272 028d 0300     		.2byte	0x3
+ 3273 028f 70       		.byte	0x70
+ 3274 0290 53       		.sleb128 -45
+ 3275 0291 9F       		.byte	0x9f
+ 3276 0292 4C000000 		.4byte	.LVL65
+ 3277 0296 54000000 		.4byte	.LVL66
+ 3278 029a 0100     		.2byte	0x1
+ 3279 029c 50       		.byte	0x50
+ 3280 029d 54000000 		.4byte	.LVL66
+ 3281 02a1 57000000 		.4byte	.LVL67-1
+ 3282 02a5 0300     		.2byte	0x3
+ 3283 02a7 70       		.byte	0x70
+ 3284 02a8 52       		.sleb128 -46
+ 3285 02a9 9F       		.byte	0x9f
+ 3286 02aa 58000000 		.4byte	.LVL67
+ 3287 02ae 5F000000 		.4byte	.LVL68-1
+ 3288 02b2 0100     		.2byte	0x1
+ 3289 02b4 50       		.byte	0x50
+ 3290 02b5 00000000 		.4byte	0
+ 3291 02b9 00000000 		.4byte	0
+ 3292              	.LLST11:
+ 3293 02bd 0A000000 		.4byte	.LVL69
+ 3294 02c1 10000000 		.4byte	.LVL70
+ 3295 02c5 0100     		.2byte	0x1
+ 3296 02c7 50       		.byte	0x50
+ 3297 02c8 10000000 		.4byte	.LVL70
+ 3298 02cc 13000000 		.4byte	.LVL71-1
+ 3299 02d0 0300     		.2byte	0x3
+ 3300 02d2 70       		.byte	0x70
+ 3301 02d3 7F       		.sleb128 -1
+ 3302 02d4 9F       		.byte	0x9f
+ 3303 02d5 22000000 		.4byte	.LVL72
+ 3304 02d9 28000000 		.4byte	.LVL73
+ 3305 02dd 0100     		.2byte	0x1
+ 3306 02df 50       		.byte	0x50
+ 3307 02e0 00000000 		.4byte	0
+ 3308 02e4 00000000 		.4byte	0
+ 3309              	.LLST12:
+ 3310 02e8 00000000 		.4byte	.LVL74
+ 3311 02ec 08000000 		.4byte	.LVL75
+ 3312 02f0 0200     		.2byte	0x2
+ 3313 02f2 30       		.byte	0x30
+ 3314 02f3 9F       		.byte	0x9f
+ 3315 02f4 00000000 		.4byte	0
+ 3316 02f8 00000000 		.4byte	0
+ 3317              	.LLST13:
+ 3318 02fc 08000000 		.4byte	.LVL75
+ 3319 0300 12000000 		.4byte	.LVL76
+ 3320 0304 0200     		.2byte	0x2
+ 3321 0306 31       		.byte	0x31
+ 3322 0307 9F       		.byte	0x9f
+ 3323 0308 12000000 		.4byte	.LVL76
+ 3324 030c 18000000 		.4byte	.LVL77
+ 3325 0310 0300     		.2byte	0x3
+ 3326 0312 09       		.byte	0x9
+ 3327 0313 FF       		.byte	0xff
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 68
+
+
+ 3328 0314 9F       		.byte	0x9f
+ 3329 0315 18000000 		.4byte	.LVL77
+ 3330 0319 32000000 		.4byte	.LVL78
+ 3331 031d 0100     		.2byte	0x1
+ 3332 031f 55       		.byte	0x55
+ 3333 0320 00000000 		.4byte	0
+ 3334 0324 00000000 		.4byte	0
+ 3335              	.LLST14:
+ 3336 0328 00000000 		.4byte	.LVL79
+ 3337 032c 0C000000 		.4byte	.LVL80
+ 3338 0330 0100     		.2byte	0x1
+ 3339 0332 50       		.byte	0x50
+ 3340 0333 0C000000 		.4byte	.LVL80
+ 3341 0337 C8000000 		.4byte	.LVL109
+ 3342 033b 0100     		.2byte	0x1
+ 3343 033d 56       		.byte	0x56
+ 3344 033e C8000000 		.4byte	.LVL109
+ 3345 0342 CA000000 		.4byte	.LFE41
+ 3346 0346 0400     		.2byte	0x4
+ 3347 0348 F3       		.byte	0xf3
+ 3348 0349 01       		.uleb128 0x1
+ 3349 034a 50       		.byte	0x50
+ 3350 034b 9F       		.byte	0x9f
+ 3351 034c 00000000 		.4byte	0
+ 3352 0350 00000000 		.4byte	0
+ 3353              	.LLST15:
+ 3354 0354 12000000 		.4byte	.LVL82
+ 3355 0358 18000000 		.4byte	.LVL83
+ 3356 035c 0100     		.2byte	0x1
+ 3357 035e 50       		.byte	0x50
+ 3358 035f 18000000 		.4byte	.LVL83
+ 3359 0363 1E000000 		.4byte	.LVL85
+ 3360 0367 0100     		.2byte	0x1
+ 3361 0369 54       		.byte	0x54
+ 3362 036a 1E000000 		.4byte	.LVL85
+ 3363 036e 26000000 		.4byte	.LVL86
+ 3364 0372 0100     		.2byte	0x1
+ 3365 0374 50       		.byte	0x50
+ 3366 0375 26000000 		.4byte	.LVL86
+ 3367 0379 2C000000 		.4byte	.LVL88
+ 3368 037d 0100     		.2byte	0x1
+ 3369 037f 54       		.byte	0x54
+ 3370 0380 2C000000 		.4byte	.LVL88
+ 3371 0384 39000000 		.4byte	.LVL89-1
+ 3372 0388 0100     		.2byte	0x1
+ 3373 038a 50       		.byte	0x50
+ 3374 038b 39000000 		.4byte	.LVL89-1
+ 3375 038f 3C000000 		.4byte	.LVL90
+ 3376 0393 0100     		.2byte	0x1
+ 3377 0395 54       		.byte	0x54
+ 3378 0396 3C000000 		.4byte	.LVL90
+ 3379 039a 4D000000 		.4byte	.LVL91-1
+ 3380 039e 0100     		.2byte	0x1
+ 3381 03a0 50       		.byte	0x50
+ 3382 03a1 4D000000 		.4byte	.LVL91-1
+ 3383 03a5 50000000 		.4byte	.LVL92
+ 3384 03a9 0100     		.2byte	0x1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 69
+
+
+ 3385 03ab 54       		.byte	0x54
+ 3386 03ac 50000000 		.4byte	.LVL92
+ 3387 03b0 61000000 		.4byte	.LVL93-1
+ 3388 03b4 0100     		.2byte	0x1
+ 3389 03b6 50       		.byte	0x50
+ 3390 03b7 61000000 		.4byte	.LVL93-1
+ 3391 03bb 64000000 		.4byte	.LVL94
+ 3392 03bf 0100     		.2byte	0x1
+ 3393 03c1 54       		.byte	0x54
+ 3394 03c2 64000000 		.4byte	.LVL94
+ 3395 03c6 73000000 		.4byte	.LVL95-1
+ 3396 03ca 0100     		.2byte	0x1
+ 3397 03cc 50       		.byte	0x50
+ 3398 03cd 73000000 		.4byte	.LVL95-1
+ 3399 03d1 76000000 		.4byte	.LVL96
+ 3400 03d5 0100     		.2byte	0x1
+ 3401 03d7 54       		.byte	0x54
+ 3402 03d8 76000000 		.4byte	.LVL96
+ 3403 03dc 87000000 		.4byte	.LVL97-1
+ 3404 03e0 0100     		.2byte	0x1
+ 3405 03e2 50       		.byte	0x50
+ 3406 03e3 87000000 		.4byte	.LVL97-1
+ 3407 03e7 8A000000 		.4byte	.LVL98
+ 3408 03eb 0100     		.2byte	0x1
+ 3409 03ed 54       		.byte	0x54
+ 3410 03ee 8A000000 		.4byte	.LVL98
+ 3411 03f2 96000000 		.4byte	.LVL99
+ 3412 03f6 0100     		.2byte	0x1
+ 3413 03f8 50       		.byte	0x50
+ 3414 03f9 96000000 		.4byte	.LVL99
+ 3415 03fd 9E000000 		.4byte	.LVL101
+ 3416 0401 0100     		.2byte	0x1
+ 3417 0403 54       		.byte	0x54
+ 3418 0404 9E000000 		.4byte	.LVL101
+ 3419 0408 A2000000 		.4byte	.LVL102
+ 3420 040c 0100     		.2byte	0x1
+ 3421 040e 50       		.byte	0x50
+ 3422 040f A2000000 		.4byte	.LVL102
+ 3423 0413 AA000000 		.4byte	.LVL104
+ 3424 0417 0100     		.2byte	0x1
+ 3425 0419 54       		.byte	0x54
+ 3426 041a AA000000 		.4byte	.LVL104
+ 3427 041e B0000000 		.4byte	.LVL105
+ 3428 0422 0100     		.2byte	0x1
+ 3429 0424 50       		.byte	0x50
+ 3430 0425 B0000000 		.4byte	.LVL105
+ 3431 0429 B8000000 		.4byte	.LVL106
+ 3432 042d 0100     		.2byte	0x1
+ 3433 042f 54       		.byte	0x54
+ 3434 0430 B8000000 		.4byte	.LVL106
+ 3435 0434 BE000000 		.4byte	.LVL107
+ 3436 0438 0100     		.2byte	0x1
+ 3437 043a 50       		.byte	0x50
+ 3438 043b 00000000 		.4byte	0
+ 3439 043f 00000000 		.4byte	0
+ 3440              	.LLST16:
+ 3441 0443 00000000 		.4byte	.LVL110
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 70
+
+
+ 3442 0447 0E000000 		.4byte	.LVL113
+ 3443 044b 0100     		.2byte	0x1
+ 3444 044d 50       		.byte	0x50
+ 3445 044e 0E000000 		.4byte	.LVL113
+ 3446 0452 6A000000 		.4byte	.LFE43
+ 3447 0456 0400     		.2byte	0x4
+ 3448 0458 F3       		.byte	0xf3
+ 3449 0459 01       		.uleb128 0x1
+ 3450 045a 50       		.byte	0x50
+ 3451 045b 9F       		.byte	0x9f
+ 3452 045c 00000000 		.4byte	0
+ 3453 0460 00000000 		.4byte	0
+ 3454              	.LLST17:
+ 3455 0464 00000000 		.4byte	.LVL110
+ 3456 0468 0A000000 		.4byte	.LVL111
+ 3457 046c 0100     		.2byte	0x1
+ 3458 046e 51       		.byte	0x51
+ 3459 046f 0A000000 		.4byte	.LVL111
+ 3460 0473 68000000 		.4byte	.LVL136
+ 3461 0477 0100     		.2byte	0x1
+ 3462 0479 57       		.byte	0x57
+ 3463 047a 68000000 		.4byte	.LVL136
+ 3464 047e 6A000000 		.4byte	.LFE43
+ 3465 0482 0400     		.2byte	0x4
+ 3466 0484 F3       		.byte	0xf3
+ 3467 0485 01       		.uleb128 0x1
+ 3468 0486 51       		.byte	0x51
+ 3469 0487 9F       		.byte	0x9f
+ 3470 0488 00000000 		.4byte	0
+ 3471 048c 00000000 		.4byte	0
+ 3472              	.LLST18:
+ 3473 0490 00000000 		.4byte	.LVL110
+ 3474 0494 0C000000 		.4byte	.LVL112
+ 3475 0498 0100     		.2byte	0x1
+ 3476 049a 52       		.byte	0x52
+ 3477 049b 0C000000 		.4byte	.LVL112
+ 3478 049f 68000000 		.4byte	.LVL135
+ 3479 04a3 0100     		.2byte	0x1
+ 3480 04a5 56       		.byte	0x56
+ 3481 04a6 68000000 		.4byte	.LVL135
+ 3482 04aa 6A000000 		.4byte	.LFE43
+ 3483 04ae 0400     		.2byte	0x4
+ 3484 04b0 F3       		.byte	0xf3
+ 3485 04b1 01       		.uleb128 0x1
+ 3486 04b2 52       		.byte	0x52
+ 3487 04b3 9F       		.byte	0x9f
+ 3488 04b4 00000000 		.4byte	0
+ 3489 04b8 00000000 		.4byte	0
+ 3490              	.LLST19:
+ 3491 04bc 3A000000 		.4byte	.LVL124
+ 3492 04c0 68000000 		.4byte	.LVL134
+ 3493 04c4 0100     		.2byte	0x1
+ 3494 04c6 54       		.byte	0x54
+ 3495 04c7 00000000 		.4byte	0
+ 3496 04cb 00000000 		.4byte	0
+ 3497              	.LLST20:
+ 3498 04cf 14000000 		.4byte	.LVL115
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 71
+
+
+ 3499 04d3 1A000000 		.4byte	.LVL116
+ 3500 04d7 0100     		.2byte	0x1
+ 3501 04d9 50       		.byte	0x50
+ 3502 04da 1A000000 		.4byte	.LVL116
+ 3503 04de 20000000 		.4byte	.LVL118
+ 3504 04e2 0100     		.2byte	0x1
+ 3505 04e4 54       		.byte	0x54
+ 3506 04e5 20000000 		.4byte	.LVL118
+ 3507 04e9 28000000 		.4byte	.LVL119
+ 3508 04ed 0100     		.2byte	0x1
+ 3509 04ef 50       		.byte	0x50
+ 3510 04f0 28000000 		.4byte	.LVL119
+ 3511 04f4 2E000000 		.4byte	.LVL121
+ 3512 04f8 0100     		.2byte	0x1
+ 3513 04fa 54       		.byte	0x54
+ 3514 04fb 2E000000 		.4byte	.LVL121
+ 3515 04ff 32000000 		.4byte	.LVL122
+ 3516 0503 0100     		.2byte	0x1
+ 3517 0505 50       		.byte	0x50
+ 3518 0506 32000000 		.4byte	.LVL122
+ 3519 050a 3A000000 		.4byte	.LVL124
+ 3520 050e 0100     		.2byte	0x1
+ 3521 0510 54       		.byte	0x54
+ 3522 0511 3A000000 		.4byte	.LVL124
+ 3523 0515 42000000 		.4byte	.LVL127
+ 3524 0519 0100     		.2byte	0x1
+ 3525 051b 50       		.byte	0x50
+ 3526 051c 56000000 		.4byte	.LVL129
+ 3527 0520 5A000000 		.4byte	.LVL130
+ 3528 0524 0100     		.2byte	0x1
+ 3529 0526 50       		.byte	0x50
+ 3530 0527 5A000000 		.4byte	.LVL130
+ 3531 052b 62000000 		.4byte	.LVL132
+ 3532 052f 0100     		.2byte	0x1
+ 3533 0531 55       		.byte	0x55
+ 3534 0532 62000000 		.4byte	.LVL132
+ 3535 0536 64000000 		.4byte	.LVL133
+ 3536 053a 0100     		.2byte	0x1
+ 3537 053c 50       		.byte	0x50
+ 3538 053d 00000000 		.4byte	0
+ 3539 0541 00000000 		.4byte	0
+ 3540              	.LLST21:
+ 3541 0545 3A000000 		.4byte	.LVL124
+ 3542 0549 3C000000 		.4byte	.LVL125
+ 3543 054d 0700     		.2byte	0x7
+ 3544 054f 76       		.byte	0x76
+ 3545 0550 7F       		.sleb128 -1
+ 3546 0551 74       		.byte	0x74
+ 3547 0552 00       		.sleb128 0
+ 3548 0553 29       		.byte	0x29
+ 3549 0554 1F       		.byte	0x1f
+ 3550 0555 9F       		.byte	0x9f
+ 3551 0556 40000000 		.4byte	.LVL126
+ 3552 055a 62000000 		.4byte	.LVL132
+ 3553 055e 0700     		.2byte	0x7
+ 3554 0560 76       		.byte	0x76
+ 3555 0561 7F       		.sleb128 -1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 72
+
+
+ 3556 0562 74       		.byte	0x74
+ 3557 0563 00       		.sleb128 0
+ 3558 0564 29       		.byte	0x29
+ 3559 0565 1F       		.byte	0x1f
+ 3560 0566 9F       		.byte	0x9f
+ 3561 0567 00000000 		.4byte	0
+ 3562 056b 00000000 		.4byte	0
+ 3563              	.LLST22:
+ 3564 056f 00000000 		.4byte	.LVL137
+ 3565 0573 0D000000 		.4byte	.LVL138-1
+ 3566 0577 0100     		.2byte	0x1
+ 3567 0579 50       		.byte	0x50
+ 3568 057a 0D000000 		.4byte	.LVL138-1
+ 3569 057e 60000000 		.4byte	.LFE44
+ 3570 0582 0400     		.2byte	0x4
+ 3571 0584 F3       		.byte	0xf3
+ 3572 0585 01       		.uleb128 0x1
+ 3573 0586 50       		.byte	0x50
+ 3574 0587 9F       		.byte	0x9f
+ 3575 0588 00000000 		.4byte	0
+ 3576 058c 00000000 		.4byte	0
+ 3577              	.LLST23:
+ 3578 0590 00000000 		.4byte	.LVL137
+ 3579 0594 0D000000 		.4byte	.LVL138-1
+ 3580 0598 0100     		.2byte	0x1
+ 3581 059a 51       		.byte	0x51
+ 3582 059b 0D000000 		.4byte	.LVL138-1
+ 3583 059f 60000000 		.4byte	.LFE44
+ 3584 05a3 0400     		.2byte	0x4
+ 3585 05a5 F3       		.byte	0xf3
+ 3586 05a6 01       		.uleb128 0x1
+ 3587 05a7 51       		.byte	0x51
+ 3588 05a8 9F       		.byte	0x9f
+ 3589 05a9 00000000 		.4byte	0
+ 3590 05ad 00000000 		.4byte	0
+ 3591              	.LLST24:
+ 3592 05b1 00000000 		.4byte	.LVL137
+ 3593 05b5 0D000000 		.4byte	.LVL138-1
+ 3594 05b9 0100     		.2byte	0x1
+ 3595 05bb 52       		.byte	0x52
+ 3596 05bc 0D000000 		.4byte	.LVL138-1
+ 3597 05c0 60000000 		.4byte	.LFE44
+ 3598 05c4 0400     		.2byte	0x4
+ 3599 05c6 F3       		.byte	0xf3
+ 3600 05c7 01       		.uleb128 0x1
+ 3601 05c8 52       		.byte	0x52
+ 3602 05c9 9F       		.byte	0x9f
+ 3603 05ca 00000000 		.4byte	0
+ 3604 05ce 00000000 		.4byte	0
+ 3605              	.LLST25:
+ 3606 05d2 00000000 		.4byte	.LVL137
+ 3607 05d6 0D000000 		.4byte	.LVL138-1
+ 3608 05da 0100     		.2byte	0x1
+ 3609 05dc 53       		.byte	0x53
+ 3610 05dd 0D000000 		.4byte	.LVL138-1
+ 3611 05e1 60000000 		.4byte	.LFE44
+ 3612 05e5 0400     		.2byte	0x4
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 73
+
+
+ 3613 05e7 F3       		.byte	0xf3
+ 3614 05e8 01       		.uleb128 0x1
+ 3615 05e9 53       		.byte	0x53
+ 3616 05ea 9F       		.byte	0x9f
+ 3617 05eb 00000000 		.4byte	0
+ 3618 05ef 00000000 		.4byte	0
+ 3619              	.LLST26:
+ 3620 05f3 0E000000 		.4byte	.LVL138
+ 3621 05f7 16000000 		.4byte	.LVL139
+ 3622 05fb 0100     		.2byte	0x1
+ 3623 05fd 50       		.byte	0x50
+ 3624 05fe 16000000 		.4byte	.LVL139
+ 3625 0602 19000000 		.4byte	.LVL140-1
+ 3626 0606 0300     		.2byte	0x3
+ 3627 0608 70       		.byte	0x70
+ 3628 0609 5F       		.sleb128 -33
+ 3629 060a 9F       		.byte	0x9f
+ 3630 060b 1A000000 		.4byte	.LVL140
+ 3631 060f 22000000 		.4byte	.LVL141
+ 3632 0613 0100     		.2byte	0x1
+ 3633 0615 50       		.byte	0x50
+ 3634 0616 22000000 		.4byte	.LVL141
+ 3635 061a 25000000 		.4byte	.LVL142-1
+ 3636 061e 0300     		.2byte	0x3
+ 3637 0620 70       		.byte	0x70
+ 3638 0621 5D       		.sleb128 -35
+ 3639 0622 9F       		.byte	0x9f
+ 3640 0623 26000000 		.4byte	.LVL142
+ 3641 0627 2E000000 		.4byte	.LVL143
+ 3642 062b 0100     		.2byte	0x1
+ 3643 062d 50       		.byte	0x50
+ 3644 062e 2E000000 		.4byte	.LVL143
+ 3645 0632 31000000 		.4byte	.LVL144-1
+ 3646 0636 0300     		.2byte	0x3
+ 3647 0638 70       		.byte	0x70
+ 3648 0639 5C       		.sleb128 -36
+ 3649 063a 9F       		.byte	0x9f
+ 3650 063b 32000000 		.4byte	.LVL144
+ 3651 063f 3A000000 		.4byte	.LVL145
+ 3652 0643 0100     		.2byte	0x1
+ 3653 0645 50       		.byte	0x50
+ 3654 0646 3A000000 		.4byte	.LVL145
+ 3655 064a 3D000000 		.4byte	.LVL146-1
+ 3656 064e 0300     		.2byte	0x3
+ 3657 0650 70       		.byte	0x70
+ 3658 0651 5B       		.sleb128 -37
+ 3659 0652 9F       		.byte	0x9f
+ 3660 0653 3E000000 		.4byte	.LVL146
+ 3661 0657 46000000 		.4byte	.LVL147
+ 3662 065b 0100     		.2byte	0x1
+ 3663 065d 50       		.byte	0x50
+ 3664 065e 46000000 		.4byte	.LVL147
+ 3665 0662 49000000 		.4byte	.LVL148-1
+ 3666 0666 0300     		.2byte	0x3
+ 3667 0668 70       		.byte	0x70
+ 3668 0669 5A       		.sleb128 -38
+ 3669 066a 9F       		.byte	0x9f
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 74
+
+
+ 3670 066b 4A000000 		.4byte	.LVL148
+ 3671 066f 52000000 		.4byte	.LVL149
+ 3672 0673 0100     		.2byte	0x1
+ 3673 0675 50       		.byte	0x50
+ 3674 0676 52000000 		.4byte	.LVL149
+ 3675 067a 55000000 		.4byte	.LVL150-1
+ 3676 067e 0100     		.2byte	0x1
+ 3677 0680 51       		.byte	0x51
+ 3678 0681 56000000 		.4byte	.LVL150
+ 3679 0685 5D000000 		.4byte	.LVL151-1
+ 3680 0689 0100     		.2byte	0x1
+ 3681 068b 50       		.byte	0x50
+ 3682 068c 00000000 		.4byte	0
+ 3683 0690 00000000 		.4byte	0
+ 3684              	.LLST27:
+ 3685 0694 00000000 		.4byte	.LVL152
+ 3686 0698 09000000 		.4byte	.LVL153-1
+ 3687 069c 0100     		.2byte	0x1
+ 3688 069e 50       		.byte	0x50
+ 3689 069f 09000000 		.4byte	.LVL153-1
+ 3690 06a3 38000000 		.4byte	.LFE45
+ 3691 06a7 0400     		.2byte	0x4
+ 3692 06a9 F3       		.byte	0xf3
+ 3693 06aa 01       		.uleb128 0x1
+ 3694 06ab 50       		.byte	0x50
+ 3695 06ac 9F       		.byte	0x9f
+ 3696 06ad 00000000 		.4byte	0
+ 3697 06b1 00000000 		.4byte	0
+ 3698              	.LLST28:
+ 3699 06b5 00000000 		.4byte	.LVL152
+ 3700 06b9 09000000 		.4byte	.LVL153-1
+ 3701 06bd 0100     		.2byte	0x1
+ 3702 06bf 51       		.byte	0x51
+ 3703 06c0 09000000 		.4byte	.LVL153-1
+ 3704 06c4 38000000 		.4byte	.LFE45
+ 3705 06c8 0400     		.2byte	0x4
+ 3706 06ca F3       		.byte	0xf3
+ 3707 06cb 01       		.uleb128 0x1
+ 3708 06cc 51       		.byte	0x51
+ 3709 06cd 9F       		.byte	0x9f
+ 3710 06ce 00000000 		.4byte	0
+ 3711 06d2 00000000 		.4byte	0
+ 3712              	.LLST29:
+ 3713 06d6 0A000000 		.4byte	.LVL153
+ 3714 06da 12000000 		.4byte	.LVL154
+ 3715 06de 0100     		.2byte	0x1
+ 3716 06e0 50       		.byte	0x50
+ 3717 06e1 12000000 		.4byte	.LVL154
+ 3718 06e5 15000000 		.4byte	.LVL155-1
+ 3719 06e9 0300     		.2byte	0x3
+ 3720 06eb 70       		.byte	0x70
+ 3721 06ec 6B       		.sleb128 -21
+ 3722 06ed 9F       		.byte	0x9f
+ 3723 06ee 16000000 		.4byte	.LVL155
+ 3724 06f2 1E000000 		.4byte	.LVL156
+ 3725 06f6 0100     		.2byte	0x1
+ 3726 06f8 50       		.byte	0x50
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 75
+
+
+ 3727 06f9 1E000000 		.4byte	.LVL156
+ 3728 06fd 21000000 		.4byte	.LVL157-1
+ 3729 0701 0300     		.2byte	0x3
+ 3730 0703 70       		.byte	0x70
+ 3731 0704 69       		.sleb128 -23
+ 3732 0705 9F       		.byte	0x9f
+ 3733 0706 22000000 		.4byte	.LVL157
+ 3734 070a 2A000000 		.4byte	.LVL158
+ 3735 070e 0100     		.2byte	0x1
+ 3736 0710 50       		.byte	0x50
+ 3737 0711 2A000000 		.4byte	.LVL158
+ 3738 0715 2D000000 		.4byte	.LVL159-1
+ 3739 0719 0300     		.2byte	0x3
+ 3740 071b 70       		.byte	0x70
+ 3741 071c 68       		.sleb128 -24
+ 3742 071d 9F       		.byte	0x9f
+ 3743 071e 2E000000 		.4byte	.LVL159
+ 3744 0722 35000000 		.4byte	.LVL160-1
+ 3745 0726 0100     		.2byte	0x1
+ 3746 0728 50       		.byte	0x50
+ 3747 0729 00000000 		.4byte	0
+ 3748 072d 00000000 		.4byte	0
+ 3749              	.LLST30:
+ 3750 0731 00000000 		.4byte	.LVL161
+ 3751 0735 09000000 		.4byte	.LVL162-1
+ 3752 0739 0100     		.2byte	0x1
+ 3753 073b 50       		.byte	0x50
+ 3754 073c 09000000 		.4byte	.LVL162-1
+ 3755 0740 38000000 		.4byte	.LFE46
+ 3756 0744 0400     		.2byte	0x4
+ 3757 0746 F3       		.byte	0xf3
+ 3758 0747 01       		.uleb128 0x1
+ 3759 0748 50       		.byte	0x50
+ 3760 0749 9F       		.byte	0x9f
+ 3761 074a 00000000 		.4byte	0
+ 3762 074e 00000000 		.4byte	0
+ 3763              	.LLST31:
+ 3764 0752 00000000 		.4byte	.LVL161
+ 3765 0756 09000000 		.4byte	.LVL162-1
+ 3766 075a 0100     		.2byte	0x1
+ 3767 075c 51       		.byte	0x51
+ 3768 075d 09000000 		.4byte	.LVL162-1
+ 3769 0761 38000000 		.4byte	.LFE46
+ 3770 0765 0400     		.2byte	0x4
+ 3771 0767 F3       		.byte	0xf3
+ 3772 0768 01       		.uleb128 0x1
+ 3773 0769 51       		.byte	0x51
+ 3774 076a 9F       		.byte	0x9f
+ 3775 076b 00000000 		.4byte	0
+ 3776 076f 00000000 		.4byte	0
+ 3777              	.LLST32:
+ 3778 0773 0A000000 		.4byte	.LVL162
+ 3779 0777 12000000 		.4byte	.LVL163
+ 3780 077b 0100     		.2byte	0x1
+ 3781 077d 50       		.byte	0x50
+ 3782 077e 12000000 		.4byte	.LVL163
+ 3783 0782 15000000 		.4byte	.LVL164-1
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 76
+
+
+ 3784 0786 0300     		.2byte	0x3
+ 3785 0788 70       		.byte	0x70
+ 3786 0789 63       		.sleb128 -29
+ 3787 078a 9F       		.byte	0x9f
+ 3788 078b 16000000 		.4byte	.LVL164
+ 3789 078f 1E000000 		.4byte	.LVL165
+ 3790 0793 0100     		.2byte	0x1
+ 3791 0795 50       		.byte	0x50
+ 3792 0796 1E000000 		.4byte	.LVL165
+ 3793 079a 21000000 		.4byte	.LVL166-1
+ 3794 079e 0300     		.2byte	0x3
+ 3795 07a0 70       		.byte	0x70
+ 3796 07a1 61       		.sleb128 -31
+ 3797 07a2 9F       		.byte	0x9f
+ 3798 07a3 22000000 		.4byte	.LVL166
+ 3799 07a7 2A000000 		.4byte	.LVL167
+ 3800 07ab 0100     		.2byte	0x1
+ 3801 07ad 50       		.byte	0x50
+ 3802 07ae 2A000000 		.4byte	.LVL167
+ 3803 07b2 2D000000 		.4byte	.LVL168-1
+ 3804 07b6 0300     		.2byte	0x3
+ 3805 07b8 70       		.byte	0x70
+ 3806 07b9 60       		.sleb128 -32
+ 3807 07ba 9F       		.byte	0x9f
+ 3808 07bb 2E000000 		.4byte	.LVL168
+ 3809 07bf 35000000 		.4byte	.LVL169-1
+ 3810 07c3 0100     		.2byte	0x1
+ 3811 07c5 50       		.byte	0x50
+ 3812 07c6 00000000 		.4byte	0
+ 3813 07ca 00000000 		.4byte	0
+ 3814              	.LLST33:
+ 3815 07ce 00000000 		.4byte	.LVL170
+ 3816 07d2 06000000 		.4byte	.LVL171
+ 3817 07d6 0100     		.2byte	0x1
+ 3818 07d8 50       		.byte	0x50
+ 3819 07d9 06000000 		.4byte	.LVL171
+ 3820 07dd 09000000 		.4byte	.LVL172-1
+ 3821 07e1 0100     		.2byte	0x1
+ 3822 07e3 51       		.byte	0x51
+ 3823 07e4 09000000 		.4byte	.LVL172-1
+ 3824 07e8 0C000000 		.4byte	.LFE47
+ 3825 07ec 0400     		.2byte	0x4
+ 3826 07ee F3       		.byte	0xf3
+ 3827 07ef 01       		.uleb128 0x1
+ 3828 07f0 50       		.byte	0x50
+ 3829 07f1 9F       		.byte	0x9f
+ 3830 07f2 00000000 		.4byte	0
+ 3831 07f6 00000000 		.4byte	0
+ 3832              		.section	.debug_aranges,"",%progbits
+ 3833 0000 7C000000 		.4byte	0x7c
+ 3834 0004 0200     		.2byte	0x2
+ 3835 0006 00000000 		.4byte	.Ldebug_info0
+ 3836 000a 04       		.byte	0x4
+ 3837 000b 00       		.byte	0
+ 3838 000c 0000     		.2byte	0
+ 3839 000e 0000     		.2byte	0
+ 3840 0010 00000000 		.4byte	.LFB35
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 77
+
+
+ 3841 0014 42000000 		.4byte	.LFE35-.LFB35
+ 3842 0018 00000000 		.4byte	.LFB36
+ 3843 001c 52000000 		.4byte	.LFE36-.LFB36
+ 3844 0020 00000000 		.4byte	.LFB38
+ 3845 0024 20000000 		.4byte	.LFE38-.LFB38
+ 3846 0028 00000000 		.4byte	.LFB39
+ 3847 002c 20000000 		.4byte	.LFE39-.LFB39
+ 3848 0030 00000000 		.4byte	.LFB37
+ 3849 0034 62000000 		.4byte	.LFE37-.LFB37
+ 3850 0038 00000000 		.4byte	.LFB40
+ 3851 003c 2E000000 		.4byte	.LFE40-.LFB40
+ 3852 0040 00000000 		.4byte	.LFB42
+ 3853 0044 34000000 		.4byte	.LFE42-.LFB42
+ 3854 0048 00000000 		.4byte	.LFB41
+ 3855 004c CA000000 		.4byte	.LFE41-.LFB41
+ 3856 0050 00000000 		.4byte	.LFB43
+ 3857 0054 6A000000 		.4byte	.LFE43-.LFB43
+ 3858 0058 00000000 		.4byte	.LFB44
+ 3859 005c 60000000 		.4byte	.LFE44-.LFB44
+ 3860 0060 00000000 		.4byte	.LFB45
+ 3861 0064 38000000 		.4byte	.LFE45-.LFB45
+ 3862 0068 00000000 		.4byte	.LFB46
+ 3863 006c 38000000 		.4byte	.LFE46-.LFB46
+ 3864 0070 00000000 		.4byte	.LFB47
+ 3865 0074 0C000000 		.4byte	.LFE47-.LFB47
+ 3866 0078 00000000 		.4byte	0
+ 3867 007c 00000000 		.4byte	0
+ 3868              		.section	.debug_ranges,"",%progbits
+ 3869              	.Ldebug_ranges0:
+ 3870 0000 00000000 		.4byte	.LFB35
+ 3871 0004 42000000 		.4byte	.LFE35
+ 3872 0008 00000000 		.4byte	.LFB36
+ 3873 000c 52000000 		.4byte	.LFE36
+ 3874 0010 00000000 		.4byte	.LFB38
+ 3875 0014 20000000 		.4byte	.LFE38
+ 3876 0018 00000000 		.4byte	.LFB39
+ 3877 001c 20000000 		.4byte	.LFE39
+ 3878 0020 00000000 		.4byte	.LFB37
+ 3879 0024 62000000 		.4byte	.LFE37
+ 3880 0028 00000000 		.4byte	.LFB40
+ 3881 002c 2E000000 		.4byte	.LFE40
+ 3882 0030 00000000 		.4byte	.LFB42
+ 3883 0034 34000000 		.4byte	.LFE42
+ 3884 0038 00000000 		.4byte	.LFB41
+ 3885 003c CA000000 		.4byte	.LFE41
+ 3886 0040 00000000 		.4byte	.LFB43
+ 3887 0044 6A000000 		.4byte	.LFE43
+ 3888 0048 00000000 		.4byte	.LFB44
+ 3889 004c 60000000 		.4byte	.LFE44
+ 3890 0050 00000000 		.4byte	.LFB45
+ 3891 0054 38000000 		.4byte	.LFE45
+ 3892 0058 00000000 		.4byte	.LFB46
+ 3893 005c 38000000 		.4byte	.LFE46
+ 3894 0060 00000000 		.4byte	.LFB47
+ 3895 0064 0C000000 		.4byte	.LFE47
+ 3896 0068 00000000 		.4byte	0
+ 3897 006c 00000000 		.4byte	0
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 78
+
+
+ 3898              		.section	.debug_line,"",%progbits
+ 3899              	.Ldebug_line0:
+ 3900 0000 8D030000 		.section	.debug_str,"MS",%progbits,1
+ 3900      0200CE01 
+ 3900      00000201 
+ 3900      FB0E0D00 
+ 3900      01010101 
+ 3901              	.LASF52:
+ 3902 0000 4932435F 		.ascii	"I2C_I2CMasterSendStop\000"
+ 3902      4932434D 
+ 3902      61737465 
+ 3902      7253656E 
+ 3902      6453746F 
+ 3903              	.LASF33:
+ 3904 0016 61636365 		.ascii	"acceleration\000"
+ 3904      6C657261 
+ 3904      74696F6E 
+ 3904      00
+ 3905              	.LASF38:
+ 3906 0023 74656D70 		.ascii	"temp\000"
+ 3906      00
+ 3907              	.LASF4:
+ 3908 0028 73686F72 		.ascii	"short int\000"
+ 3908      7420696E 
+ 3908      7400
+ 3909              	.LASF13:
+ 3910 0032 73697A65 		.ascii	"size_t\000"
+ 3910      5F7400
+ 3911              	.LASF56:
+ 3912 0039 4932435F 		.ascii	"I2C_I2CMasterReadByte\000"
+ 3912      4932434D 
+ 3912      61737465 
+ 3912      72526561 
+ 3912      64427974 
+ 3913              	.LASF15:
+ 3914 004f 73697A65 		.ascii	"sizetype\000"
+ 3914      74797065 
+ 3914      00
+ 3915              	.LASF8:
+ 3916 0058 5F5F7569 		.ascii	"__uint32_t\000"
+ 3916      6E743332 
+ 3916      5F7400
+ 3917              	.LASF5:
+ 3918 0063 5F5F7569 		.ascii	"__uint16_t\000"
+ 3918      6E743136 
+ 3918      5F7400
+ 3919              	.LASF55:
+ 3920 006e 4932435F 		.ascii	"I2C_I2CMasterSendRestart\000"
+ 3920      4932434D 
+ 3920      61737465 
+ 3920      7253656E 
+ 3920      64526573 
+ 3921              	.LASF31:
+ 3922 0087 4D4D4138 		.ascii	"MMA8652_Initialize\000"
+ 3922      3635325F 
+ 3922      496E6974 
+ 3922      69616C69 
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 79
+
+
+ 3922      7A6500
+ 3923              	.LASF34:
+ 3924 009a 7261775F 		.ascii	"raw_count\000"
+ 3924      636F756E 
+ 3924      7400
+ 3925              	.LASF32:
+ 3926 00a4 4D4D4138 		.ascii	"MMA8652_Reset\000"
+ 3926      3635325F 
+ 3926      52657365 
+ 3926      7400
+ 3927              	.LASF17:
+ 3928 00b2 75696E74 		.ascii	"uint8_t\000"
+ 3928      385F7400 
+ 3929              	.LASF51:
+ 3930 00ba 4D4D4138 		.ascii	"MMA8652_WhoAmI\000"
+ 3930      3635325F 
+ 3930      57686F41 
+ 3930      6D4900
+ 3931              	.LASF26:
+ 3932 00c9 4D4D4138 		.ascii	"MMA8652_Read\000"
+ 3932      3635325F 
+ 3932      52656164 
+ 3932      00
+ 3933              	.LASF40:
+ 3934 00d6 72656769 		.ascii	"register_addr\000"
+ 3934      73746572 
+ 3934      5F616464 
+ 3934      7200
+ 3935              	.LASF59:
+ 3936 00e4 4D4D4138 		.ascii	"MMA8652.c\000"
+ 3936      3635322E 
+ 3936      6300
+ 3937              	.LASF30:
+ 3938 00ee 4D4D4138 		.ascii	"MMA8652_StandByMode\000"
+ 3938      3635325F 
+ 3938      5374616E 
+ 3938      6442794D 
+ 3938      6F646500 
+ 3939              	.LASF21:
+ 3940 0102 666C6F61 		.ascii	"float\000"
+ 3940      7400
+ 3941              	.LASF10:
+ 3942 0108 6C6F6E67 		.ascii	"long long int\000"
+ 3942      206C6F6E 
+ 3942      6720696E 
+ 3942      7400
+ 3943              	.LASF11:
+ 3944 0116 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3944      206C6F6E 
+ 3944      6720756E 
+ 3944      7369676E 
+ 3944      65642069 
+ 3945              	.LASF48:
+ 3946 012d 74687265 		.ascii	"threshold\000"
+ 3946      73686F6C 
+ 3946      6400
+ 3947              	.LASF7:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 80
+
+
+ 3948 0137 6C6F6E67 		.ascii	"long int\000"
+ 3948      20696E74 
+ 3948      00
+ 3949              	.LASF23:
+ 3950 0140 61646472 		.ascii	"address\000"
+ 3950      65737300 
+ 3951              	.LASF54:
+ 3952 0148 4932435F 		.ascii	"I2C_I2CMasterWriteByte\000"
+ 3952      4932434D 
+ 3952      61737465 
+ 3952      72577269 
+ 3952      74654279 
+ 3953              	.LASF2:
+ 3954 015f 5F5F7569 		.ascii	"__uint8_t\000"
+ 3954      6E74385F 
+ 3954      7400
+ 3955              	.LASF41:
+ 3956 0169 64617461 		.ascii	"data_len\000"
+ 3956      5F6C656E 
+ 3956      00
+ 3957              	.LASF1:
+ 3958 0172 756E7369 		.ascii	"unsigned char\000"
+ 3958      676E6564 
+ 3958      20636861 
+ 3958      7200
+ 3959              	.LASF25:
+ 3960 0180 4D4D4138 		.ascii	"MMA8652_Write\000"
+ 3960      3635325F 
+ 3960      57726974 
+ 3960      6500
+ 3961              	.LASF14:
+ 3962 018e 6C6F6E67 		.ascii	"long double\000"
+ 3962      20646F75 
+ 3962      626C6500 
+ 3963              	.LASF42:
+ 3964 019a 4D4D4138 		.ascii	"MMA8652_PulseSetup\000"
+ 3964      3635325F 
+ 3964      50756C73 
+ 3964      65536574 
+ 3964      757000
+ 3965              	.LASF0:
+ 3966 01ad 7369676E 		.ascii	"signed char\000"
+ 3966      65642063 
+ 3966      68617200 
+ 3967              	.LASF36:
+ 3968 01b9 4D4D4138 		.ascii	"MMA8652_ReadAcc\000"
+ 3968      3635325F 
+ 3968      52656164 
+ 3968      41636300 
+ 3969              	.LASF20:
+ 3970 01c9 75696E74 		.ascii	"uint32_t\000"
+ 3970      33325F74 
+ 3970      00
+ 3971              	.LASF12:
+ 3972 01d2 756E7369 		.ascii	"unsigned int\000"
+ 3972      676E6564 
+ 3972      20696E74 
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 81
+
+
+ 3972      00
+ 3973              	.LASF19:
+ 3974 01df 75696E74 		.ascii	"uint16_t\000"
+ 3974      31365F74 
+ 3974      00
+ 3975              	.LASF6:
+ 3976 01e8 73686F72 		.ascii	"short unsigned int\000"
+ 3976      7420756E 
+ 3976      7369676E 
+ 3976      65642069 
+ 3976      6E7400
+ 3977              	.LASF29:
+ 3978 01fb 4D4D4138 		.ascii	"MMA8652_ActiveMode\000"
+ 3978      3635325F 
+ 3978      41637469 
+ 3978      76654D6F 
+ 3978      646500
+ 3979              	.LASF16:
+ 3980 020e 63686172 		.ascii	"char\000"
+ 3980      00
+ 3981              	.LASF43:
+ 3982 0213 74687265 		.ascii	"thresholdx\000"
+ 3982      73686F6C 
+ 3982      647800
+ 3983              	.LASF44:
+ 3984 021e 74687265 		.ascii	"thresholdy\000"
+ 3984      73686F6C 
+ 3984      647900
+ 3985              	.LASF45:
+ 3986 0229 74687265 		.ascii	"thresholdz\000"
+ 3986      73686F6C 
+ 3986      647A00
+ 3987              	.LASF18:
+ 3988 0234 696E7431 		.ascii	"int16_t\000"
+ 3988      365F7400 
+ 3989              	.LASF61:
+ 3990 023c 4D4D4138 		.ascii	"MMA8652_ConvertCountToMg\000"
+ 3990      3635325F 
+ 3990      436F6E76 
+ 3990      65727443 
+ 3990      6F756E74 
+ 3991              	.LASF24:
+ 3992 0255 64617461 		.ascii	"data\000"
+ 3992      00
+ 3993              	.LASF39:
+ 3994 025a 4D4D4138 		.ascii	"MMA8652_ReadMultipleBytes\000"
+ 3994      3635325F 
+ 3994      52656164 
+ 3994      4D756C74 
+ 3994      69706C65 
+ 3995              	.LASF9:
+ 3996 0274 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3996      20756E73 
+ 3996      69676E65 
+ 3996      6420696E 
+ 3996      7400
+ 3997              	.LASF35:
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 82
+
+
+ 3998 0286 7369676E 		.ascii	"sign\000"
+ 3998      00
+ 3999              	.LASF22:
+ 4000 028b 646F7562 		.ascii	"double\000"
+ 4000      6C6500
+ 4001              	.LASF46:
+ 4002 0292 74696D65 		.ascii	"timelimit\000"
+ 4002      6C696D69 
+ 4002      7400
+ 4003              	.LASF27:
+ 4004 029c 72656365 		.ascii	"received\000"
+ 4004      69766564 
+ 4004      00
+ 4005              	.LASF60:
+ 4006 02a5 433A5C55 		.ascii	"C:\\Users\\marlokistvan\\Documents\\PSoC Creator\\t"
+ 4006      73657273 
+ 4006      5C6D6172 
+ 4006      6C6F6B69 
+ 4006      73747661 
+ 4007 02d3 646D2E63 		.ascii	"dm.cydsn\000"
+ 4007      7964736E 
+ 4007      00
+ 4008              	.LASF3:
+ 4009 02dc 5F5F696E 		.ascii	"__int16_t\000"
+ 4009      7431365F 
+ 4009      7400
+ 4010              	.LASF58:
+ 4011 02e6 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 4011      43313120 
+ 4011      352E342E 
+ 4011      31203230 
+ 4011      31363036 
+ 4012 0319 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 4012      20726576 
+ 4012      6973696F 
+ 4012      6E203233 
+ 4012      37373135 
+ 4013 034c 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 4013      66756E63 
+ 4013      74696F6E 
+ 4013      2D736563 
+ 4013      74696F6E 
+ 4014              	.LASF28:
+ 4015 0374 6572726F 		.ascii	"error\000"
+ 4015      7200
+ 4016              	.LASF47:
+ 4017 037a 4D4D4138 		.ascii	"MMA8652_MotionSetup\000"
+ 4017      3635325F 
+ 4017      4D6F7469 
+ 4017      6F6E5365 
+ 4017      74757000 
+ 4018              	.LASF57:
+ 4019 038e 43794465 		.ascii	"CyDelay\000"
+ 4019      6C617900 
+ 4020              	.LASF53:
+ 4021 0396 4932435F 		.ascii	"I2C_I2CMasterSendStart\000"
+ 4021      4932434D 
+ARM GAS  C:\Users\MARLOK~1\AppData\Local\Temp\ccVNfKl6.s 			page 83
+
+
+ 4021      61737465 
+ 4021      7253656E 
+ 4021      64537461 
+ 4022              	.LASF37:
+ 4023 03ad 6163635F 		.ascii	"acc_count\000"
+ 4023      636F756E 
+ 4023      7400
+ 4024              	.LASF50:
+ 4025 03b7 4D4D4138 		.ascii	"MMA8652_TransientSetup\000"
+ 4025      3635325F 
+ 4025      5472616E 
+ 4025      7369656E 
+ 4025      74536574 
+ 4026              	.LASF49:
+ 4027 03ce 6465626F 		.ascii	"debounce_count\000"
+ 4027      756E6365 
+ 4027      5F636F75 
+ 4027      6E7400
+ 4028              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

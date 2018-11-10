@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="tdm-000\tdm\Generated_Source\PSoC4\I2C\I2C_I2C_INT.c">
+<ExpandedNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\TopDesign</v>
+<v>tdm-000\tdm\tdm.cydwr</v>
+<v>tdm-000\tdm\tdm.cydwr\Pins</v>
+<v>tdm-000\tdm\tdm.cydwr\Analog</v>
+<v>tdm-000\tdm\tdm.cydwr\DMA</v>
+<v>tdm-000\tdm\tdm.cydwr\Clocks</v>
+<v>tdm-000\tdm\tdm.cydwr\Interrupts</v>
+<v>tdm-000\tdm\tdm.cydwr\System</v>
+<v>tdm-000\tdm\tdm.cydwr\Directives</v>
+<v>tdm-000\tdm\tdm.cydwr\Flash Security</v>
+<v>tdm-000\tdm\Header Files</v>
+<v>tdm-000\tdm\Header Files\device.h</v>
+<v>tdm-000\tdm\Header Files\MMA8652.h</v>
+<v>tdm-000\tdm\Source Files</v>
+<v>tdm-000\tdm\Source Files\main.c</v>
+<v>tdm-000\tdm\Source Files\MMA8652.c</v>
+<v>tdm-000\tdm\Generated_Source</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\I2C</v>
+<v>tdm-000\tdm_uart_bootloader</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\TopDesign</v>
+<v>tdm-000\tdm\tdm.cydwr</v>
+<v>tdm-000\tdm\tdm.cydwr\Pins</v>
+<v>tdm-000\tdm\tdm.cydwr\Analog</v>
+<v>tdm-000\tdm\tdm.cydwr\DMA</v>
+<v>tdm-000\tdm\tdm.cydwr\Clocks</v>
+<v>tdm-000\tdm\tdm.cydwr\Interrupts</v>
+<v>tdm-000\tdm\tdm.cydwr\System</v>
+<v>tdm-000\tdm\tdm.cydwr\Directives</v>
+<v>tdm-000\tdm\tdm.cydwr\Flash Security</v>
+<v>tdm-000\tdm\Header Files</v>
+<v>tdm-000\tdm\Header Files\device.h</v>
+<v>tdm-000\tdm\Header Files\MMA8652.h</v>
+<v>tdm-000\tdm\Source Files</v>
+<v>tdm-000\tdm\Source Files\main.c</v>
+<v>tdm-000\tdm\Source Files\MMA8652.c</v>
+<v>tdm-000\tdm\Generated_Source</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\ACC</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\ACC_ISR</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\Bootloadable</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\cy_boot</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\cy_dmac</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\cy_lfclk</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\DIN1</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\DIN2</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\DIN3</v>
+<v>tdm-000\tdm\Generated_Source\PSoC4\DIN4</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\TopDesign</v>
+<v>tdm-000\tdm\TopDesign\TopDesign.cysch</v>
+<v>tdm-000\tdm\TopDesign\TopDesign_01.cymacro</v>
+<v>tdm-000\tdm_uart_bootloader</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\TopDesign</v>
+<v>tdm-000\tdm\TopDesign\TopDesign.cysch</v>
+<v>tdm-000\tdm\TopDesign\TopDesign_01.cymacro</v>
+<v>tdm-000\tdm_uart_bootloader</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\CortexM0</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\ACC.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\ACC_ISR.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\ACC_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\Bootloadable.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cybootloader.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyDMA.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN1.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN1_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN2.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN2_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN3.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN3_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN4.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN4_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN5.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN5_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN6.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN6_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN7.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN7_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN8.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN8_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT1.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT1_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT2.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT2_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT3.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT3_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT4.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DOUT4_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C_INT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_I2C_MASTER.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_SCB_IRQ.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_SCBCLK.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_scl.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_scl_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_sda.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\I2C_sda_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\MMA8652.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\RELAY1.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\RELAY1_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\RELAY2.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\RELAY2_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\RELAY3.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\RELAY3_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_wake.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_wake_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_RX_WAKEUP_IRQ.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SCBCLK.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\tdm.cyacd</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\tdm.elf</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\tdm.hex</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\tdm.map</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\ACC.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\ACC_ISR.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\ACC_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\Bootloadable.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\Cm0Start.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\cy_em_eeprom.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\cybootloader.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\CyDMA.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\CyFlash.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\CyLFClk.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\CyLib.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\cymetadata.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\cyPm.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\cyutils.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN1.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN1_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN2.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN2_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN3.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN3_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN4.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN4_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN5.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN5_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN6.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN6_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN7.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN7_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN8.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DIN8_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT1.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT1_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT2.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT2_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT3.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT3_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT4.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\DOUT4_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_I2C.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_I2C_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_I2C_INT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_I2C_MASTER.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_SCB_IRQ.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_SCBCLK.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_scl.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_scl_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_sda.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\I2C_sda_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\main.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\MMA8652.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\RELAY1.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\RELAY1_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\RELAY2.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\RELAY2_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\RELAY3.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\RELAY3_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_rx_wake.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_rx_wake_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_RX_WAKEUP_IRQ.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_SCBCLK.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_SPI_UART.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_SPI_UART_INT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_tx.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_tx_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_UART.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\Listing Files\UART_UART_BOOT.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\tdm.cyacd</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\tdm.elf</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\tdm.hex</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Release\tdm.map</v>
+<v>tdm-000\tdm\tdm.gpdsc</v>
+<v>tdm-000\tdm\tdm.rpt</v>
+<v>tdm-000\tdm\tdm_timing.html</v>
+<v>tdm-000\tdm_uart_bootloader</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\CortexM0</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\ACC.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\ACC_ISR.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\ACC_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\Bootloadable.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cybootloader.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyDMA.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN1.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN1_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN2.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN2_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN3.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN3_PM.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN4.lst</v>
+<v>tdm-000\tdm\CortexM0\ARM_GCC_541\Debug\Listing Files\DIN4_PM.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="tdm-000">
+<ExpandedNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\PSoC 4 Architecture TRM</v>
+<v>tdm-000\tdm\PSoC 4200L Family Datasheet</v>
+<v>tdm-000\tdm\System Reference Guides</v>
+<v>tdm-000\tdm\System Reference Guides\cy_boot_v5_60</v>
+<v>tdm-000\tdm\System Reference Guides\cy_dmac_v1_10</v>
+<v>tdm-000\tdm\System Reference Guides\cy_lfclk_v1_20</v>
+<v>tdm-000\tdm\Bootloadable_v1_60.pdf</v>
+<v>tdm-000\tdm\cy_isr_v1_70.pdf</v>
+<v>tdm-000\tdm\cy_pins_v2_20</v>
+<v>tdm-000\tdm\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>tdm-000\tdm\SCB_P4_v4_0</v>
+<v>tdm-000\tdm\SCB_P4_v4_0\SCB_P4_v4_0.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>tdm-000</v>
+<v>tdm-000\tdm</v>
+<v>tdm-000\tdm\PSoC 4 Architecture TRM</v>
+<v>tdm-000\tdm\PSoC 4200L Family Datasheet</v>
+<v>tdm-000\tdm\System Reference Guides</v>
+<v>tdm-000\tdm\System Reference Guides\cy_boot_v5_60</v>
+<v>tdm-000\tdm\System Reference Guides\cy_dmac_v1_10</v>
+<v>tdm-000\tdm\System Reference Guides\cy_lfclk_v1_20</v>
+<v>tdm-000\tdm\Bootloadable_v1_60.pdf</v>
+<v>tdm-000\tdm\cy_isr_v1_70.pdf</v>
+<v>tdm-000\tdm\cy_pins_v2_20</v>
+<v>tdm-000\tdm\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>tdm-000\tdm\SCB_P4_v4_0</v>
+<v>tdm-000\tdm\SCB_P4_v4_0\SCB_P4_v4_0.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded>
+<project v="..\..\tdm_uart_bootloader\tdm_uart_bootloader.cydsn\tdm_uart_bootloader.cyprj" />
+</Unloaded>
+<OpenDocs>
+<name v=".\main.c" />
+<name v=".\tdm.cydwr" />
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\MMA8652.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="944, 399" SelectedTabbedMdiWindow="018ef6d3-99b7-45ac-8108-4ae25812a8aa"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="026f8ea3-0256-4ccc-aa9f-293e215f3cd1" /><DocumentWindow Key="C:\Users\marlokistvan\Documents\PSoC Creator\tdm.cydsn\main.c" Guid="018ef6d3-99b7-45ac-8108-4ae25812a8aa" /><DocumentWindow Key="C:\Users\marlokistvan\Documents\PSoC Creator\tdm.cydsn\tdm.cydwr" Guid="910fc58e-4524-4ec5-a42c-2361709cba80" /><DocumentWindow Key="C:\Users\marlokistvan\Documents\PSoC Creator\tdm.cydsn\TopDesign\TopDesign.cysch" Guid="bf882108-a029-4c67-a43e-5e2db2ca367d" /><DocumentWindow Key="C:\Users\marlokistvan\Documents\PSoC Creator\tdm.cydsn\MMA8652.c" Guid="7c4ec8df-1ffd-42ef-9071-ae9b73a6bbe0" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="Release" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>
